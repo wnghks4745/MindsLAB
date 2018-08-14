@@ -1,0 +1,663 @@
+#!/usr/bin/python
+# -*- coding: euc-kr -*-
+
+"""program"""
+__author__ = "MINDsLAB"
+__date__ = "creation: 2018-02-01, modification: 2018-03-21"
+
+###########
+# imports #
+###########
+import os
+import requests
+import sys
+import time
+import traceback
+import cx_Oracle
+from cfg.config import CONFIG, DB_CONFIG
+from datetime import datetime, timedelta
+from lib.iLogger import set_logger
+
+###########
+# options #
+###########
+reload(sys)
+sys.setdefaultencoding("utf-8")
+
+#############
+# constants #
+#############
+ST = ""
+DT = ""
+
+
+#########
+# class #
+#########
+class Oracle(object):
+    def __init__(self, logger):
+        self.logger = logger
+        self.dsn_tns = cx_Oracle.makedsn(
+            DB_CONFIG['host'],
+            DB_CONFIG['port'],
+            sid=DB_CONFIG['sid']
+        )
+        self.conn = cx_Oracle.connect(
+            DB_CONFIG['user'],
+            DB_CONFIG['passwd'],
+            self.dsn_tns
+        )
+        self.cursor = self.conn.cursor()
+
+    def disconnect(self):
+        try:
+            self.cursor.close()
+            self.conn.close()
+        except Exception:
+            raise Exception(traceback.format_exc())
+
+    def select_qa_target_from_cntr_info(self, **kwargs):
+        try:
+            query = """
+                SELECT
+                    POLI_NO,
+                    CTRDT,
+                    CNTR_COUNT,
+                    CNTR_PROC_DCD,
+                    IP_DCD,
+                    RUSER_ID,
+                    CU_ID,
+                    CU_NAME_HASH,
+                    CU_PHONE_NUM,
+                    CU_HOME_NUM,
+                    CU_OFFICE_NUM,
+                    CU_ETC_NUM,
+                    TA_REQ_DTM
+                FROM
+                    TB_TM_CNTR_INFO
+                WHERE 1=1
+                    AND QA_STTA_PRGST_CD = '00'
+                    AND RGST_DTM < TO_DATE(:1, 'YYYY-MM-DD HH24:MI')
+            """
+            bind = (
+                kwargs.get('standard_time'),
+            )
+            self.cursor.execute(query, bind)
+            result = self.cursor.fetchall()
+            if result is bool:
+                return False
+            if result:
+                return result
+            return False
+        except Exception:
+            exc_info = traceback.format_exc()
+            raise Exception(exc_info)
+
+    def select_rec_info_from_stt_rcdg_info(self, **kwargs):
+        try:
+            query = """
+                SELECT
+                    REC_ID,
+                    RFILE_NAME,
+                    NQA_STTA_PRGST_CD
+                FROM
+                    TB_TM_STT_RCDG_INFO
+                WHERE 1=1
+                    AND RUSER_ID LIKE '{0}%'
+                    AND CU_ID = :1
+                    AND CU_NAME_HASH = :2
+                    AND CALL_START_TIME BETWEEN TO_DATE(:3, 'YYYY-MM-DD HH24:MI:SS')
+                                            AND TO_DATE(:4, 'YYYY-MM-DD HH24:MI:SS')
+            """.format(kwargs.get('ruser_id'))
+            bind = (
+                kwargs.get('cu_id'),
+                kwargs.get('cu_name_hash'),
+                kwargs.get('front_ta_req_dtm'),
+                kwargs.get('back_ta_req_dtm')
+            )
+            self.cursor.execute(query, bind)
+            result = self.cursor.fetchall()
+            if result is bool:
+                return False
+            if result:
+                return result
+            return False
+        except Exception:
+            exc_info = traceback.format_exc()
+            raise Exception(exc_info)
+
+    def select_rec_info_use_number_from_stt_rcdg_info(self, **kwargs):
+        try:
+            query = """
+                SELECT
+                    REC_ID,
+                    RFILE_NAME,
+                    NQA_STTA_PRGST_CD
+                FROM
+                    TB_TM_STT_RCDG_INFO
+                WHERE 1=1
+                    AND (
+                            IN_CALL_NUMBER = :1
+                            OR IN_CALL_NUMBER = :2
+                            OR IN_CALL_NUMBER = :3
+                            OR IN_CALL_NUMBER = :4
+                        )
+                    AND CALL_START_TIME BETWEEN TO_DATE(:5, 'YYYY-MM-DD HH24:MI:SS')
+                                            AND TO_DATE(:6, 'YYYY-MM-DD HH24:MI:SS')
+            """
+            bind = (
+                kwargs.get('cu_phone_num'),
+                kwargs.get('cu_home_num'),
+                kwargs.get('cu_office_num'),
+                kwargs.get('cu_etc_num'),
+                kwargs.get('front_ta_req_dtm'),
+                kwargs.get('back_ta_req_dtm')
+            )
+            self.cursor.execute(query, bind)
+            result = self.cursor.fetchall()
+            if result is bool:
+                return False
+            if result:
+                return result
+            return False
+        except Exception:
+            exc_info = traceback.format_exc()
+            raise Exception(exc_info)
+
+    def select_add_rec_info_from_stt_cntr_rcdg_info(self, **kwargs):
+        query = """
+            SELECT DISTINCT
+                REC_ID,
+                RFILE_NAME,
+                LSN_YN,
+                CALL_ADD_TP
+            FROM
+                TB_TM_CNTR_RCDG_INFO
+            WHERE 1=1
+                AND POLI_NO = :1
+                AND CTRDT = :2
+                AND CALL_ADD_TP = 'M'
+        """
+        bind = (
+            kwargs.get('poli_no'),
+            kwargs.get('ctrdt'),
+        )
+        self.cursor.execute(query, bind)
+        result = self.cursor.fetchall()
+        if result is bool:
+            return False
+        if result:
+            return result
+        return False
+
+    def upsert_data_to_cntr_rcdg_info(self, **kwargs):
+        try:
+            query = """
+                MERGE INTO
+                    TB_TM_CNTR_RCDG_INFO
+                USING
+                    DUAL
+                ON ( 1=1
+                    AND POLI_NO = :1
+                    AND CTRDT = :2
+                    AND CNTR_COUNT = :3
+                    AND REC_ID = :4
+                )
+                WHEN MATCHED THEN
+                    UPDATE SET
+                        RFILE_NAME = :5,
+                        LSN_YN = :6,
+                        CALL_ADD_TP = :7,
+                        LST_CHGP_CD = :8,
+                        LST_CHG_PGM_ID = :8,
+                        LST_CHG_DTM = SYSDATE
+                WHEN NOT MATCHED THEN
+                    INSERT (
+                        POLI_NO,
+                        CTRDT,
+                        CNTR_COUNT,
+                        REC_ID,
+                        RFILE_NAME,
+                        LSN_YN,
+                        CALL_ADD_TP,
+                        LST_CHGP_CD,
+                        LST_CHG_PGM_ID,
+                        LST_CHG_DTM,
+                        REGP_CD,
+                        RGST_PGM_ID,
+                        RGST_DTM
+                    )
+                    VALUES
+                    (
+                        :1, :2, :3, :4, :5, :6, :7, :8, :8,
+                        SYSDATE, :8, :8, SYSDATE
+                    )
+            """
+            bind = (
+                kwargs.get('poli_no'),
+                kwargs.get('ctrdt'),
+                kwargs.get('cntr_count'),
+                kwargs.get('rec_id'),
+                kwargs.get('rfile_name'),
+                kwargs.get('lsn_yn'),
+                kwargs.get('call_add_tp'),
+                kwargs.get('regp_cd'),
+            )
+            self.cursor.execute(query, bind)
+            if self.cursor.rowcount > 0:
+                self.conn.commit()
+                return True
+            else:
+                self.conn.rollback()
+                return False
+        except Exception:
+            exc_info = traceback.format_exc()
+            self.conn.rollback()
+            raise Exception(exc_info)
+
+    def update_data_to_stt_rcdg_info(self, rec_id, rfile_name, cntr_proc_dcd):
+        try:
+            query = """
+                UPDATE
+                    TB_TM_STT_RCDG_INFO
+                SET
+                    CNTR_PROC_DCD = :1
+                WHERE 1=1
+                    AND REC_ID = :2
+                    AND RFILE_NAME = :3
+            """
+            bind = (
+                cntr_proc_dcd,
+                rec_id,
+                rfile_name,
+            )
+            self.cursor.execute(query, bind)
+            if self.cursor.rowcount > 0:
+                self.conn.commit()
+                return True
+            else:
+                self.conn.rollback()
+                return False
+        except Exception:
+            self.conn.rollback()
+            self.disconnect()
+            raise Exception(traceback.format_exc())
+
+    def update_data_to_cco_stt_job(self, poli_no, ctrdt, cntr_count, status):
+        try:
+            query = """
+                UPDATE
+                    TB_TM_CNTR_INFO
+                SET
+                    QA_STTA_PRGST_CD = :1
+                WHERE 1=1
+                    AND POLI_NO = :2
+                    AND CTRDT = :3
+                    AND CNTR_COUNT = :4
+            """
+            bind = (
+                status,
+                poli_no,
+                ctrdt,
+                cntr_count,
+            )
+            self.cursor.execute(query, bind)
+            if self.cursor.rowcount > 0:
+                self.conn.commit()
+                return True
+            else:
+                self.conn.rollback()
+                return False
+        except Exception:
+            self.conn.rollback()
+            self.disconnect()
+            raise Exception(traceback.format_exc())
+
+    def update_ta_cmdtm(self, poli_no, ctrdt, cntr_count):
+        try:
+            query = """
+                UPDATE
+                    TB_TM_CNTR_INFO
+                SET
+                    TA_CMDTM = SYSDATE
+                WHERE 1=1
+                    AND POLI_NO = :1
+                    AND CTRDT = :2
+                    AND CNTR_COUNT = :3
+            """
+            bind = (
+                poli_no,
+                ctrdt,
+                cntr_count
+            )
+            self.cursor.execute(query, bind)
+            if self.cursor.rowcount > 0:
+                self.conn.commit()
+                return True
+            else:
+                self.conn.rollback()
+                return False
+        except Exception:
+            self.conn.rollback()
+            self.disconnect()
+            raise Exception(traceback.format_exc())
+
+    def update_http_status(self, **kwargs):
+        try:
+            sql = """
+                UPDATE
+                    TB_TM_CNTR_INFO
+                SET
+                    HTTP_TRANS_CD = :1,
+                    LST_CHGP_CD = 'TM_CT_IN',
+                    LST_CHG_PGM_ID = 'TM_CT_IN',
+                    LST_CHG_DTM = SYSDATE
+                WHERE 1=1
+                    AND POLI_NO = :2
+                    AND CTRDT = :3
+                    AND CNTR_COUNT = :4
+            """
+            bind = (
+                kwargs.get('http_trans_cd'),
+                kwargs.get('poli_no'),
+                kwargs.get('ctrdt'),
+                kwargs.get('cntr_count')
+            )
+            self.cursor.execute(sql, bind)
+            if self.cursor.rowcount > 0:
+                self.conn.commit()
+                return True
+            else:
+                self.conn.rollback()
+                return False
+        except Exception:
+            self.conn.rollback()
+            raise Exception(traceback.format_exc())
+
+
+#######
+# def #
+#######
+def elapsed_time(sdate):
+    """
+    elapsed time
+    :param          sdate:          date object
+    :return                         Required time (type : datetime)
+    """
+    end_time = datetime.now()
+    if not sdate or len(sdate) < 14:
+        return 0, 0, 0, 0
+    start_time = datetime(int(sdate[:4]), int(sdate[4:6]), int(sdate[6:8]),
+                          int(sdate[8:10]), int(sdate[10:12]), int(sdate[12:14]))
+    required_time = end_time - start_time
+    return required_time
+
+
+def connect_db(logger, db):
+    """
+    Connect database
+    :param      logger:     Logger
+    :param      db:         Database
+    :return                 SQL Object
+    """
+    # Connect DB
+    sql = False
+    for cnt in range(1, 4):
+        try:
+            if db == 'Oracle':
+                os.environ["NLS_LANG"] = ".KO16MSWIN949"
+                sql = Oracle(logger)
+            else:
+                raise Exception("Unknown database [{0}], Oracle".format(db))
+            break
+        except Exception:
+            exc_info = traceback.format_exc()
+            logger.error(exc_info)
+            if cnt < 3:
+                logger.error("Fail connect {0}, retrying count = {1}".format(db, cnt))
+            time.sleep(10)
+            continue
+    if not sql:
+        return False
+    return sql
+
+
+def get_cntr_info(logger, oracle, poli_no, status, ip_dcd, ctrdt, cntr_count):
+    """
+    http requests get cntr info
+    :param      logger:         Logger
+    :param      oracle:         Oracle
+    :param      poli_no:        POLI_NO(증서번호)
+    :param      status:
+    :param      ip_dcd:         IP_DCD(보험상품구분코드)
+    :param      ctrdt:          CTRDT(청약일자)
+    :param      cntr_count:     CNTR_COUNT(심하회차)
+    :return:
+    """
+    bjgb = ''
+    if ip_dcd == '01' or ip_dcd == '04':
+        bjgb = 'L'
+    elif ip_dcd == '02':
+        bjgb = 'O'
+    elif ip_dcd == '03':
+        bjgb = 'A'
+    url = CONFIG['http_url']
+    params = {
+        'bjgb': bjgb,
+        'polno': poli_no,
+        'sttstatus': status,
+        'cntr_count': cntr_count
+    }
+    try:
+        res = requests.get(url, params=params, timeout=CONFIG['requests_timeout'])
+        oracle.update_http_status(
+            http_trans_cd='01',
+            poli_no=poli_no,
+            ctrdt=ctrdt,
+            cntr_count=cntr_count
+        )
+        logger.info('\thttp status send -> {0}'.format(res.url))
+    except Exception:
+        logger.error('\tFail http status send -> {0}'.format(poli_no))
+        oracle.update_http_status(
+            http_trans_cd='02',
+            poli_no=poli_no,
+            ctrdt=ctrdt,
+            cntr_count=cntr_count
+        )
+
+
+def processing():
+    """
+    Processing
+    """
+    # Add logging
+    logger_args = {
+        'base_path': CONFIG['log_dir_path'],
+        'log_file_name': CONFIG['log_name'],
+        'log_level': CONFIG['log_level']
+    }
+    logger = set_logger(logger_args)
+    # Connect db
+    try:
+        oracle = connect_db(logger, 'Oracle')
+        if not oracle:
+            logger.error("---------- Can't connect db ----------")
+            for handler in logger.handlers:
+                handler.close()
+                logger.removeHandler(handler)
+            sys.exit(1)
+    except Exception:
+        exc_info = traceback.format_exc()
+        logger.error(exc_info)
+        logger.error("---------- Can't connect db ----------")
+        for handler in logger.handlers:
+            handler.close()
+            logger.removeHandler(handler)
+        sys.exit(1)
+    try:
+        sql = connect_db(logger, 'Oracle')
+        ts = time.time()
+        dt = datetime.fromtimestamp(ts) - timedelta(minutes=CONFIG['standard_time'])
+        standard_time = dt.strftime('%Y-%m-%d %H:%M')
+        result = sql.select_qa_target_from_cntr_info(standard_time=standard_time)
+        if result:
+            logger.debug("QA target count = {0}, before {1}".format(len(result), standard_time))
+            for item in result:
+                poli_no = item[0]
+                ctrdt = item[1]
+                cntr_count = item[2]
+                cntr_proc_dcd = item[3]
+                ip_dcd = item[4]
+                ruser_id = item[5]
+                cu_id = item[6]
+                cu_name_hash = item[7]
+                cu_phone_num = item[8]
+                cu_home_num = item[9]
+                cu_office_num = item[10]
+                cu_etc_num = item[11]
+                ta_req_dtm = item[12]
+                logger.info('-'*100)
+                logger.info(
+                    "POLI_NO= {0}, CTRDT= {1}, CNTR_COUNT= {2}, CNTR_PROC_DCD = {3}, IP_DCD = {4}, RUSER_ID= {5},"
+                    " CU_ID= {6}, CU_NAME_HASH= {7}, TA_REQ_DTM= {8}".format(poli_no, ctrdt, cntr_count, cntr_proc_dcd,
+                                                                     ip_dcd, ruser_id, cu_id, cu_name_hash, ta_req_dtm))
+                modified_ruser_id = ruser_id.split('_0')[0]
+                back_ta_req_dtm_date = ta_req_dtm + timedelta(days=1)
+                front_ta_req_dtm_date = back_ta_req_dtm_date - timedelta(days=31)
+                back_ta_req_dtm = str(back_ta_req_dtm_date)
+                front_ta_req_dtm = str(front_ta_req_dtm_date)
+                logger.info("Select target time -> Between {0} and {1}".format(back_ta_req_dtm, front_ta_req_dtm))
+                rec_info_result = sql.select_rec_info_from_stt_rcdg_info(
+                    ruser_id=modified_ruser_id,
+                    cu_id=cu_id,
+                    cu_name_hash=cu_name_hash,
+                    back_ta_req_dtm=back_ta_req_dtm,
+                    front_ta_req_dtm=front_ta_req_dtm
+                )
+                num_rec_info_result = sql.select_rec_info_use_number_from_stt_rcdg_info(
+                    cu_phone_num=cu_phone_num,
+                    cu_home_num=cu_home_num,
+                    cu_office_num=cu_office_num,
+                    cu_etc_num=cu_etc_num,
+                    back_ta_req_dtm=back_ta_req_dtm,
+                    front_ta_req_dtm=front_ta_req_dtm
+                )
+                add_rec_info_result = sql.select_add_rec_info_from_stt_cntr_rcdg_info(
+                    poli_no=poli_no,
+                    ctrdt=ctrdt
+                )
+                if not rec_info_result and not num_rec_info_result and not add_rec_info_result:
+                    logger.error("Record count = 0")
+                    sql.update_data_to_cco_stt_job(poli_no, ctrdt, cntr_count, '90')
+                    sql.update_ta_cmdtm(poli_no, ctrdt, cntr_count)
+                    get_cntr_info(logger, oracle, poli_no, '90', ip_dcd, ctrdt, cntr_count)
+                    continue
+                overlap_check_dict = dict()
+                if add_rec_info_result:
+                    logger.info('수동 매핑 Record count = {0}'.format(len(add_rec_info_result)))
+                    for add_rec_info_item in add_rec_info_result:
+                        rec_id = add_rec_info_item[0]
+                        rfile_name = add_rec_info_item[1]
+                        lsn_yn = add_rec_info_item[2]
+                        call_add_tp = add_rec_info_item[3]
+                        overlap_check_key = '{0}_{1}_{2}_{3}'.format(poli_no, ctrdt, cntr_count, rec_id)
+                        if overlap_check_key in overlap_check_dict:
+                            continue
+                        else:
+                            overlap_check_dict[overlap_check_key] = 1
+                        logger.info("REC_ID = {0}, RFILE_NAME = {1}".format(rec_id, rfile_name))
+                        sql.upsert_data_to_cntr_rcdg_info(
+                            poli_no=poli_no,
+                            ctrdt=ctrdt,
+                            cntr_count=cntr_count,
+                            rec_id=rec_id,
+                            rfile_name=rfile_name,
+                            lsn_yn=lsn_yn,
+                            call_add_tp=call_add_tp,
+                            regp_cd='TM_CT_IN',
+                        )
+                        sql.update_data_to_stt_rcdg_info(rec_id, rfile_name, cntr_proc_dcd)
+                if rec_info_result:
+                    logger.info("Record count = {0}".format(len(rec_info_result)))
+                    for rec_info_item in rec_info_result:
+                        rec_id = rec_info_item[0]
+                        rfile_name = rec_info_item[1]
+                        overlap_check_key = '{0}_{1}_{2}_{3}'.format(poli_no, ctrdt, cntr_count, rec_id)
+                        if overlap_check_key in overlap_check_dict:
+                            continue
+                        else:
+                            overlap_check_dict[overlap_check_key] = 1
+                        logger.info("REC_ID = {0}, RFILE_NAME = {1}".format(rec_id, rfile_name))
+                        sql.upsert_data_to_cntr_rcdg_info(
+                            poli_no=poli_no,
+                            ctrdt=ctrdt,
+                            cntr_count=cntr_count,
+                            rec_id=rec_id,
+                            rfile_name=rfile_name,
+                            lsn_yn='N',
+                            call_add_tp='A',
+                            regp_cd='TM_CT_IN',
+                        )
+                        sql.update_data_to_stt_rcdg_info(rec_id, rfile_name, cntr_proc_dcd)
+                if num_rec_info_result:
+                    logger.info("추가 조회 Record count = {0}".format(len(num_rec_info_result)))
+                    for num_rec_info_item in num_rec_info_result:
+                        rec_id = num_rec_info_item[0]
+                        rfile_name = num_rec_info_item[1]
+                        overlap_check_key = '{0}_{1}_{2}_{3}'.format(poli_no, ctrdt, cntr_count, rec_id)
+                        if overlap_check_key in overlap_check_dict:
+                            continue
+                        else:
+                            overlap_check_dict[overlap_check_key] = 1
+                        logger.info("REC_ID = {0}, RFILE_NAME = {1}".format(rec_id, rfile_name))
+                        sql.upsert_data_to_cntr_rcdg_info(
+                            poli_no=poli_no,
+                            ctrdt=ctrdt,
+                            cntr_count=cntr_count,
+                            rec_id=rec_id,
+                            rfile_name=rfile_name,
+                            lsn_yn='N',
+                            call_add_tp='A',
+                            regp_cd='TM_CT_IN',
+                        )
+                        sql.update_data_to_stt_rcdg_info(rec_id, rfile_name, cntr_proc_dcd)
+                sql.update_data_to_cco_stt_job(poli_no, ctrdt, cntr_count, '01')
+                get_cntr_info(logger, oracle, poli_no, '01', ip_dcd, ctrdt, cntr_count)
+            logger.debug("END.. Start time = {0}, The time required = {1}".format(ST, elapsed_time(DT)))
+    except Exception:
+        exc_info = traceback.format_exc()
+        logger.error(exc_info)
+        logger.error("---------- ERROR ----------")
+        oracle.disconnect()
+        for handler in logger.handlers:
+            handler.close()
+            logger.removeHandler(handler)
+        sys.exit(1)
+    oracle.disconnect()
+    for handler in logger.handlers:
+        handler.close()
+        logger.removeHandler(handler)
+
+
+########
+# main #
+########
+def main():
+    """
+    This is a program that insert QA record data to TB_TM_CNTR_RCDG_INFO
+    """
+    global ST
+    global DT
+    ts = time.time()
+    ST = datetime.fromtimestamp(ts).strftime('%Y-%m-%d-%H:%M.%S')
+    DT = datetime.fromtimestamp(ts).strftime('%Y%m%d%H%M%S')
+    try:
+        processing()
+    except Exception:
+        exc_info = traceback.format_exc()
+        print(exc_info)
+
+
+if __name__ == '__main__':
+    main()

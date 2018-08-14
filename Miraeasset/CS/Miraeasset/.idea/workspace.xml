@@ -1,0 +1,535 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="ce32ff0c-13cc-4e15-9eca-3e58f56dc93c" name="Default" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="STT.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/STT.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="443">
+              <caret line="988" column="113" lean-forward="true" selection-start-line="988" selection-start-column="16" selection-end-line="988" selection-end-column="113" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>upsert_tb_qa_stt_tm_rcdg_info</find>
+      <find>processing</find>
+      <find>file_path</find>
+      <find>Daemon</find>
+      <find>DAEMON</find>
+      <find>logging</find>
+      <find>signal_handler</find>
+      <find>MyFormatter</find>
+      <find>TimedRotatingFileHandler</find>
+      <find>multiprocessing</find>
+      <find>do_task</find>
+      <find>time</find>
+      <find>sleep_exact_time</find>
+      <find>dis o</find>
+      <find>rec_file_exist_check</find>
+      <find>.get(</find>
+      <find>json_data.get(</find>
+      <find>)).</find>
+      <find>stt</find>
+      <find>script</find>
+      <find>host</find>
+      <find>db_upload_to_json</find>
+      <find>json_data_check</find>
+      <find>shutil.rm</find>
+      <find>shutil.move</find>
+      <find>.AL</find>
+      <find>get_logger</find>
+      <find>pid</find>
+      <find>pid_</find>
+      <find>gsm</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>raise Exception(traceback.format_exc())</replace>
+    </replaceStrings>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/../Change_prgst_cd/change_prgst_cd.py" />
+        <option value="$PROJECT_DIR$/../CS_Monitoring/log_analysis.py" />
+        <option value="$PROJECT_DIR$/../../../Meritz/LOG_monitoring/log_monitoring.py" />
+        <option value="$PROJECT_DIR$/lib/openssl.py" />
+        <option value="$PROJECT_DIR$/../CS_monitoring/CS_Monitoring.py" />
+        <option value="$PROJECT_DIR$/sftp_transport.py" />
+        <option value="$PROJECT_DIR$/../CS_monitoring/cfg/config.py" />
+        <option value="$PROJECT_DIR$/../CS_monitoring/delete_CS_file.py" />
+        <option value="$PROJECT_DIR$/cfg/config.py" />
+        <option value="$PROJECT_DIR$/CS_daemon.py" />
+        <option value="$PROJECT_DIR$/../../TM_2/STT/cfg/cfg.py" />
+        <option value="$PROJECT_DIR$/../../TM/STT/TM_daemon.py" />
+        <option value="$PROJECT_DIR$/../../TM_2/STT/lib/daemon.py" />
+        <option value="$PROJECT_DIR$/../../TM_2/STT/TM_daemon.py" />
+        <option value="$PROJECT_DIR$/../../TM_2/STT/lib/openssl.py" />
+        <option value="$PROJECT_DIR$/../../TM_2/STT/lib/iLogger.py" />
+        <option value="$PROJECT_DIR$/../../TM_2/STT/cfg/config.py" />
+        <option value="$PROJECT_DIR$/../CS_monitoring/change_prgst_cd.py" />
+        <option value="$PROJECT_DIR$/../CS_monitoring/log_analysis.py" />
+        <option value="$PROJECT_DIR$/../../TM_2/STT/STT.py" />
+        <option value="$PROJECT_DIR$/../../TM/TA/TA.py" />
+        <option value="$PROJECT_DIR$/../../../Lotte/TA_test/cfg/config.py" />
+        <option value="$PROJECT_DIR$/../../../Lotte/TA_test/TA_test.py" />
+        <option value="$PROJECT_DIR$/../../../Lotte/STT/STT.py" />
+        <option value="$PROJECT_DIR$/../../../Lotte/STT/cfg/config.py" />
+        <option value="$PROJECT_DIR$/../../TM/STT/cfg/config.py" />
+        <option value="$PROJECT_DIR$/../../../Lotte/STT/STT_daemon.py" />
+        <option value="$PROJECT_DIR$/../../../Lotte/TM/STT/DB_connect.py" />
+        <option value="$PROJECT_DIR$/../../../Lotte/TM/STT/STT_daemon.py" />
+        <option value="$PROJECT_DIR$/../../../Lotte/TM/STT/process_monitoring.py" />
+        <option value="$PROJECT_DIR$/lib/iLogger.py" />
+        <option value="$PROJECT_DIR$/../../../Lotte/TM/STT/TM_daemon.py" />
+        <option value="$PROJECT_DIR$/STT.py" />
+        <option value="$PROJECT_DIR$/../../TM/STT/STT.py" />
+        <option value="$PROJECT_DIR$/../../../Lotte/TM/STT/cfg/config.py" />
+        <option value="$PROJECT_DIR$/../../../Lotte/TM/STT/STT.py" />
+        <option value="$PROJECT_DIR$/../../../Lotte/TM/STT/Lotte/TM_daemon2.py" />
+        <option value="$PROJECT_DIR$/../../../Lotte/TM/STT/Lotte/TM_daemon.py" />
+        <option value="$PROJECT_DIR$/../../../Lotte/CS/STT/Lotte/CS_daemon.py" />
+        <option value="$PROJECT_DIR$/../../../Lotte/TM/TA/Lotte/TA.py" />
+        <option value="$PROJECT_DIR$/../../../Lotte/TM/TA/Lotte/cfg/config.py" />
+        <option value="$PROJECT_DIR$/../../../Lotte/TM/STT/Lotte/STT.py" />
+        <option value="$PROJECT_DIR$/../../../Lotte/TM/STT/Lotte/JSON_upload.py" />
+        <option value="$PROJECT_DIR$/Sftp_transport_daemon.py" />
+        <option value="$PROJECT_DIR$/../../../Lotte/TM/STT/Lotte/json_daemon.py" />
+        <option value="$PROJECT_DIR$/../../../Lotte/TM/STT/Lotte/json_upload.py" />
+        <option value="$PROJECT_DIR$/../../../Lotte/TM/STT/Lotte/DB_connect.py" />
+        <option value="$PROJECT_DIR$/../../../Lotte/TM/STT/Lotte/cfg/config.py" />
+        <option value="$PROJECT_DIR$/../../../Lotte/TM/json_data_upload/json_daemon.py" />
+        <option value="$PROJECT_DIR$/../../../Lotte/TM/json_data_upload/cfg/config.py" />
+        <option value="$PROJECT_DIR$/../../../Lotte/TM/json_data_upload/json_upload.py" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="y" value="23" />
+    <option name="width" value="2560" />
+    <option name="height" value="1417" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>Python</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>PyTypeCheckerInspection</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Miraeasset" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Lotte" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Lotte" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\주환\OneDrive\MindsLAB\Project\Lotte\TM\json_data_upload" />
+      <recent name="C:\Users\주환\OneDrive\MindsLAB\Project\Lotte\TM" />
+      <recent name="C:\Users\주환\OneDrive\MindsLAB\Project\Lotte\CS\STT\Lotte" />
+      <recent name="C:\Users\주환\OneDrive\MindsLAB\Project\Lotte\TM\STT\Lotte" />
+      <recent name="C:\Users\주환\OneDrive\MindsLAB\Project\Lotte\TA_test\lib" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\주환\OneDrive\MindsLAB\Project\Lotte\TM\STT\Lotte" />
+      <recent name="C:\Users\주환\OneDrive\MindsLAB\Project\Lotte\TM\STT\lib" />
+      <recent name="C:\Users\주환\OneDrive\MindsLAB\Project\Lotte\STT\lib" />
+      <recent name="C:\Users\주환\OneDrive\MindsLAB\Project\Miraeasset\CS\CS_monitoring\lib" />
+      <recent name="C:\Users\주환\OneDrive\MindsLAB\Project\Miraeasset\CS\Change_prgst_cd\cfg" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ce32ff0c-13cc-4e15-9eca-3e58f56dc93c" name="Default" comment="" />
+      <created>1508720391947</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1508720391947</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="23" width="2560" height="1417" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20401733" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.328" sideWeight="0.50385606" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32533333" sideWeight="0.49614397" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24968314" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32933334" sideWeight="0.4974293" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32933334" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="108" />
+    </breakpoint-manager>
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/../CS_monitoring/cfg/config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="13" column="17" lean-forward="false" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cfg/config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1292">
+          <caret line="68" column="30" lean-forward="false" selection-start-line="68" selection-start-column="30" selection-end-line="68" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Upload_rec_info/cfg/config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="11" column="19" lean-forward="false" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../TM_2/STT/cfg/cfg.py" />
+    <entry file="file://$PROJECT_DIR$/../../TM_2/STT/lib/daemon.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="555">
+          <caret line="138" column="20" lean-forward="false" selection-start-line="138" selection-start-column="20" selection-end-line="138" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../TM_2/STT/TM_daemon.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="233">
+          <caret line="469" column="18" lean-forward="false" selection-start-line="469" selection-start-column="18" selection-end-line="469" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../TM/STT/lib/daemon.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="97" column="10" lean-forward="true" selection-start-line="97" selection-start-column="10" selection-end-line="97" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../TM/STT/lib/openssl.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-870">
+          <caret line="43" column="20" lean-forward="false" selection-start-line="43" selection-start-column="4" selection-end-line="43" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../Lotte/TA_test/lib/iLogger.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="21" column="29" lean-forward="false" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../TM_2/STT/lib/iLogger.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="662">
+          <caret line="55" column="17" lean-forward="false" selection-start-line="55" selection-start-column="17" selection-end-line="55" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../TM_2/STT/lib/openssl.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="532">
+          <caret line="57" column="0" lean-forward="false" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../CS_monitoring/delete_CS_file.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="686">
+          <caret line="203" column="52" lean-forward="false" selection-start-line="203" selection-start-column="52" selection-end-line="203" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../CS_monitoring/change_prgst_cd.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="458">
+          <caret line="154" column="10" lean-forward="true" selection-start-line="154" selection-start-column="10" selection-end-line="154" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../CS_monitoring/log_analysis.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="534">
+          <caret line="55" column="19" lean-forward="false" selection-start-line="55" selection-start-column="19" selection-end-line="55" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../TM_2/STT/STT.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="11780">
+          <caret line="820" column="39" lean-forward="false" selection-start-line="820" selection-start-column="39" selection-end-line="820" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../TM_2/STT/cfg/config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="19" column="24" lean-forward="false" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../Lotte/TA_test/cfg/config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="7" column="44" lean-forward="false" selection-start-line="7" selection-start-column="44" selection-end-line="7" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../Lotte/TA_test/TA_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="105" column="62" lean-forward="false" selection-start-line="105" selection-start-column="62" selection-end-line="105" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../Lotte/TM/json_data_upload/lib/daemon.py" />
+    <entry file="file://$PROJECT_DIR$/../../../../이승필 매니저 코드/LGuplus_STT_고도화_프로젝트/Daemon/Ori_LGuplus_daemon_pre_STT.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="223">
+          <caret line="120" column="48" lean-forward="false" selection-start-line="120" selection-start-column="44" selection-end-line="120" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../../이승필 매니저 코드/LGuplus_STT_고도화_프로젝트/STT/cfg/config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="498">
+          <caret line="59" column="0" lean-forward="false" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../../이승필 매니저 코드/LGuplus_STT_고도화_프로젝트/STT/preprocessing_STT.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="254">
+          <caret line="231" column="63" lean-forward="false" selection-start-line="231" selection-start-column="63" selection-end-line="231" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../../이승필 매니저 코드/LGuplus_STT_고도화_프로젝트/Daemon/LGuplus_daemon_post_STT.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-50">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../CS_monitoring/CS_Monitoring.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="470">
+          <caret line="241" column="26" lean-forward="false" selection-start-line="241" selection-start-column="21" selection-end-line="241" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../Lotte/TM/STT/Lotte/process_monitoring.py" />
+    <entry file="file://$PROJECT_DIR$/lib/iLogger.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="475">
+          <caret line="79" column="30" lean-forward="true" selection-start-line="79" selection-start-column="30" selection-end-line="79" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../Lotte/TM/json_data_upload/lib/iLogger.py" />
+    <entry file="file://$PROJECT_DIR$/../../TM/STT/TM_daemon.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="356">
+          <caret line="60" column="35" lean-forward="false" selection-start-line="60" selection-start-column="27" selection-end-line="60" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../Lotte/CS/STT/Lotte/CS_daemon.py" />
+    <entry file="file://$PROJECT_DIR$/../../../Lotte/CS/STT/Lotte/STT.py" />
+    <entry file="file://$PROJECT_DIR$/../../TM/TA/TA.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5339">
+          <caret line="1614" column="14" lean-forward="false" selection-start-line="1614" selection-start-column="4" selection-end-line="1614" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../TM/TA/cfg/config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="79" column="7" lean-forward="false" selection-start-line="79" selection-start-column="5" selection-end-line="79" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../Lotte/TM/TA/Lotte/cfg/config.py" />
+    <entry file="file://$PROJECT_DIR$/../../MANAGE_REC/compression_and_delete_rec_file.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="292">
+          <caret line="120" column="43" lean-forward="true" selection-start-line="120" selection-start-column="43" selection-end-line="120" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Sftp_transport_daemon.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="472">
+          <caret line="135" column="49" lean-forward="true" selection-start-line="135" selection-start-column="49" selection-end-line="135" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../Lotte/TM/TA/Lotte/TA.py" />
+    <entry file="file://$PROJECT_DIR$/../../TM/STT/cfg/config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="40" column="13" lean-forward="false" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../TM/STT/STT.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="1427" column="24" lean-forward="false" selection-start-line="1427" selection-start-column="24" selection-end-line="1427" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Upload_rec_info/upload_rec_info.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="318">
+          <caret line="340" column="8" lean-forward="false" selection-start-line="340" selection-start-column="8" selection-end-line="340" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CS_daemon.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="98" column="47" lean-forward="false" selection-start-line="98" selection-start-column="8" selection-end-line="98" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../../이승필 매니저 코드/LGuplus_STT_고도화_프로젝트/STT/postprocessing_STT.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="223">
+          <caret line="865" column="33" lean-forward="false" selection-start-line="865" selection-start-column="30" selection-end-line="865" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../../이승필 매니저 코드/LGuplus_STT_고도화_프로젝트/Daemon/LGuplus_daemon_pre_STT.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="413">
+          <caret line="135" column="27" lean-forward="false" selection-start-line="135" selection-start-column="27" selection-end-line="135" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../Lotte/TM/STT/Lotte/TM_daemon.py" />
+    <entry file="file://$PROJECT_DIR$/../../../Lotte/TM/STT/Lotte/DB_connect.py" />
+    <entry file="file://$PROJECT_DIR$/../../../Lotte/TM/STT/Lotte/STT.py" />
+    <entry file="file://$PROJECT_DIR$/../../../Lotte/TM/STT/Lotte/lib/daemon.py" />
+    <entry file="file://$PROJECT_DIR$/../../../Lotte/TM/STT/Lotte/cfg/config.py" />
+    <entry file="file://$PROJECT_DIR$/../../../Lotte/TM/json_data_upload/cfg/config.py" />
+    <entry file="file://$PROJECT_DIR$/../../../Lotte/TM/json_data_upload/json_daemon.py" />
+    <entry file="file://$PROJECT_DIR$/../../../Lotte/TM/json_data_upload/json_upload.py" />
+    <entry file="file://$PROJECT_DIR$/STT.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="443">
+          <caret line="988" column="113" lean-forward="true" selection-start-line="988" selection-start-column="16" selection-end-line="988" selection-end-column="113" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

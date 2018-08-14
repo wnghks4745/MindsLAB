@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="dfa65b4b-53e2-4308-90ff-ad3fc2c4eb6a" name="Default" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="STT.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../CS/Miraeasset/STT.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="344">
+              <caret line="848" column="20" lean-forward="false" selection-start-line="848" selection-start-column="4" selection-end-line="848" selection-end-column="20" />
+              <folding>
+                <element signature="e#37008#37680#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>execute_dnn</find>
+      <find>modify_time_info</find>
+      <find>make_output</find>
+      <find>tree</find>
+      <find>print</find>
+      <find>print &gt;&gt;</find>
+      <find>glob</find>
+      <find>splitext</find>
+      <find>Daemon</find>
+      <find>DAEMON</find>
+      <find>signal</find>
+      <find>logging</find>
+      <find>signal_handler</find>
+      <find>set_sig_handler</find>
+      <find>TimedRotatingFileHandler</find>
+      <find>datetime</find>
+      <find>MyFormatter</find>
+      <find>get_logger</find>
+      <find>multiprocessing</find>
+      <find>do_task</find>
+      <find>sleep_exact_time</find>
+      <find>time</find>
+      <find>wait</find>
+      <find>init_list_of_objects</find>
+      <find>info_dic</find>
+      <find>select_rec_id_list_to_tb_qa_stt_recinfo</find>
+      <find>rec_server_check</find>
+      <find>update_prgst_cd_to_tb_qa_stt_recinfo</find>
+      <find>make_stt_result_table_txt</find>
+      <find>get_rcdg_info_dic</find>
+    </findStrings>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/lib/iLogger.py" />
+        <option value="$PROJECT_DIR$/cfg/config.py" />
+        <option value="$PROJECT_DIR$/../Miraeasset_CS/CS_daemon.py" />
+        <option value="$PROJECT_DIR$/../Miraeasset_CS/STT.py" />
+        <option value="$PROJECT_DIR$/../Miraeasset_CS/upload_daemon.py" />
+        <option value="$PROJECT_DIR$/compression_and_delete_rec_and_vox_file.py" />
+        <option value="$PROJECT_DIR$/MANAGE_REC_daemon.py" />
+        <option value="$PROJECT_DIR$/../CS/Miraeasset/CS_daemon.py" />
+        <option value="$PROJECT_DIR$/../CS/Miraeasset/STT.py" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-7" />
+    <option name="width" value="814" />
+    <option name="height" value="877" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="MANAGE_REC" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Miraeasset" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MANAGE_REC" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Miraeasset" type="462c0819:PsiDirectoryNode" />
+              <item name="MANAGE_REC" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MANAGE_REC" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Miraeasset" type="462c0819:PsiDirectoryNode" />
+              <item name="CS" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MANAGE_REC" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Miraeasset" type="462c0819:PsiDirectoryNode" />
+              <item name="CS" type="462c0819:PsiDirectoryNode" />
+              <item name="Miraeasset" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scratches" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\주환\OneDrive\MindsLAB\Miraeasset_MANAGE_REC\cfg" />
+      <recent name="C:\Users\주환\OneDrive\MindsLAB\Miraeasset_MANAGE_REC\lib" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="dfa65b4b-53e2-4308-90ff-ad3fc2c4eb6a" name="Default" comment="" />
+      <created>1509062164812</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1509062164812</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1616" height="886" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19125" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32988358" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33333334" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32933334" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32933334" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="3" />
+    </breakpoint-manager>
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/compression_and_delete_rec_and_vox_file.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="950">
+          <caret line="64" column="29" lean-forward="false" selection-start-line="64" selection-start-column="25" selection-end-line="64" selection-end-column="29" />
+          <folding>
+            <element signature="e#179#188#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Miraeasset_CS/STT.py" />
+    <entry file="file://$PROJECT_DIR$/lib/iLogger.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="836">
+          <caret line="46" column="33" lean-forward="false" selection-start-line="46" selection-start-column="22" selection-end-line="46" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Miraeasset_CS/cfg/config.py" />
+    <entry file="file://$PROJECT_DIR$/../Miraeasset_CS/upload_daemon.py" />
+    <entry file="file://$PROJECT_DIR$/../Miraeasset_CS/CS_daemon.py" />
+    <entry file="file://$PROJECT_DIR$/compression_and_delete_rec_and_vox_file.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="950">
+          <caret line="64" column="29" lean-forward="false" selection-start-line="64" selection-start-column="25" selection-end-line="64" selection-end-column="29" />
+          <folding>
+            <element signature="e#179#188#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Miraeasset_CS/STT.py" />
+    <entry file="file://$PROJECT_DIR$/lib/iLogger.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="836">
+          <caret line="46" column="33" lean-forward="false" selection-start-line="46" selection-start-column="22" selection-end-line="46" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Miraeasset_CS/CS_daemon.py" />
+    <entry file="file://$PROJECT_DIR$/../Miraeasset_CS/cfg/config.py" />
+    <entry file="file://$PROJECT_DIR$/compression_and_delete_rec_and_vox_file.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2204">
+          <caret line="160" column="28" lean-forward="false" selection-start-line="160" selection-start-column="26" selection-end-line="160" selection-end-column="28" />
+          <folding>
+            <element signature="e#179#188#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Miraeasset_CS/STT.py" />
+    <entry file="file://$PROJECT_DIR$/../Miraeasset_CS/CS_daemon.py" />
+    <entry file="file://$PROJECT_DIR$/../Miraeasset_CS/cfg/config.py" />
+    <entry file="file://$PROJECT_DIR$/compression_and_delete_rec_and_vox_file.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#179#188#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Miraeasset_CS/STT.py" />
+    <entry file="file://$PROJECT_DIR$/../Miraeasset_CS/cfg/config.py" />
+    <entry file="file://$PROJECT_DIR$/../Miraeasset_CS/CS_daemon.py" />
+    <entry file="file://$PROJECT_DIR$/cfg/codec.cfg">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Miraeasset/cfg/codec.cfg" />
+    <entry file="file://$PROJECT_DIR$/lib/openssl.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="223">
+          <caret line="12" column="15" lean-forward="false" selection-start-line="12" selection-start-column="9" selection-end-line="12" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Miraeasset/STT.py" />
+    <entry file="file://$PROJECT_DIR$/cfg/config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="11" column="23" lean-forward="false" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Python27/Lib/shutil.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Python27/Lib/logging/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-306">
+          <caret line="1022" column="8" lean-forward="false" selection-start-line="1022" selection-start-column="8" selection-end-line="1022" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Miraeasset_CS/lib/daemon.py" />
+    <entry file="file://$PROJECT_DIR$/../Miraeasset_CS/upload_daemon.py" />
+    <entry file="file://$PROJECT_DIR$/../Miraeasset_CS/STT.py" />
+    <entry file="file://$PROJECT_DIR$/lib/iLogger.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="685">
+          <caret line="46" column="33" lean-forward="false" selection-start-line="46" selection-start-column="22" selection-end-line="46" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Miraeasset_CS/cfg/config.py" />
+    <entry file="file://$PROJECT_DIR$/../Miraeasset_CS/CS_daemon.py" />
+    <entry file="file://$PROJECT_DIR$/../CS/Miraeasset/cfg/config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="457">
+          <caret line="42" column="35" lean-forward="false" selection-start-line="42" selection-start-column="29" selection-end-line="42" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MANAGE_REC_daemon.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="267">
+          <caret line="36" column="18" lean-forward="true" selection-start-line="36" selection-start-column="18" selection-end-line="36" selection-end-column="18" />
+          <folding>
+            <element signature="e#180#189#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/compression_and_delete_rec_and_vox_file.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="970">
+          <caret line="205" column="75" lean-forward="false" selection-start-line="205" selection-start-column="73" selection-end-line="205" selection-end-column="75" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../CS/Miraeasset/db_upload_txt_send_using_sftp.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="11" column="11" lean-forward="true" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../CS/Miraeasset/CS_daemon.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="105" column="54" lean-forward="false" selection-start-line="105" selection-start-column="54" selection-end-line="105" selection-end-column="54" />
+          <folding>
+            <element signature="e#2923#3387#0" expanded="false" />
+            <element signature="e#3452#4464#0" expanded="false" />
+            <element signature="e#4554#5619#0" expanded="false" />
+            <element signature="e#5655#5767#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../CS/Miraeasset/STT.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="344">
+          <caret line="848" column="20" lean-forward="false" selection-start-line="848" selection-start-column="4" selection-end-line="848" selection-end-column="20" />
+          <folding>
+            <element signature="e#37008#37680#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../../../Lotte/.idea/Lotte.iml" filepath="$PROJECT_DIR$/../../../Lotte/.idea/Lotte.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../../Meritz/.idea/Meritz.iml" filepath="$PROJECT_DIR$/../../../Meritz/.idea/Meritz.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../.idea/Miraeasset.iml" filepath="$PROJECT_DIR$/../../.idea/Miraeasset.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../MANAGE_REC/.idea/Miraeasset_MANAGE_REC.iml" filepath="$PROJECT_DIR$/../../MANAGE_REC/.idea/Miraeasset_MANAGE_REC.iml" />
+    </modules>
+  </component>
+</project>
