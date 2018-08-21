@@ -173,7 +173,7 @@ class MySQL(object):
                     CHN_TP,
                     FILE_SPRT,
                     REC_EXT,
-                    CREATED_DTM,
+                    CREATED_DATE,
                     CREATOR_ID,
                     CREATED_DTM,
                     UPDATOR_ID,
