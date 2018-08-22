@@ -536,6 +536,7 @@ def extract_silence(start_time_idx, end_time_idx, sentence_idx, total_duration, 
     crosstalk_output_dict = collections.OrderedDict()
     speaker_last_end_time_dict = {'A': False, 'C': False}
     speaker_last_start_time_dict = {'A': False, 'C': False}
+    speaker_last_key_dict = {'A': False, 'C': False}
     for idx in range(0, len(input_line_list)):
         front_line = input_line_list[idx].strip()
         front_line_list = front_line.split(delimiter)
@@ -556,6 +557,7 @@ def extract_silence(start_time_idx, end_time_idx, sentence_idx, total_duration, 
             seconds = float(total_duration[4:6])
             start_time_seconds = hours_to_second + minutes_to_second + seconds
             back_sent = ''
+            compared_speaker = speaker
         else:
             back_line = input_line_list[idx + 1].strip()
             back_line_list = back_line.split(delimiter)
@@ -573,10 +575,17 @@ def extract_silence(start_time_idx, end_time_idx, sentence_idx, total_duration, 
                 crosstalk_duration = end_time_seconds - start_time_seconds
         duration = start_time_seconds - end_time_seconds
         key = "{0}_{1}".format(idx, idx) if idx + 1 == len(input_line_list) else "{0}_{1}".format(idx, idx + 1)
+        speaker_last_key_dict[speaker] = key
         silence_output_dict[key] = round(duration, 1) if duration < compared_duration else round(compared_duration, 1)
-        if len(back_sent) > STT_CONFIG['crosstalk_ign_len']:
-            crosstalk_output_dict[key] = round(duration, 1) if duration > compared_duration else round(compared_duration, 1)
-            crosstalk_output_dict[key] = round(crosstalk_duration, 1) if crosstalk_duration else crosstalk_output_dict[key]
+        if len(back_sent.decode('euc-kr')) > STT_CONFIG['crosstalk_ign_len']:
+            temp = round(duration, 1) if duration > compared_duration else round(compared_duration, 1)
+            temp = round(crosstalk_duration, 1) if crosstalk_duration else temp
+            if temp > 0:
+                temp = 0
+            if speaker_last_key_dict[compared_speaker] not in crosstalk_output_dict:
+                crosstalk_output_dict[speaker_last_key_dict[compared_speaker]] = temp
+            else:
+                crosstalk_output_dict[speaker_last_key_dict[compared_speaker]] += temp
     return silence_output_dict, crosstalk_output_dict
 
 
