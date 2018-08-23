@@ -663,6 +663,9 @@ def update_stt_rst(logger, mysql):
                 silence_time = silence_result[silence_key]
             if silence_key in crosstalk_result:
                 crosstalk_time = -crosstalk_result[silence_key]
+            msk_info_lit = ''
+            if line_num in MASKING_INFO_LIT[rfile_name]:
+                msk_info_lit = ','.join(MASKING_INFO_LIT[rfile_name][line_num]) if len(MASKING_INFO_LIT[rfile_name][line_num]) > 0 else ''
             insert_dict['CON_ID'] = con_id
             insert_dict['RFILE_NAME'] = rfile_name
             insert_dict['STT_SNTC_LIN_NO'] = line_num
@@ -673,7 +676,7 @@ def update_stt_rst(logger, mysql):
             insert_dict['STT_SNTC_SPCH_TM'] = stt_sntc_spch_tm
             insert_dict['STT_SNTC_SPCH_SPED'] = stt_sntc_spch_sped
             insert_dict['MSK_DTC_YN'] = 'Y' if '*' in sent else 'N'
-            insert_dict['MSK_INFO_LIT'] = ','.join(MASKING_INFO_LIT[rfile_name][line_num]) if len(MASKING_INFO_LIT[rfile_name][line_num]) > 0 else ''
+            insert_dict['MSK_INFO_LIT'] = msk_info_lit
             insert_dict['SILENCE_YN'] = 'Y' if silence_time > 0 else 'N'
             insert_dict['SILENCE_TIME'] = str(silence_time) if insert_dict['SILENCE_YN'] == 'Y' else '0'
             insert_dict['CROSSTALK_YN'] = 'Y' if crosstalk_time > 0 else 'N'
