@@ -572,7 +572,7 @@ def extract_silence(start_time_idx, end_time_idx, sentence_idx, total_duration, 
             compared_speaker = 'A' if back_line_speaker == 'C' else 'C'
             compared_duration = back_start_time_seconds - speaker_last_end_time_dict[compared_speaker]
             if speaker_last_start_time_dict[compared_speaker] < back_start_time_seconds and back_end_time_seconds < speaker_last_end_time_dict[compared_speaker]:
-                crosstalk_duration = back_end_time_seconds - back_start_time_seconds
+                crosstalk_duration = back_start_time_seconds - back_end_time_seconds
         duration = back_start_time_seconds - front_end_time_seconds
         key = "{0}_{1}".format(idx, idx) if idx + 1 == len(input_line_list) else "{0}_{1}".format(idx, idx + 1)
         speaker_last_key_dict[front_speaker] = key
