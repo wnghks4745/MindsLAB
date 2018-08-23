@@ -55,7 +55,8 @@ STT_CONFIG = {
     'stt_output_path': '/app/MindsVOC/CS/OUTPUT/{0}/STTA_output'.format(str(socket.gethostname())),
     'stt_tool_path': '/app/MindsVOC/CS/STT/tools',
     'thread': 2,
-    'crosstalk_ign_len': 3
+    'crosstalk_ign_len': 3,
+    'masking_next_line_cnt': 2
 }
 
 MASKING_CONFIG = {

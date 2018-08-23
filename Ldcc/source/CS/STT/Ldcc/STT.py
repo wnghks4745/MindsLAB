@@ -741,6 +741,8 @@ def masking(str_idx, speaker_idx, delimiter, encoding, input_line_list):
     line_dict = collections.OrderedDict()
     first_agent_line_num = False
     last_agent_line_num = False
+    start_time_dict = dict()
+    end_time_dict = dict()
     for line in input_line_list:
         line = line.strip()
         line_list = line.split(delimiter)
@@ -750,10 +752,14 @@ def masking(str_idx, speaker_idx, delimiter, encoding, input_line_list):
 #            sent = line_list[str_idx].strip()
         sent = line_list[str_idx].strip()
         speaker = line_list[speaker_idx].strip().replace("[", "").replace("]", "")
+        start_time = time_to_seconds(line_list[1])
+        end_time = time_to_seconds(line_list[2])
         if not first_agent_line_num and speaker == 'A':
             first_agent_line_num = line_cnt
         if speaker == 'A':
             last_agent_line_num = line_cnt
+        start_time_dict[line_cnt] = start_time
+        end_time_dict[line_cnt] = end_time
         try:
             line_dict[line_cnt] = sent.decode(encoding)
         except Exception:
@@ -809,9 +815,10 @@ def masking(str_idx, speaker_idx, delimiter, encoding, input_line_list):
             if u'확인' in line or u'어떻게' in line or u'말씀' in line or u'부탁' in line or u'여쭤' in line or u'맞으' in line or u'불러' in line:
                 if 'address_rule' not in re_rule_dict:
                     re_rule_dict['address_rule'] = address_rule
-        if u'서울' in line or u'경기' in line or u'부산' in line or u'광주' in line or u'대구' in line or u'울산' in line or u'대전' in line or u'충청' in line or u'충북' in line or u'충남' in line or u'경상' in line or u'경북' in line or u'경남' in line or u'제주' in line:
-            if 'address_rule' not in re_rule_dict:
-                re_rule_dict['address_rule'] = address_rule
+        # 면세점 특성상 면세점이 있는 지역명을 발화하는 경우가 많으므로 제외
+        # if u'서울' in line or u'경기' in line or u'부산' in line or u'광주' in line or u'대구' in line or u'울산' in line or u'대전' in line or u'충청' in line or u'충북' in line or u'충남' in line or u'경상' in line or u'경북' in line or u'경남' in line or u'제주' in line:
+        #     if 'address_rule' not in re_rule_dict:
+        #         re_rule_dict['address_rule'] = address_rule
         if u'생년월일' in line:
             if u'확인' in line or u'어떻게' in line or u'말씀' in line or u'부탁' in line or u'여쭤' in line or u'맞으' in line or u'불러' in line or u'구요' in line:
                 if 'birth_rule' not in re_rule_dict:
@@ -820,18 +827,24 @@ def masking(str_idx, speaker_idx, delimiter, encoding, input_line_list):
             if 'etc_rule' not in re_rule_dict:
                 re_rule_dict['etc_rule'] = etc_rule
 
-        if line_num in line_re_rule_dict:
-            line_re_rule_dict[line_num].update(re_rule_dict)
-        else:
-            line_re_rule_dict[line_num] = re_rule_dict
+        # 마스킹 탐지 발화 문장 제외
+        # if line_num in line_re_rule_dict:
+        #     line_re_rule_dict[line_num].update(re_rule_dict)
+        # else:
+        #     line_re_rule_dict[line_num] = re_rule_dict
 
-        for cnt in range(1, next_line_cnt + 1):
-            next_line_num = line_num + cnt
+        next_line_cnt = STT_CONFIG['masking_next_line_cnt']
+        for next_line_num in range(line_num + 1, len(line_dict)):
             if next_line_num in line_dict:
+                if end_time_dict[line_num] > start_time_dict[next_line_num]:
+                    continue
                 if next_line_num in line_re_rule_dict:
                     line_re_rule_dict[next_line_num].update(re_rule_dict)
                 else:
                     line_re_rule_dict[next_line_num] = re_rule_dict
+                next_line_cnt -= 1
+                if next_line_cnt <= 0:
+                    break
     # 상담사 처음, 끝 이름 룰 제외
     if first_agent_line_num:
         if first_agent_line_num in line_re_rule_dict:
@@ -925,7 +938,7 @@ def execute_masking(logger):
             file_name = os.path.splitext(os.path.basename(target_file_path))[0].replace('_trx', '')
             MASKING_INFO_LIT[file_name] = dict()
             line_list = target_file.readlines()
-            sent_list = masking(3, 1, '\t', 'euc-kr', line_list)
+            sent_list = masking(3, 0, '\t', 'euc-kr', line_list)
             masking_file = open(os.path.join(masking_dir_path, os.path.basename(target_file_path)), 'w')
             line_num = 0
             for line in line_list:
