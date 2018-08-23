@@ -542,40 +542,40 @@ def extract_silence(start_time_idx, end_time_idx, sentence_idx, total_duration, 
         front_line_list = front_line.split(delimiter)
         if len(front_line_list) != 4:
             continue
-        end_time = front_line_list[int(end_time_idx)]
-        end_time_seconds = time_to_seconds(end_time)
-        start_time = front_line_list[int(start_time_idx)]
-        start_time_seconds = time_to_seconds(start_time)
-        speaker = front_line_list[0].replace('[', '').replace(']', '').strip()
-        speaker_last_end_time_dict[speaker] = end_time_seconds
-        speaker_last_start_time_dict[speaker] = start_time_seconds
+        front_end_time = front_line_list[int(end_time_idx)]
+        front_end_time_seconds = time_to_seconds(front_end_time)
+        front_start_time = front_line_list[int(start_time_idx)]
+        front_start_time_seconds = time_to_seconds(front_start_time)
+        front_speaker = front_line_list[0].replace('[', '').replace(']', '').strip()
+        speaker_last_end_time_dict[front_speaker] = front_end_time_seconds
+        speaker_last_start_time_dict[front_speaker] = front_start_time_seconds
         compared_duration = 0
         crosstalk_duration = False
         if idx + 1 == len(input_line_list):
             hours_to_second = float(total_duration[:2]) * 3600
             minutes_to_second = float(total_duration[2:4]) * 60
             seconds = float(total_duration[4:6])
-            start_time_seconds = hours_to_second + minutes_to_second + seconds
+            back_start_time_seconds = hours_to_second + minutes_to_second + seconds
             back_sent = ''
-            compared_speaker = speaker
+            compared_speaker = front_speaker
         else:
             back_line = input_line_list[idx + 1].strip()
             back_line_list = back_line.split(delimiter)
             if len(back_line_list) != 4:
                 continue
             back_sent = back_line_list[sentence_idx]
-            start_time = back_line_list[int(start_time_idx)]
-            end_time = back_line_list[int(end_time_idx)]
-            start_time_seconds = time_to_seconds(start_time)
-            end_time_seconds = time_to_seconds(end_time)
+            back_start_time = back_line_list[int(start_time_idx)]
+            back_end_time = back_line_list[int(end_time_idx)]
+            back_start_time_seconds = time_to_seconds(back_start_time)
+            back_end_time_seconds = time_to_seconds(back_end_time)
             back_line_speaker = back_line_list[0].replace('[', '').replace(']', '').strip()
             compared_speaker = 'A' if back_line_speaker == 'C' else 'C'
-            compared_duration = start_time_seconds - speaker_last_end_time_dict[compared_speaker]
-            if speaker_last_start_time_dict[compared_speaker] < start_time_seconds and speaker_last_end_time_dict[compared_speaker] < end_time_seconds:
-                crosstalk_duration = end_time_seconds - start_time_seconds
-        duration = start_time_seconds - end_time_seconds
+            compared_duration = back_start_time_seconds - speaker_last_end_time_dict[compared_speaker]
+            if speaker_last_start_time_dict[compared_speaker] < back_start_time_seconds and back_end_time_seconds < speaker_last_end_time_dict[compared_speaker]:
+                crosstalk_duration = back_end_time_seconds - back_start_time_seconds
+        duration = back_start_time_seconds - front_end_time_seconds
         key = "{0}_{1}".format(idx, idx) if idx + 1 == len(input_line_list) else "{0}_{1}".format(idx, idx + 1)
-        speaker_last_key_dict[speaker] = key
+        speaker_last_key_dict[front_speaker] = key
         silence_output_dict[key] = round(duration, 1) if duration < compared_duration else round(compared_duration, 1)
         if len(back_sent.decode('euc-kr')) > STT_CONFIG['crosstalk_ign_len']:
             temp = round(duration, 1) if duration > compared_duration else round(compared_duration, 1)
