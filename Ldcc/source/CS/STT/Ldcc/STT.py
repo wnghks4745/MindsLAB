@@ -840,20 +840,18 @@ def masking(str_idx, speaker_idx, delimiter, encoding, input_line_list):
 
         # 특이케이스 마스킹 탐지 발화 문장 포함
         if detect_line:
-            if line_num in line_re_rule_dict:
-                line_re_rule_dict[line_num].update(re_rule_dict)
-            else:
-                line_re_rule_dict[line_num] = re_rule_dict
+            if line_num not in line_re_rule_dict:
+                line_re_rule_dict[line_num] = dict()
+            line_re_rule_dict[line_num].update(re_rule_dict)
 
         next_line_cnt = int(STT_CONFIG['masking_next_line_cnt'])
         for next_line_num in range(line_num + 1, len(line_dict)):
             if next_line_num in line_dict:
-                if end_time_dict[line_num] > start_time_dict[next_line_num] - 1:
+                if end_time_dict[line_num] - 1 > start_time_dict[next_line_num]:
                     continue
-                if next_line_num in line_re_rule_dict:
-                    line_re_rule_dict[next_line_num].update(re_rule_dict)
-                else:
-                    line_re_rule_dict[next_line_num] = re_rule_dict
+                if next_line_num not in line_re_rule_dict:
+                    line_re_rule_dict[next_line_num] = dict()
+                line_re_rule_dict[next_line_num].update(re_rule_dict)
                 next_line_cnt -= 1
                 if next_line_cnt <= 0:
                     break
