@@ -547,6 +547,7 @@ def extract_silence(start_time_idx, end_time_idx, sentence_idx, total_duration, 
         front_start_time = front_line_list[int(start_time_idx)]
         front_start_time_seconds = time_to_seconds(front_start_time)
         front_speaker = front_line_list[0].replace('[', '').replace(']', '').strip()
+        front_sent = front_line_list[sentence_idx]
         speaker_last_end_time_dict[front_speaker] = front_end_time_seconds
         speaker_last_start_time_dict[front_speaker] = front_start_time_seconds
         compared_duration = 0
@@ -577,7 +578,7 @@ def extract_silence(start_time_idx, end_time_idx, sentence_idx, total_duration, 
         key = "{0}_{1}".format(idx, idx) if idx + 1 == len(input_line_list) else "{0}_{1}".format(idx, idx + 1)
         speaker_last_key_dict[front_speaker] = key
         silence_output_dict[key] = round(duration, 1) if duration < compared_duration else round(compared_duration, 1)
-        if len(back_sent.decode('euc-kr')) > STT_CONFIG['crosstalk_ign_len']:
+        if len(back_sent.decode('euc-kr')) > STT_CONFIG['crosstalk_ign_len'] and len(front_sent.decode('euc-kr')) > STT_CONFIG['crosstalk_ign_len']:
             temp = round(duration, 1) if duration > compared_duration else round(compared_duration, 1)
             temp = round(crosstalk_duration, 1) if crosstalk_duration else temp
             if temp > 0:
@@ -740,7 +741,6 @@ def masking(str_idx, speaker_idx, delimiter, encoding, input_line_list):
     email_rule = MASKING_CONFIG['email_rule']
     address_rule = MASKING_CONFIG['address_rule']
     name_rule = MASKING_CONFIG['name_rule']
-    next_line_cnt = int(MASKING_CONFIG['next_line_cnt'])
     line_dict = collections.OrderedDict()
     first_agent_line_num = False
     last_agent_line_num = False
@@ -772,11 +772,12 @@ def masking(str_idx, speaker_idx, delimiter, encoding, input_line_list):
     line_re_rule_dict = collections.OrderedDict()
     for line_num, line in line_dict.items():
         re_rule_dict = dict()
-        if u'성함' in line or u'이름' in line:
-            if u'확인' in line or u'어떻게' in line or u'여쭤' in line or u'맞으' in line or u'부탁' in line:
+        detect_line = False
+        if u'성함' in line or u'이름' in line or u'아이디' in line:
+            if u'확인' in line or u'어떻게' in line or u'여쭤' in line or u'맞으' in line or u'부탁' in line or u'말씀' in line:
                 if 'name_rule' not in re_rule_dict:
                     re_rule_dict['name_rule'] = name_rule
-        if u'핸드폰' in line and u'번호' in line:
+        if (u'핸드폰' in line and u'번호' in line) or u'연락처' in line:
             if u'확인' in line or u'어떻게' in line or u'말씀' in line or u'부탁' in line or u'여쭤' in line or u'맞으' in line or u'불러' in line:
                 if 'tel_number_rule' not in re_rule_dict:
                     re_rule_dict['tel_number_rule'] = number_rule
@@ -826,17 +827,22 @@ def masking(str_idx, speaker_idx, delimiter, encoding, input_line_list):
             if u'확인' in line or u'어떻게' in line or u'말씀' in line or u'부탁' in line or u'여쭤' in line or u'맞으' in line or u'불러' in line or u'구요' in line:
                 if 'birth_rule' not in re_rule_dict:
                     re_rule_dict['birth_rule'] = birth_rule
+        if u'본인' in line:
+            if u'가요' in line or u'맞으' in line or u'세요' in line or u'니까' in line:
+                if 'name_rule' not in re_rule_dict:
+                    re_rule_dict['name_rule'] = name_rule
+                    detect_line = True
         else:
             if 'etc_rule' not in re_rule_dict:
                 re_rule_dict['etc_rule'] = etc_rule
 
-        # 마스킹 탐지 발화 문장 제외
-        # if line_num in line_re_rule_dict:
-        #     line_re_rule_dict[line_num].update(re_rule_dict)
-        # else:
-        #     line_re_rule_dict[line_num] = re_rule_dict
+        # 특이케이스 마스킹 탐지 발화 문장 포함
+        if line_num in line_re_rule_dict and detect_line:
+            line_re_rule_dict[line_num].update(re_rule_dict)
+        else:
+            line_re_rule_dict[line_num] = re_rule_dict
 
-        next_line_cnt = STT_CONFIG['masking_next_line_cnt']
+        next_line_cnt = int(STT_CONFIG['masking_next_line_cnt'])
         for next_line_num in range(line_num + 1, len(line_dict)):
             if next_line_num in line_dict:
                 if end_time_dict[line_num] > start_time_dict[next_line_num]:
