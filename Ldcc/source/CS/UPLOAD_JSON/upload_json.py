@@ -92,6 +92,8 @@ class MySQL(object):
                     STT_RCDG_INFO
                 SET
                     CHANNEL = %s,
+                    RECORDKEY = %s,
+                    CENTER = %s,
                     PROJECT_CD = %s,
                     STT_PRGST_CD = %s,
                     STT_REQ_DTM = NOW(),
@@ -117,6 +119,8 @@ class MySQL(object):
             """
             bind = (
                 kwargs.get('channel'),
+                kwargs.get('recordkey'),
+                kwargs.get('center'),
                 kwargs.get('project_cd'),
                 kwargs.get('stt_prgst_cd'),
                 kwargs.get('stt_server_id'),
@@ -156,6 +160,8 @@ class MySQL(object):
                     CON_ID,
                     RFILE_NAME,
                     CHANNEL,
+                    RECORDKEY,
+                    CENTER,
                     PROJECT_CD,
                     STT_PRGST_CD,
                     STT_REQ_DTM,
@@ -181,7 +187,7 @@ class MySQL(object):
                 )
                 VALUES (
                     %s, %s, %s, %s, %s, 
-                    NOW(), %s, %s, %s, 
+                    %s, %s, NOW(), %s, %s, %s, 
                     %s, %s, %s, %s, %s, 
                     %s, %s, %s, %s, %s, 
                     %s, NOW(), %s, NOW(), %s,
@@ -192,6 +198,8 @@ class MySQL(object):
                 kwargs.get('con_id'),
                 kwargs.get('rfile_name'),
                 kwargs.get('channel'),
+                kwargs.get('recordkey'),
+                kwargs.get('center'),
                 kwargs.get('project_cd'),
                 kwargs.get('stt_prgst_cd'),
                 kwargs.get('stt_server_id'),
@@ -341,7 +349,9 @@ def upload_data_to_db(logger, mysql, checked_json_data_dict):
                     chn_tp=json_data.get('chn_tp'),
                     file_sprt=json_data.get('sprt'),
                     rec_ext=json_data.get('rec_ext'),
-                    date=json_data.get('date')
+                    date=json_data.get('date'),
+                    recordkey=json_data.get('recordkey'),
+                    center=json_data.get('center')
                 )
             else:
                 mysql.insert_data_to_stt_rcdg_info(
@@ -363,7 +373,9 @@ def upload_data_to_db(logger, mysql, checked_json_data_dict):
                     chn_tp=json_data.get('chn_tp'),
                     file_sprt=json_data.get('sprt'),
                     rec_ext=json_data.get('rec_ext'),
-                    date=json_data.get('date')
+                    date=json_data.get('date'),
+                    recordkey=json_data.get('recordkey'),
+                    center=json_data.get('center')
                 )
             json_output_dir_path = '{0}/{1}/{2}'.format(
                 JSON_CONFIG['json_output_path'], json_data.get('start_time')[:10], json_data.get('biz'))
@@ -462,6 +474,14 @@ def check_json_data(logger, json_data):
     if len(date) != 8:
         logger.error("Error Date length is not 8")
         return False
+    recordkey = str(json_data['RecordKey']).strip()
+    if len(recordkey) < 1:
+        logger.error("Error RecordKey length is 0")
+        return False
+    center = str(json_data['Center']).strip()
+    if len(center) < 1:
+        logger.error("Error Center length is 0")
+        return False
     # modified_date = '{0}/{1}/{2}'.format(date[:4], date[4:6], date[6:8])
     rcdg_stdtm = '{0}/{1}/{2} {3}:{4}:{5}'.format(
         start_time[:4], start_time[4:6], start_time[6:8], start_time[8:10], start_time[10:12], start_time[12:14])
@@ -484,7 +504,9 @@ def check_json_data(logger, json_data):
         'chn_tp': chn_tp,
         'sprt': sprt,
         'rec_ext': rec_ext,
-        'date': date
+        'date': date,
+        'recordkey': recordkey,
+        'center': center
     }
     return json_data_dict
 
