@@ -1125,6 +1125,14 @@ def check_json_data(logger, json_data):
     if len(date) != 8:
         logger.error("Error Date length is not 8")
         return False
+    recordkey = str(json_data['RecordKey']).strip()
+    if len(recordkey) < 1:
+        logger.error("Error RecordKey length is 0")
+        return False
+    center = str(json_data['Center']).strip()
+    if len(center) < 1:
+        logger.error("Error Center length is 0")
+        return False
     return True
 
 
