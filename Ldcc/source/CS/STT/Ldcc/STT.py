@@ -45,6 +45,7 @@ STT_TEMP_DIR_PATH = ""
 STT_TEMP_DIR_NAME = ""
 MASKING_INFO_LIT = dict()
 MLF_INFO_DICT = dict()
+STT_KEYWORD_DTC_RST = dict()
 
 
 #########
@@ -307,6 +308,101 @@ class MySQL(object):
             self.conn.rollback()
             raise Exception(traceback.format_exc())
 
+    def select_tb_qa_except(self, dict_name):
+        query = """
+            SELECT DISTINCT
+                B.KEYWORD
+            FROM
+                TA_LOTTE.TB_QA_EXCEPT_DICT A,
+                TA_LOTTE.TB_QA_EXCEPT_DT_INFO B
+            WHERE 1=1
+                A.DICT_ID = B.DICT_ID
+                A.DICT_NAME = %s
+        """
+        bind = (
+            dict_name,
+        )
+        self.cursor.execute(query, bind)
+        results = self.cursor.fetchall()
+        if results is bool:
+            return list()
+        if not results:
+            return list()
+        return results
+
+    def delete_data_to_stt_keyword_dtc_rst(self, con_id, rfile_name):
+        try:
+            query = """
+                DELETE FROM
+                    STT_KEYWORD_DTC_RST
+                WHERE 1=1
+                    AND CON_ID = %s
+                    AND RFILE_NAME = %s
+            """
+            bind = (
+                con_id,
+                rfile_name
+            )
+            self.cursor.execute(query, bind)
+            if self.cursor.rowcount > 0:
+                self.conn.commit()
+                return True
+            else:
+                self.conn.rollback()
+                return False
+        except Exception:
+            self.conn.rollback()
+            raise Exception(traceback.format_exc())
+
+    def insert_data_to_stt_keyword_dtc_rst(self, **kwargs):
+        try:
+            query = """
+                INSERT INTO STT_KEYWORD_DTC_RST
+                (
+                    CON_ID,
+                    RFILE_NAME,
+                    STT_SNTC_LIN_NO,
+                    DTC_CD,
+                    DTC_KWD,
+                    STT_SNTC_SPKR_DCD,
+                    STT_SNTC_CONT,
+                    STT_SNTC_STTM,
+                    STT_SNTC_ENDTM,
+                    CREATOR_ID,
+                    CREATED_DTM,
+                    UPDATOR_ID,
+                    UPDATED_DTM
+                )
+                VALUES (
+                    %s, %s, %s, %s, %s,
+                    %s, %s, %s, %s,
+                    'STT', NOW(),
+                    'STT', NOW()
+                )
+            """
+            bind = (
+                kwargs.get('con_id'),
+                kwargs.get('rfile_name'),
+                kwargs.get('stt_sntc_lin_no'),
+                kwargs.get('dtc_cd'),
+                kwargs.get('dtc_kwd'),
+                kwargs.get('stt_sntc_spkr_dcd'),
+                kwargs.get('stt_sntc_cont'),
+                kwargs.get('stt_sntc_sttm'),
+                kwargs.get('stt_sntc_endtm'),
+            )
+            self.cursor.execute(query, bind)
+            if self.cursor.rowcount > 0:
+                self.conn.commit()
+                return True
+            else:
+                self.conn.rollback()
+                return False
+        except Exception:
+            exc_info = traceback.format_exc()
+            self.conn.rollback()
+            raise Exception(exc_info)
+
 
 #######
 # def #
@@ -488,6 +584,42 @@ def move_output(logger):
             logger.info('encrypt {0}'.format(output_target_path))
 
 
+def update_stt_keyword_dtc_rst(logger, mysql):
+    """
+    Update data to STT_KEYWORD_DTC_RST
+    :param      logger:         Logger
+    :param      mysql:          MySQL DB
+    :return:
+    """
+    logger.info("11-4. DB upload STT_KEYWORD_DTC_RST")
+    del_check_dict = dict()
+    for info_dict in STT_KEYWORD_DTC_RST.values():
+        con_id = info_dict['CON_ID']
+        rfile_name = info_dict['RFILE_NAME']
+        stt_sntc_lin_no = info_dict['STT_SNTC_LIN_NO']
+        dtc_cd = info_dict['DTC_CD']
+        dtc_kwd = info_dict['DTC_KWD']
+        stt_sntc_spkr_dcd = info_dict['STT_SNTC_SPKR_DCD']
+        stt_sntc_cont = info_dict['STT_SNTC_CONT']
+        stt_sntc_sttm = info_dict['STT_SNTC_STTM']
+        stt_sntc_endtm = info_dict['STT_SNTC_ENDTM']
+        key = '{0}_{1}'.format(con_id, rfile_name)
+        if key not in del_check_dict:
+            del_check_dict[key] = 1
+            mysql.delete_data_to_stt_keyword_dtc_rst(con_id, rfile_name)
+        mysql.insert_data_to_stt_keyword_dtc_rst(
+            con_id=con_id,
+            rfile_name=rfile_name,
+            stt_sntc_lin_no=stt_sntc_lin_no,
+            dtc_cd=dtc_cd,
+            dtc_kwd=dtc_kwd,
+            stt_sntc_spkr_dcd=stt_sntc_spkr_dcd,
+            stt_sntc_cont=stt_sntc_cont,
+            stt_sntc_sttm=stt_sntc_sttm,
+            stt_sntc_endtm=stt_sntc_endtm
+        )
+
+
 def insert_stt_rst_full(logger, mysql):
     """
     Insert data to STT_RST_FULL
@@ -592,6 +724,25 @@ def extract_silence(start_time_idx, end_time_idx, sentence_idx, total_duration, 
     return silence_output_dict, crosstalk_output_dict
 
 
+def set_stt_keyword_dtc_rst(word_list, info_dict, dtc_cd):
+    """
+    Set ADT DTC RST
+    :param      word_list:      Word List
+    :param      info_dict:      Information dictionary
+    :param      dtc_cd:         Detect code
+    """
+    global STT_KEYWORD_DTC_RST
+    for item in word_list:
+        keyword = unicode(item['KEYWORD'], 'euc-kr')
+        if keyword in info_dict['STT_SNTC_CONT']:
+            stt_keyword_temp_dtc_rst = info_dict
+            stt_keyword_temp_dtc_rst['DTC_CD'] = dtc_cd
+            stt_keyword_temp_dtc_rst['DTC_KWD'] = keyword
+            key = '{0}_{1}_{2}_{3}_{4}'.format(info_dict['CON_ID'], info_dict['RFILE_NAME'], info_dict['STT_SNTC_LIN_NO'], dtc_cd, keyword)
+            if key not in STT_KEYWORD_DTC_RST:
+                STT_KEYWORD_DTC_RST[key] = stt_keyword_temp_dtc_rst
+
+
 def update_stt_rst(logger, mysql):
     """
     UPDATE TB_TM_STT_RST
@@ -602,6 +753,8 @@ def update_stt_rst(logger, mysql):
     global MLF_INFO_DICT
     logger.info("11-2. DB update STT_RST")
     insert_set_dict = dict()
+    issue_word_list = mysql.select_tb_qa_except('이슈어')
+    banned_word_list = mysql.select_tb_qa_except('금칙어')
     for key, info_dict in RCDG_INFO_DICT.items():
         con_id = info_dict['CON_ID']
         rfile_name = info_dict['RFILE_NAME']
@@ -688,6 +841,10 @@ def update_stt_rst(logger, mysql):
             keyword = '{0}_{1}_{2}'.format(con_id, rfile_name, line_num)
             if keyword not in insert_set_dict:
                 insert_set_dict[keyword] = insert_dict
+            if speaker == 'C':
+                set_stt_keyword_dtc_rst(issue_word_list, insert_dict, 'ISS')
+            if speaker == 'A':
+                set_stt_keyword_dtc_rst(banned_word_list, insert_dict, 'PRO')
             line_num += 1
         stt_spch_sped = str(round((rx_sntc_len + tx_sntc_len)/(rx_during_time + tx_during_time), 1)) if rx_during_time + tx_during_time != 0 else '0'
         mysql.update_stt_spch_sped(con_id, rfile_name, stt_spch_sped)
@@ -775,10 +932,15 @@ def masking(str_idx, speaker_idx, delimiter, encoding, input_line_list):
     for line_num, line in line_dict.items():
         re_rule_dict = dict()
         detect_line = False
-        if u'성함' in line or u'이름' in line or u'아이디' in line:
+        if u'성함' in line or u'이름' in line:
             if u'확인' in line or u'어떻게' in line or u'여쭤' in line or u'맞으' in line or u'부탁' in line or u'말씀' in line:
                 if 'name_rule' not in re_rule_dict:
                     re_rule_dict['name_rule'] = name_rule
+        if u'아이디' in line:
+            if u'맞으' in line or u'맞습' in line:
+                if 'id_rule' not in re_rule_dict:
+                    re_rule_dict['id_rule'] = name_rule
+                detect_line = True
         if (u'핸드폰' in line and u'번호' in line) or u'연락처' in line:
             if u'확인' in line or u'어떻게' in line or u'말씀' in line or u'부탁' in line or u'여쭤' in line or u'맞으' in line or u'불러' in line:
                 if 'tel_number_rule' not in re_rule_dict:
@@ -897,8 +1059,11 @@ def masking(str_idx, speaker_idx, delimiter, encoding, input_line_list):
             elif rule_name == 'email_rule':
                 masking_code = "100"
                 masking_cnt = 3
-            else:
+            elif rule_name == 'id_rule':
                 masking_code = "110"
+                masking_cnt = 2
+            else:
+                masking_code = "120"
                 masking_cnt = 3
             p = re.compile(re_rule.decode('euc-kr'))
             re_result = p.finditer(line_dict[re_line_num].decode('utf-8'))
@@ -912,6 +1077,9 @@ def masking(str_idx, speaker_idx, delimiter, encoding, input_line_list):
                 masking_part = ""
                 index_info.append({"start_idx": start, "end_idx": end, "masking_code": masking_code, "rule_name": rule_name})
                 cnt = 0
+                # # 이름 규칙 룰에 적용되면서 띄어쓰기(공백)가 존재할시 생략
+                # if rule_name == 'name_rule' and " " in output_str[start:end]:
+                #     continue
                 for idx in output_str[start:end]:
                     if idx == " ":
                         masking_part += " "
@@ -1657,6 +1825,7 @@ def processing(job_list):
             update_stt_rcdg_info(logger, mysql)
             update_stt_rst(logger, mysql)
             insert_stt_rst_full(logger, mysql)
+            update_stt_keyword_dtc_rst(logger, mysql)
         except Exception:
             logger.error('---------- DB RETRY ----------')
             try:
@@ -1684,6 +1853,7 @@ def processing(job_list):
             update_stt_rcdg_info(logger, mysql)
             update_stt_rst(logger, mysql)
             insert_stt_rst_full(logger, mysql)
+            update_stt_keyword_dtc_rst(logger, mysql)
         # 12. Move output
         move_output(logger)
     except Exception:
