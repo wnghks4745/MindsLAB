@@ -901,6 +901,7 @@ def masking(str_idx, speaker_idx, delimiter, encoding, input_line_list):
     address_rule = MASKING_CONFIG['address_rule']
     name_rule = MASKING_CONFIG['name_rule']
     line_dict = collections.OrderedDict()
+    speaker_dict = collections.OrderedDict()
     first_agent_line_num = False
     last_agent_line_num = False
     start_time_dict = dict()
@@ -924,14 +925,17 @@ def masking(str_idx, speaker_idx, delimiter, encoding, input_line_list):
         end_time_dict[line_cnt] = end_time
         try:
             line_dict[line_cnt] = sent.decode(encoding)
+            speaker_dict[line_cnt] = speaker
         except Exception:
             if sent[-1] == '\xb1':
                 line_dict[line_cnt] = sent[:-1].decode(encoding)
+                speaker_dict[line_cnt] = speaker
         line_cnt += 1
     line_re_rule_dict = collections.OrderedDict()
     for line_num, line in line_dict.items():
         re_rule_dict = dict()
         detect_line = False
+        ans_yes_detect = False
         if u'성함' in line or u'이름' in line:
             if u'확인' in line or u'어떻게' in line or u'여쭤' in line or u'맞으' in line or u'부탁' in line or u'말씀' in line:
                 if 'name_rule' not in re_rule_dict:
@@ -993,9 +997,10 @@ def masking(str_idx, speaker_idx, delimiter, encoding, input_line_list):
                     re_rule_dict['birth_rule'] = birth_rule
         if u'본인' in line:
             if u'가요' in line or u'맞으' in line or u'세요' in line or u'니까' in line:
-                if 'name_rule' not in re_rule_dict:
-                    re_rule_dict['name_rule'] = name_rule
+                if 'me_name_rule' not in re_rule_dict:
+                    re_rule_dict['me_name_rule'] = name_rule
                     detect_line = True
+                    ans_yes_detect = True
         else:
             if 'etc_rule' not in re_rule_dict:
                 re_rule_dict['etc_rule'] = etc_rule
@@ -1035,6 +1040,10 @@ def masking(str_idx, speaker_idx, delimiter, encoding, input_line_list):
             index_output_dict[re_line_num] = list()
             continue
         for rule_name, re_rule in re_rule_dict.items():
+            # 본인 확인 여부 이후 개인정보 발화 없음
+            if rule_name == 'me_name_rule' and ans_yes_detect:
+                if u'네' in line_dict[re_line_num] and speaker_dict[re_line_num] == 'C':
+                    continue
             if rule_name == 'name_rule':
                 masking_code = "10"
                 masking_cnt = 2
@@ -1062,8 +1071,11 @@ def masking(str_idx, speaker_idx, delimiter, encoding, input_line_list):
             elif rule_name == 'id_rule':
                 masking_code = "110"
                 masking_cnt = 2
+            elif rule_name == 'me_name_rule':
+                masking_code = '120'
+                masking_cnt = 2
             else:
-                masking_code = "120"
+                masking_code = "130"
                 masking_cnt = 3
             p = re.compile(re_rule.decode('euc-kr'))
             re_result = p.finditer(line_dict[re_line_num].decode('utf-8'))
@@ -1077,9 +1089,6 @@ def masking(str_idx, speaker_idx, delimiter, encoding, input_line_list):
                 masking_part = ""
                 index_info.append({"start_idx": start, "end_idx": end, "masking_code": masking_code, "rule_name": rule_name})
                 cnt = 0
-                # # 이름 규칙 룰에 적용되면서 띄어쓰기(공백)가 존재할시 생략
-                # if rule_name == 'name_rule' and " " in output_str[start:end]:
-                #     continue
                 for idx in output_str[start:end]:
                     if idx == " ":
                         masking_part += " "
