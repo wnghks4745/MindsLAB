@@ -1089,8 +1089,13 @@ def masking(str_idx, speaker_idx, delimiter, encoding, input_line_list):
                 start = idx_tuple[0]
                 end = idx_tuple[1]
                 masking_part = ""
+                non_masking = False
                 index_info.append({"start_idx": start, "end_idx": end, "masking_code": masking_code, "rule_name": rule_name})
                 cnt = 0
+                for word in MASKING_CONFIG['non_masking_word']:
+                    if word in output_str[start-2:end+2] or output_str in word:
+                        non_masking = True
+                        break
                 for idx in output_str[start:end]:
                     if idx == " ":
                         masking_part += " "
@@ -1100,7 +1105,8 @@ def masking(str_idx, speaker_idx, delimiter, encoding, input_line_list):
                         masking_part += idx
                     else:
                         masking_part += "*"
-                output_str = output_str.replace(output_str[start:end], masking_part)
+                if not non_masking:
+                    output_str = output_str.replace(output_str[start:end], masking_part)
             if re_line_num not in index_output_dict:
                 index_output_dict[re_line_num] = index_info
             else:
