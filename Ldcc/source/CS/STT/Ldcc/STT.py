@@ -316,8 +316,8 @@ class MySQL(object):
                 TA_LOTTE.TB_QA_EXCEPT_DICT A,
                 TA_LOTTE.TB_QA_EXCEPT_DT_INFO B
             WHERE 1=1
-                A.DICT_ID = B.DICT_ID
-                A.DICT_NAME = %s
+                AND A.DICT_ID = B.DICT_ID
+                AND A.DICT_NAME = %s
         """
         bind = (
             dict_name,
