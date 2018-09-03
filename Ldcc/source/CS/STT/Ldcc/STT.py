@@ -932,10 +932,10 @@ def masking(str_idx, speaker_idx, delimiter, encoding, input_line_list):
                 speaker_dict[line_cnt] = speaker
         line_cnt += 1
     line_re_rule_dict = collections.OrderedDict()
+    ans_yes_detect = dict()
     for line_num, line in line_dict.items():
         re_rule_dict = dict()
         detect_line = False
-        ans_yes_detect = False
         if u'성함' in line or u'이름' in line:
             if u'확인' in line or u'어떻게' in line or u'여쭤' in line or u'맞으' in line or u'부탁' in line or u'말씀' in line:
                 if 'name_rule' not in re_rule_dict:
@@ -1000,7 +1000,7 @@ def masking(str_idx, speaker_idx, delimiter, encoding, input_line_list):
                 if 'me_name_rule' not in re_rule_dict:
                     re_rule_dict['me_name_rule'] = name_rule
                     detect_line = True
-                    ans_yes_detect = True
+                    ans_yes_detect[line_num] = 1
         else:
             if 'etc_rule' not in re_rule_dict:
                 re_rule_dict['etc_rule'] = etc_rule
@@ -1041,7 +1041,7 @@ def masking(str_idx, speaker_idx, delimiter, encoding, input_line_list):
             continue
         for rule_name, re_rule in re_rule_dict.items():
             # 본인 확인 여부 이후 개인정보 발화 없음
-            if rule_name == 'me_name_rule' and ans_yes_detect:
+            if rule_name == 'me_name_rule' and re_line_num in ans_yes_detect:
                 if u'네' in line_dict[re_line_num] and speaker_dict[re_line_num] == 'C':
                     continue
             if rule_name == 'name_rule':
