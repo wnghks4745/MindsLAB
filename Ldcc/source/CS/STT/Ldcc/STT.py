@@ -1009,8 +1009,8 @@ def masking(str_idx, speaker_idx, delimiter, encoding, input_line_list):
         next_line_cnt = int(STT_CONFIG['masking_next_line_cnt'])
         for next_line_num in range(line_num + 1, len(line_dict)):
             if next_line_num in line_dict:
-                if end_time_dict[line_num] - 1 > start_time_dict[next_line_num]:
-                    continue
+                # if end_time_dict[line_num] - 1 > start_time_dict[next_line_num]:
+                #     continue
                 if next_line_num not in line_re_rule_dict:
                     line_re_rule_dict[next_line_num] = dict()
                 line_re_rule_dict[next_line_num].update(re_rule_dict)
