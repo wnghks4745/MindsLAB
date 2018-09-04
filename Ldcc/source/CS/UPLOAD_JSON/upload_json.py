@@ -59,7 +59,7 @@ class MySQL(object):
         self.conn.autocommit(False)
         self.cursor = self.conn.cursor(MySQLdb.cursors.DictCursor)
 
-    def check_stt_rcdg_info(self, con_id, rfile_name):
+    def check_stt_rcdg_info(self, recordkey, rfile_name):
         try:
             query = """
                 SELECT
@@ -67,11 +67,11 @@ class MySQL(object):
                 FROM
                     STT_RCDG_INFO
                 WHERE 1=1
-                    AND CON_ID = %s
+                    AND RECORDKEY = %s
                     AND RFILE_NAME = %s
             """
             bind = (
-                con_id,
+                recordkey,
                 rfile_name,
             )
             self.cursor.execute(query, bind)
@@ -92,7 +92,7 @@ class MySQL(object):
                     STT_RCDG_INFO
                 SET
                     CHANNEL = %s,
-                    RECORDKEY = %s,
+                    CON_ID = %s,
                     CENTER = %s,
                     PROJECT_CD = %s,
                     STT_PRGST_CD = %s,
@@ -114,12 +114,12 @@ class MySQL(object):
                     UPDATOR_ID = %s,
                     UPDATED_DTM = NOW()
                 WHERE 1=1
-                    AND CON_ID = %s
+                    AND RECORDKEY = %s
                     AND RFILE_NAME = %s
             """
             bind = (
                 kwargs.get('channel'),
-                kwargs.get('recordkey'),
+                kwargs.get('con_id'),
                 kwargs.get('center'),
                 kwargs.get('project_cd'),
                 kwargs.get('stt_prgst_cd'),
@@ -138,7 +138,7 @@ class MySQL(object):
                 kwargs.get('file_sprt'),
                 kwargs.get('rec_ext'),
                 ID,
-                kwargs.get('con_id'),
+                kwargs.get('recordkey'),
                 kwargs.get('rfile_name'),
             )
             self.cursor.execute(query, bind)
@@ -329,7 +329,7 @@ def upload_data_to_db(logger, mysql, checked_json_data_dict):
     for file_path, json_data in checked_json_data_dict.items():
         try:
             logger.debug("Target json file = {0}".format(file_path))
-            if mysql.check_stt_rcdg_info(json_data.get('con_id'), json_data.get('r_file_name')):
+            if mysql.check_stt_rcdg_info(json_data.get('recordkey'), json_data.get('r_file_name')):
                 mysql.update_data_to_stt_rcdg_info(
                     con_id=json_data.get('con_id'),
                     rfile_name=json_data.get('r_file_name'),

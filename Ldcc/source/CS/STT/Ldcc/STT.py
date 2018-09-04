@@ -79,7 +79,7 @@ class MySQL(object):
                 INSERT INTO
                     STT_RST
                     (
-                        CON_ID,
+                        RECORDKEY,
                         RFILE_NAME,
                         STT_SNTC_LIN_NO,
                         STT_SNTC_CONT,
@@ -109,7 +109,7 @@ class MySQL(object):
             """
             values_list = list()
             for insert_dict in inset_set_dict.values():
-                con_id = insert_dict['CON_ID']
+                recordkey = insert_dict['RECORDKEY']
                 rfile_name = insert_dict['RFILE_NAME']
                 stt_sntc_lin_no = insert_dict['STT_SNTC_LIN_NO']
                 stt_sntc_cont = insert_dict['STT_SNTC_CONT']
@@ -125,7 +125,7 @@ class MySQL(object):
                 crosstalk_yn = insert_dict['CROSSTALK_YN']
                 crosstalk_time = insert_dict['CROSSTALK_TIME']
                 values_tuple = (
-                    con_id, rfile_name, stt_sntc_lin_no, stt_sntc_cont, stt_sntc_sttm, stt_sntc_endtm,
+                    recordkey, rfile_name, stt_sntc_lin_no, stt_sntc_cont, stt_sntc_sttm, stt_sntc_endtm,
                     stt_sntc_spkr_dcd, stt_sntc_spch_tm, stt_sntc_spch_sped, msk_dtc_yn, msk_info_lit, silence_yn,
                     silence_time, crosstalk_yn, crosstalk_time
                 )
@@ -141,7 +141,7 @@ class MySQL(object):
             self.conn.rollback()
             raise Exception(traceback.format_exc())
 
-    def update_stt_spch_sped(self, con_id, rfile_name, stt_spch_sped):
+    def update_stt_spch_sped(self, recordkey, rfile_name, stt_spch_sped):
         try:
             query = """
                 UPDATE
@@ -149,12 +149,12 @@ class MySQL(object):
                 SET
                     STT_SPCH_SPED = %s
                 WHERE 1=1
-                    AND CON_ID = %s
+                    AND RECORDKEY = %s
                     AND RFILE_NAME = %s
             """
             bind = (
                 stt_spch_sped,
-                con_id,
+                recordkey,
                 rfile_name,
             )
             self.cursor.execute(query, bind)
@@ -173,7 +173,7 @@ class MySQL(object):
             query = """
                 INSERT INTO STT_RST_FULL
                 (
-                    CON_ID,
+                    RECORDKEY,
                     RFILE_NAME,
                     STT_CONT,
                     CREATOR_ID,
@@ -187,7 +187,7 @@ class MySQL(object):
                 )
             """
             bind = (
-                kwargs.get('con_id'),
+                kwargs.get('recordkey'),
                 kwargs.get('rfile_name'),
                 kwargs.get('stt_mlf'),
             )
@@ -203,7 +203,7 @@ class MySQL(object):
             self.conn.rollback()
             raise Exception(exc_info)
 
-    def update_stt_prgst_cd(self, stt_prgst_cd, con_id, rfile_name):
+    def update_stt_prgst_cd(self, stt_prgst_cd, recordkey, rfile_name):
         try:
             query = """
                 UPDATE
@@ -213,12 +213,12 @@ class MySQL(object):
                     UPDATOR_ID = 'STT',
                     UPDATED_DTM = NOW()
                 WHERE 1=1
-                    AND CON_ID = %s
+                    AND RECORDKEY = %s
                     AND RFILE_NAME = %s
             """
             bind = (
                 stt_prgst_cd,
-                con_id,
+                recordkey,
                 rfile_name
             )
             self.cursor.execute(query, bind)
@@ -232,7 +232,7 @@ class MySQL(object):
             self.conn.rollback()
             raise Exception(traceback.format_exc())
 
-    def update_stt_cmdtm(self, con_id, rfile_name):
+    def update_stt_cmdtm(self, recordkey, rfile_name):
         try:
             query = """
                 UPDATE
@@ -242,11 +242,11 @@ class MySQL(object):
                     UPDATOR_ID = 'STT',
                     UPDATED_DTM = NOW()
                 WHERE 1=1
-                    AND CON_ID = %s
+                    AND RECORDKEY = %s
                     AND RFILE_NAME = %s
             """
             bind = (
-                con_id,
+                recordkey,
                 rfile_name,
             )
             self.cursor.execute(query, bind)
@@ -260,17 +260,17 @@ class MySQL(object):
             self.conn.rollback()
             raise Exception(traceback.format_exc())
 
-    def delete_stt_rst(self, con_id, rfile_name):
+    def delete_stt_rst(self, recordkey, rfile_name):
         try:
             query = """
                 DELETE FROM
                     STT_RST
                 WHERE 1=1
-                    AND CON_ID = %s
+                    AND RECORDKEY = %s
                     AND RFILE_NAME = %s
             """
             bind = (
-                con_id,
+                recordkey,
                 rfile_name
             )
             self.cursor.execute(query, bind)
@@ -284,17 +284,17 @@ class MySQL(object):
             self.conn.rollback()
             raise Exception(traceback.format_exc())
 
-    def delete_data_to_stt_rst_full(self, con_id, rfile_name):
+    def delete_data_to_stt_rst_full(self, recordkey, rfile_name):
         try:
             query = """
                 DELETE FROM
                     STT_RST_FULL
                 WHERE 1=1
-                    AND CON_ID = %s
+                    AND RECORDKEY = %s
                     AND RFILE_NAME = %s
             """
             bind = (
-                con_id,
+                recordkey,
                 rfile_name
             )
             self.cursor.execute(query, bind)
@@ -330,17 +330,17 @@ class MySQL(object):
             return list()
         return results
 
-    def delete_data_to_stt_keyword_dtc_rst(self, con_id, rfile_name):
+    def delete_data_to_stt_keyword_dtc_rst(self, recordkey, rfile_name):
         try:
             query = """
                 DELETE FROM
                     STT_KEYWORD_DTC_RST
                 WHERE 1=1
-                    AND CON_ID = %s
+                    AND RECORDKEY = %s
                     AND RFILE_NAME = %s
             """
             bind = (
-                con_id,
+                recordkey,
                 rfile_name
             )
             self.cursor.execute(query, bind)
@@ -359,7 +359,7 @@ class MySQL(object):
             query = """
                 INSERT INTO STT_KEYWORD_DTC_RST
                 (
-                    CON_ID,
+                    RECORDKEY,
                     RFILE_NAME,
                     STT_SNTC_LIN_NO,
                     DTC_CD,
@@ -381,7 +381,7 @@ class MySQL(object):
                 )
             """
             bind = (
-                kwargs.get('con_id'),
+                kwargs.get('recordkey'),
                 kwargs.get('rfile_name'),
                 kwargs.get('stt_sntc_lin_no'),
                 kwargs.get('dtc_cd'),
@@ -473,20 +473,20 @@ def sub_process(logger, cmd):
     return response_out
 
 
-def error_process(logger, mysql, con_id, rfile_name, stt_prgst_cd, biz_cd):
+def error_process(logger, mysql, recordkey, rfile_name, stt_prgst_cd, biz_cd):
     """
     Error process
     :param      logger:                 Logger
     :param      mysql:                  MySQL db
-    :param      con_id:                 CON_ID(커넥트 ID)
+    :param      recordkey:              RECORDKEY(녹취키)
     :param      rfile_name:             RFILE_NAME(녹취파일명)
     :param      stt_prgst_cd:           STT_PRGST_CD(STT 진행상태코드)
     :param      biz_cd:                 BIZ_CD(업체구분코드)
     """
     logger.error("Error process")
-    logger.error("CON_ID = {0}, RFILE_NAME = {1}, change STT_PRGST_CD = {2}".format(
-        con_id, rfile_name, stt_prgst_cd))
-    mysql.update_stt_prgst_cd(stt_prgst_cd, con_id, rfile_name)
+    logger.error("RECORDKEY = {0}, RFILE_NAME = {1}, change STT_PRGST_CD = {2}".format(
+        recordkey, rfile_name, stt_prgst_cd))
+    mysql.update_stt_prgst_cd(stt_prgst_cd, recordkey, rfile_name)
     rec_path = '{0}/{1}'.format(STT_CONFIG['rec_dir_path'], biz_cd)
     if not stt_prgst_cd == '00':
         target_rec_path_list = glob.glob('{0}/{1}.*'.format(rec_path, rfile_name))
@@ -540,13 +540,13 @@ def move_output(logger):
     global RCDG_INFO_DICT
     logger.info("12. Move output to STT output path")
     for info_dict in RCDG_INFO_DICT.values():
-        con_id = info_dict['CON_ID']
+        recordkey = info_dict['RECORDKEY']
         rfile_name = info_dict['RFILE_NAME']
         chn_tp = info_dict['CHN_TP']
         call_start_time = str(info_dict['CALL_START_TIME']).strip()
         output_dir_path = '{0}/{1}/{2}/{3}/{4}-{5}'.format(
             STT_CONFIG['stt_output_path'], call_start_time[:4],
-            call_start_time[5:7], call_start_time[8:10], con_id, rfile_name)
+            call_start_time[5:7], call_start_time[8:10], recordkey, rfile_name)
         output_dict = {
             'mlf': {'ext': 'mlf', 'merge': 'N'},
             'unseg': {'ext': 'stt', 'merge': 'N'},
@@ -594,7 +594,7 @@ def update_stt_keyword_dtc_rst(logger, mysql):
     logger.info("11-4. DB upload STT_KEYWORD_DTC_RST")
     del_check_dict = dict()
     for info_dict in STT_KEYWORD_DTC_RST.values():
-        con_id = info_dict['CON_ID']
+        recordkey = info_dict['RECORDKEY']
         rfile_name = info_dict['RFILE_NAME']
         stt_sntc_lin_no = info_dict['STT_SNTC_LIN_NO']
         dtc_cd = info_dict['DTC_CD']
@@ -603,12 +603,12 @@ def update_stt_keyword_dtc_rst(logger, mysql):
         stt_sntc_cont = info_dict['STT_SNTC_CONT']
         stt_sntc_sttm = info_dict['STT_SNTC_STTM']
         stt_sntc_endtm = info_dict['STT_SNTC_ENDTM']
-        key = '{0}_{1}'.format(con_id, rfile_name)
+        key = '{0}_{1}'.format(recordkey, rfile_name)
         if key not in del_check_dict:
             del_check_dict[key] = 1
-            mysql.delete_data_to_stt_keyword_dtc_rst(con_id, rfile_name)
+            mysql.delete_data_to_stt_keyword_dtc_rst(recordkey, rfile_name)
         mysql.insert_data_to_stt_keyword_dtc_rst(
-            con_id=con_id,
+            recordkey=recordkey,
             rfile_name=rfile_name,
             stt_sntc_lin_no=stt_sntc_lin_no,
             dtc_cd=dtc_cd,
@@ -628,12 +628,12 @@ def insert_stt_rst_full(logger, mysql):
     """
     logger.info("11-3. DB upload STT_RST_FULL")
     for key, sent in MLF_INFO_DICT.items():
-        con_id = key.split("&")[0]
+        recordkey = key.split("&")[0]
         rfile_name = key.split("&")[1]
-        logger.debug("  CON_ID = {0}, RFILE_NAME = {1}".format(con_id, rfile_name))
-        mysql.delete_data_to_stt_rst_full(con_id, rfile_name)
+        logger.debug("  RECORDKEY = {0}, RFILE_NAME = {1}".format(recordkey, rfile_name))
+        mysql.delete_data_to_stt_rst_full(recordkey, rfile_name)
         mysql.insert_data_to_stt_rst_full(
-            con_id=con_id,
+            recordkey=recordkey,
             rfile_name=rfile_name,
             stt_mlf=sent
         )
@@ -738,7 +738,7 @@ def set_stt_keyword_dtc_rst(word_list, info_dict, dtc_cd):
             stt_keyword_temp_dtc_rst = info_dict
             stt_keyword_temp_dtc_rst['DTC_CD'] = dtc_cd
             stt_keyword_temp_dtc_rst['DTC_KWD'] = keyword
-            key = '{0}_{1}_{2}_{3}_{4}'.format(info_dict['CON_ID'], info_dict['RFILE_NAME'], info_dict['STT_SNTC_LIN_NO'], dtc_cd, keyword)
+            key = '{0}_{1}_{2}_{3}_{4}'.format(info_dict['RECORDKEY'], info_dict['RFILE_NAME'], info_dict['STT_SNTC_LIN_NO'], dtc_cd, keyword)
             if key not in STT_KEYWORD_DTC_RST:
                 STT_KEYWORD_DTC_RST[key] = stt_keyword_temp_dtc_rst
 
@@ -756,7 +756,7 @@ def update_stt_rst(logger, mysql):
     issue_word_list = mysql.select_tb_qa_except('이슈어')
     banned_word_list = mysql.select_tb_qa_except('금칙어')
     for key, info_dict in RCDG_INFO_DICT.items():
-        con_id = info_dict['CON_ID']
+        recordkey = info_dict['RECORDKEY']
         rfile_name = info_dict['RFILE_NAME']
         chn_tp = info_dict['CHN_TP']
         call_duration = info_dict['CALL_DURATION']
@@ -767,7 +767,7 @@ def update_stt_rst(logger, mysql):
             detail_file_path = '{0}/masking/{1}_trx.detail'.format(STT_TEMP_DIR_PATH, rfile_name)
         if not os.path.exists(detail_file_path):
             logger.error("Can't find detail file -> {0}".format(detail_file_path))
-            error_process(logger, mysql, con_id, rfile_name, '02', biz_cd)
+            error_process(logger, mysql, recordkey, rfile_name, '02', biz_cd)
             del RCDG_INFO_DICT[key]
             continue
         detail_file = open(detail_file_path, 'r')
@@ -776,7 +776,7 @@ def update_stt_rst(logger, mysql):
         # 무음 처리 구간 조회
         silence_result, crosstalk_result = extract_silence(1, 2, 3, call_duration, "\t", detail_file_list)
         # DB insert 전 delete
-        mysql.delete_stt_rst(con_id, rfile_name)
+        mysql.delete_stt_rst(recordkey, rfile_name)
         line_num = 0
         rx_sntc_len = 0
         tx_sntc_len = 0
@@ -822,7 +822,7 @@ def update_stt_rst(logger, mysql):
             msk_info_lit = ''
             if line_num in MASKING_INFO_LIT[rfile_name]:
                 msk_info_lit = ','.join(MASKING_INFO_LIT[rfile_name][line_num]) if len(MASKING_INFO_LIT[rfile_name][line_num]) > 0 else ''
-            insert_dict['CON_ID'] = con_id
+            insert_dict['RECORDKEY'] = recordkey
             insert_dict['RFILE_NAME'] = rfile_name
             insert_dict['STT_SNTC_LIN_NO'] = line_num
             insert_dict['STT_SNTC_CONT'] = unicode(sent, 'euc-kr')
@@ -838,7 +838,7 @@ def update_stt_rst(logger, mysql):
             insert_dict['CROSSTALK_YN'] = 'Y' if crosstalk_time > 0 else 'N'
             insert_dict['CROSSTALK_TIME'] = str(crosstalk_time) if insert_dict['CROSSTALK_YN'] == 'Y' else '0'
             MLF_INFO_DICT[key] += '{0}\n'.format(unicode(sent, 'euc-kr'))
-            keyword = '{0}_{1}_{2}'.format(con_id, rfile_name, line_num)
+            keyword = '{0}_{1}_{2}'.format(recordkey, rfile_name, line_num)
             if keyword not in insert_set_dict:
                 insert_set_dict[keyword] = insert_dict
             if speaker == 'C':
@@ -847,7 +847,7 @@ def update_stt_rst(logger, mysql):
                 set_stt_keyword_dtc_rst(banned_word_list, insert_dict, 'PRO')
             line_num += 1
         stt_spch_sped = str(round((rx_sntc_len + tx_sntc_len)/(rx_during_time + tx_during_time), 1)) if rx_during_time + tx_during_time != 0 else '0'
-        mysql.update_stt_spch_sped(con_id, rfile_name, stt_spch_sped)
+        mysql.update_stt_spch_sped(recordkey, rfile_name, stt_spch_sped)
     mysql.insert_stt_rst(insert_set_dict)
 
 
@@ -860,10 +860,10 @@ def update_stt_rcdg_info(logger, mysql):
     global RCDG_INFO_DICT
     logger.info("11-1. DB update STT_RCDG_INFO")
     for key, info_dict in RCDG_INFO_DICT.items():
-        con_id = info_dict['CON_ID']
+        recordkey = info_dict['RECORDKEY']
         rfile_name = info_dict['RFILE_NAME']
-        mysql.update_stt_prgst_cd('03', con_id, rfile_name)
-        mysql.update_stt_cmdtm(con_id, rfile_name)
+        mysql.update_stt_prgst_cd('03', recordkey, rfile_name)
+        mysql.update_stt_cmdtm(recordkey, rfile_name)
 
 
 def set_output(logger):
@@ -1313,7 +1313,7 @@ def make_output(logger, mysql, target_dir_path):
     # Create txt & detail file
     logger.info('Create txt & detail file')
     for key, info_dict in RCDG_INFO_DICT.items():
-        con_id = info_dict['CON_ID']
+        recordkey = info_dict['RECORDKEY']
         rfile_name = info_dict['RFILE_NAME']
         chn_tp = info_dict['CHN_TP']
         biz_cd = info_dict['BIZ_CD']
@@ -1341,7 +1341,7 @@ def make_output(logger, mysql, target_dir_path):
                 detail_output_file.close()
             else:
                 logger.error("{0} don't have stt file.".format(rfile_name))
-                error_process(logger, mysql, con_id, rfile_name, '02', biz_cd)
+                error_process(logger, mysql, recordkey, rfile_name, '02', biz_cd)
                 del RCDG_INFO_DICT[key]
                 continue
         # Stereo
@@ -1358,7 +1358,7 @@ def make_output(logger, mysql, target_dir_path):
                 rx_file.close()
             else:
                 logger.error("{0} don't have stt file.".format(rfile_name))
-                error_process(logger, mysql, con_id, rfile_name, '02', biz_cd)
+                error_process(logger, mysql, recordkey, rfile_name, '02', biz_cd)
                 del RCDG_INFO_DICT[key]
                 continue
             # Detailed txt & detail file creation.
@@ -1368,7 +1368,7 @@ def make_output(logger, mysql, target_dir_path):
             tx_mlf_file_path = "{0}/mlf/{1}_tx.mlf".format(STT_TEMP_DIR_PATH, rfile_name)
             if not os.path.exists(rx_mlf_file_path) or not os.path.exists(tx_mlf_file_path):
                 logger.error("{0} don't have mlf file.".format(rfile_name))
-                error_process(logger, mysql, con_id, rfile_name, '02', biz_cd)
+                error_process(logger, mysql, recordkey, rfile_name, '02', biz_cd)
                 del RCDG_INFO_DICT[key]
                 continue
             rx_mlf_info_dict = make_mlf_info(rx_mlf_file_path)
@@ -1470,10 +1470,10 @@ def execute_unseg_and_do_space(logger, mysql):
         logger.error("----------    STT ERROR   ----------")
         delete_garbage_file(logger)
         for key, info_dict in RCDG_INFO_DICT.items():
-            con_id = info_dict['CON_ID']
+            recordkey = info_dict['RECORDKEY']
             rfile_name = info_dict['RFILE_NAME']
             biz_cd = info_dict['BIZ_CD']
-            error_process(logger, mysql, con_id, rfile_name, '00', biz_cd)
+            error_process(logger, mysql, recordkey, rfile_name, '00', biz_cd)
         mysql.disconnect()
         for handler in logger.handlers:
             handler.close()
@@ -1568,7 +1568,7 @@ def make_pcm_file(logger, mysql):
     global RCDG_INFO_DICT
     logger.info("4. Make pcm file")
     for key, info_dict in RCDG_INFO_DICT.items():
-        con_id = info_dict['CON_ID']
+        recordkey = info_dict['RECORDKEY']
         rfile_name = info_dict['RFILE_NAME']
         biz_cd = info_dict['BIZ_CD']
         try:
@@ -1632,7 +1632,7 @@ def make_pcm_file(logger, mysql):
             exc_info = traceback.format_exc()
             logger.error(exc_info)
             logger.error("---------- make pcm error ----------")
-            error_process(logger, mysql, con_id, rfile_name, '02', biz_cd)
+            error_process(logger, mysql, recordkey, rfile_name, '02', biz_cd)
             del RCDG_INFO_DICT[key]
             continue
     if len(RCDG_INFO_DICT.keys()) < 1:
@@ -1655,7 +1655,7 @@ def copy_data(logger, mysql):
     global RCDG_INFO_DICT
     logger.info("3. Copy data")
     for key, info_dict in RCDG_INFO_DICT.items():
-        con_id = info_dict['CON_ID']
+        recordkey = info_dict['RECORDKEY']
         rfile_name = info_dict['RFILE_NAME']
         biz_cd = info_dict['BIZ_CD']
         chn_tp = info_dict['CHN_TP']
@@ -1668,7 +1668,7 @@ def copy_data(logger, mysql):
                 file_path = '{0}/{1}.{2}'.format(target_dir, rfile_name, rec_ext)
                 if not os.path.exists(file_path):
                     logger.error("{0} file is not exist -> {1}".format(rec_ext, file_path))
-                    error_process(logger, mysql, con_id, rfile_name, '90', biz_cd)
+                    error_process(logger, mysql, recordkey, rfile_name, '90', biz_cd)
                     del RCDG_INFO_DICT[key]
                     continue
                 logger.debug('\t{0} -> {1}'.format(file_path, STT_TEMP_DIR_PATH))
@@ -1679,7 +1679,7 @@ def copy_data(logger, mysql):
                 tx_file_path = '{0}/{1}_tx.{2}'.format(target_dir, rfile_name, rec_ext)
                 if not os.path.exists(rx_file_path) or not os.path.exists(tx_file_path):
                     logger.error("{0} file is not exists -> {1} or {2}".format(rec_ext, rx_file_path, tx_file_path))
-                    error_process(logger, mysql, con_id, rfile_name, '90', biz_cd)
+                    error_process(logger, mysql, recordkey, rfile_name, '90', biz_cd)
                     del RCDG_INFO_DICT[key]
                     continue
                 logger.debug('\t{0} -> {1}'.format(rx_file_path, STT_TEMP_DIR_PATH))
@@ -1687,15 +1687,15 @@ def copy_data(logger, mysql):
                 logger.debug('\t{0} -> {1}'.format(tx_file_path, STT_TEMP_DIR_PATH))
                 shutil.copy(tx_file_path, STT_TEMP_DIR_PATH)
             else:
-                logger.error("CHN_TP ERROR {0} : {1}".format(con_id, chn_tp))
-                error_process(logger, mysql, con_id, rfile_name, '90', biz_cd)
+                logger.error("CHN_TP ERROR {0} : {1}".format(rfile_name, chn_tp))
+                error_process(logger, mysql, recordkey, rfile_name, '90', biz_cd)
                 del RCDG_INFO_DICT[key]
                 continue
         except Exception:
             exc_info = traceback.format_exc()
             logger.error(exc_info)
             logger.error("---------- copy data error ----------")
-            error_process(logger, mysql, con_id, rfile_name, '02', biz_cd)
+            error_process(logger, mysql, recordkey, rfile_name, '02', biz_cd)
             del RCDG_INFO_DICT[key]
             continue
     if len(os.listdir(STT_TEMP_DIR_PATH)) < 1:
@@ -1720,16 +1720,16 @@ def update_status_and_select_rec_file(logger, mysql, job_list):
     logger.info("\tload job list -> {0}".format(job_list))
     # Creating recording file dictionary
     for job in job_list:
-        con_id = job['CON_ID']
+        recordkey = job['RECORDKEY']
         rfile_name = job['RFILE_NAME']
         biz_cd = job['BIZ_CD']
         try:
-            mysql.update_stt_prgst_cd('01', con_id, rfile_name)
-            key = '{0}&{1}'.format(con_id, rfile_name)
+            mysql.update_stt_prgst_cd('01', recordkey, rfile_name)
+            key = '{0}&{1}'.format(recordkey, rfile_name)
             RCDG_INFO_DICT[key] = job
         except Exception as e:
             logger.error(e)
-            error_process(logger, mysql, con_id, rfile_name, '02', biz_cd)
+            error_process(logger, mysql, recordkey, rfile_name, '02', biz_cd)
             continue
 
 
@@ -1883,10 +1883,10 @@ def processing(job_list):
         logger.error(exc_info)
         logger.error("----------    STT ERROR   ----------")
         for info_dict in RCDG_INFO_DICT.values():
-            con_id = info_dict['CON_ID']
+            recordkey = info_dict['RECORDKEY']
             rfile_name = info_dict['RFILE_NAME']
             biz_cd = info_dict['BIZ_CD']
-            error_process(logger, mysql, con_id, rfile_name, '02', biz_cd)
+            error_process(logger, mysql, recordkey, rfile_name, '02', biz_cd)
         delete_garbage_file(logger)
         mysql.disconnect()
         for handler in logger.handlers:
@@ -1900,9 +1900,9 @@ def processing(job_list):
     # 15. Update status
     logger.info("15. Update status to STTA END(03)")
     for key, info_dict in RCDG_INFO_DICT.items():
-        con_id = info_dict['CON_ID']
+        recordkey = info_dict['RECORDKEY']
         rfile_name = info_dict['RFILE_NAME']
-        mysql.update_stt_prgst_cd('03', con_id, rfile_name)
+        mysql.update_stt_prgst_cd('03', recordkey, rfile_name)
     for info_dict in RCDG_INFO_DICT.values():
         chn_tp = info_dict['CHN_TP']
         biz_cd = info_dict['BIZ_CD']

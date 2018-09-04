@@ -160,7 +160,7 @@ def process_execute(**kwargs):
                 p.start()
                 logger.info('spawn new processing, pid is [{0}]'.format(p.pid))
                 for item in job:
-                    logger.info('\t{0}\t{1}\t{2}'.format(item['CON_ID'], item['RFILE_NAME'], item['CALL_DURATION']))
+                    logger.info('\t{0}\t{1}\t{2}'.format(item['RECORDKEY'], item['RFILE_NAME'], item['CALL_DURATION']))
                 sleep_exact_time(int(CS_DAEMON_CONFIG['process_interval']))
         job_list = list()
     return pid_list
