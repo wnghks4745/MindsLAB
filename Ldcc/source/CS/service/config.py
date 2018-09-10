@@ -72,3 +72,31 @@ MASKING_CONFIG = {
     'precent_undetected': [u'네', u'네네', u'아', u'어', u'잠시만요'],
     'non_masking_word': [u'고객님', u'맞', u'본인', u'여권번호', u'감사합', u'확인', u'아니요', u'잠시만요', u'음', u'어', u'위해', u'지금', u'주문', u'말씀']
 }
+
+MANAGE_DIR_CONFIG = {
+    'log_dir_path': '/log/MindsVOC/CS/MANAGE_DIR',
+    'log_file_name': 'delete_file.log',
+    'log_level': 'debug',
+    'target_directory_list': [
+        {
+            'directory_path': '/log/MindsVOC/CS/STT',
+            'delete_file_date': 180
+        },
+        {
+            'directory_path': '/log/MindsVOC/CS/MANAGE_DIR',
+            'delete_file_date': 180
+        },
+        {
+            'directory_path': '/log/MindsVOC/CS/UPLOAD_JSON',
+            'delete_file_date': 180
+        },
+        {
+            'directory_path': '/app/MindsVOC/CS/OUTPUT/{0}/STTA_output'.format(socket.gethostname()),
+            'delete_file_date': 60
+        },
+        {
+            'directory_path': '/app/MindsVOC/CS/UPLOAD_JSON/processed_json',
+            'delete_file_date': 60
+        }
+    ]
+}
