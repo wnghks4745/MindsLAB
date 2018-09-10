@@ -312,7 +312,7 @@ class MySQL(object):
             self.conn.rollback()
             raise Exception(traceback.format_exc())
 
-    def select_tb_qa_except(self, dict_name):
+    def select_tb_qa_except(self, stt_dict_cd):
         query = """
             SELECT DISTINCT
                 B.KEYWORD
@@ -321,10 +321,12 @@ class MySQL(object):
                 TA_LOTTE.TB_QA_EXCEPT_DT_INFO B
             WHERE 1=1
                 AND A.DICT_ID = B.DICT_ID
-                AND A.DICT_NAME = %s
+                AND A.STT_DICT_CD = %s
+                AND B.USE_YN = 'Y'
+                AND B.DEL_F = 'N'
         """
         bind = (
-            dict_name,
+            stt_dict_cd,
         )
         self.cursor.execute(query, bind)
         results = self.cursor.fetchall()
@@ -760,8 +762,8 @@ def update_stt_rst(logger, mysql):
     global MLF_INFO_DICT
     logger.info("11-2. DB update STT_RST")
     insert_set_dict = dict()
-    issue_word_list = mysql.select_tb_qa_except('이슈어')
-    banned_word_list = mysql.select_tb_qa_except('금칙어')
+    issue_word_list = mysql.select_tb_qa_except('I')
+    banned_word_list = mysql.select_tb_qa_except('B')
     for key, info_dict in RCDG_INFO_DICT.items():
         recordkey = info_dict['RECORDKEY']
         rfile_name = info_dict['RFILE_NAME']
@@ -1019,7 +1021,7 @@ def masking(str_idx, speaker_idx, delimiter, encoding, input_line_list):
                 line_re_rule_dict[line_num] = dict()
             line_re_rule_dict[line_num].update(re_rule_dict)
 
-        next_line_cnt = int(STT_CONFIG['masking_next_line_cnt'])
+        next_line_cnt = int(MASKING_CONFIG['next_line_cnt'])
         for next_line_num in range(line_num + 1, len(line_dict)):
             if next_line_num in line_dict:
                 for word in MASKING_CONFIG['precent_undetected']:

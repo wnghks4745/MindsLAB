@@ -55,13 +55,12 @@ STT_CONFIG = {
     'stt_output_path': '/app/MindsVOC/CS/OUTPUT/{0}/STTA_output'.format(str(socket.gethostname())),
     'stt_tool_path': '/app/MindsVOC/CS/STT/tools',
     'thread': 2,
-    'crosstalk_ign_len': 3,
-    'masking_next_line_cnt': 2
+    'crosstalk_ign_len': 3
 }
 
 MASKING_CONFIG = {
     'minimum_length': 3,
-    'next_line_cnt': 1,
+    'next_line_cnt': 2,
     'number_rule': r'((0|1|2|3|4|5|6|7|8|9|(?:10)|ÀÏ|(?:ÇÏ³ª)|ÀÌ|µÑ|»ï|»ç|¿À|À°|·ú|ÀÏ°ö|Ä¥|¿©´ü|ÆÈ|¾ÆÈ©|±¸|°ø|³Ý|¼Â|¿µ|½Ê|¹é)\s?){3,}',
     'birth_rule': r'((0|1|2|3|4|5|6|7|8|9|(?:10)|ÀÏ|(?:ÇÏ³ª)|ÀÌ|µÑ|»ï|»ç|¿À|À°|·ú|Ä¥|ÆÈ|±¸|°ø|³Ý|¿µ|½Ê|³â|¿ù|¹é|Ãµ|½Ã)\s?){3,}',
 #    'etc_rule': r'((0|1|2|3|4|5|6|7|8|9|(?:10)|ÀÏ|(?:ÇÏ|³ª)|µÑ|»ï|»ç|¿À|À°|·ú|Ä¥|ÆÈ|±¸|°ø|³Ý|¿µ|½Ê)\s?){3,}',
