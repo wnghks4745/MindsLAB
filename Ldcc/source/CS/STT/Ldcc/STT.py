@@ -769,8 +769,11 @@ def update_stt_rst(logger, mysql):
     global MLF_INFO_DICT
     logger.info("11-2. DB update STT_RST")
     insert_set_dict = dict()
-    issue_word_list = mysql.select_tb_qa_except('I')
-    banned_word_list = mysql.select_tb_qa_except('B')
+    #Todo 부하테스트시에만 제거
+    #issue_word_list = mysql.select_tb_qa_except('I')
+    issue_word_list = list()
+    #banned_word_list = mysql.select_tb_qa_except('B')
+    banned_word_list = list()
     for key, info_dict in RCDG_INFO_DICT.items():
         recordkey = info_dict['RECORDKEY']
         rfile_name = info_dict['RFILE_NAME']
