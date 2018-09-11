@@ -740,7 +740,7 @@ def set_stt_keyword_dtc_rst(word_list, info_dict, dtc_cd):
     global STT_KEYWORD_DTC_RST
     key = False
     for item in word_list:
-        keyword = unicode(item['KEYWORD'], 'euc-kr')
+        keyword = item['KEYWORD']
         if keyword in info_dict['STT_SNTC_CONT']:
             stt_keyword_temp_dtc_rst = info_dict
             stt_keyword_temp_dtc_rst['DTC_CD'] = dtc_cd
@@ -748,7 +748,7 @@ def set_stt_keyword_dtc_rst(word_list, info_dict, dtc_cd):
             key = '{0}_{1}_{2}_{3}_{4}'.format(info_dict['RECORDKEY'], info_dict['RFILE_NAME'], info_dict['STT_SNTC_LIN_NO'], dtc_cd, keyword)
             if key not in STT_KEYWORD_DTC_RST:
                 STT_KEYWORD_DTC_RST[key] = stt_keyword_temp_dtc_rst
-    key = 'Y' if key else 'N'
+    key = True if key else False
     return key
 
 
@@ -792,6 +792,8 @@ def update_stt_rst(logger, mysql):
         rx_during_time = 0
         tx_during_time = 0
         MLF_INFO_DICT[key] = ''
+        issue_dtc_yn = 'N'
+        prohibit_dtc_yn = 'N'
         for line in detail_file_list:
             insert_dict = dict()
             line_list = line.split('\t')
@@ -851,9 +853,11 @@ def update_stt_rst(logger, mysql):
             if keyword not in insert_set_dict:
                 insert_set_dict[keyword] = insert_dict
             if speaker == 'C':
-                issue_dtc_yn = set_stt_keyword_dtc_rst(issue_word_list, insert_dict, 'ISS')
+                if set_stt_keyword_dtc_rst(issue_word_list, insert_dict, 'ISS'):
+                    issue_dtc_yn = 'Y'
             if speaker == 'A':
-                prohibit_dtc_yn = set_stt_keyword_dtc_rst(banned_word_list, insert_dict, 'PRO')
+                if set_stt_keyword_dtc_rst(banned_word_list, insert_dict, 'PRO'):
+                    prohibit_dtc_yn = 'Y'
             line_num += 1
         stt_spch_sped = str(round((rx_sntc_len + tx_sntc_len)/(rx_during_time + tx_during_time), 1)) if rx_during_time + tx_during_time != 0 else '0'
         mysql.update_stt_spch_sped(recordkey, rfile_name, stt_spch_sped, issue_dtc_yn, prohibit_dtc_yn)
