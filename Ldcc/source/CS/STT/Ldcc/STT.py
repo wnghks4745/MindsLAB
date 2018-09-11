@@ -613,17 +613,24 @@ def update_stt_keyword_dtc_rst(logger, mysql):
         if key not in del_check_dict:
             del_check_dict[key] = 1
             mysql.delete_data_to_stt_keyword_dtc_rst(recordkey, rfile_name)
-        mysql.insert_data_to_stt_keyword_dtc_rst(
-            recordkey=recordkey,
-            rfile_name=rfile_name,
-            stt_sntc_lin_no=stt_sntc_lin_no,
-            dtc_cd=dtc_cd,
-            dtc_kwd=dtc_kwd,
-            stt_sntc_spkr_dcd=stt_sntc_spkr_dcd,
-            stt_sntc_cont=stt_sntc_cont,
-            stt_sntc_sttm=stt_sntc_sttm,
-            stt_sntc_endtm=stt_sntc_endtm
-        )
+        try:
+            mysql.insert_data_to_stt_keyword_dtc_rst(
+                recordkey=recordkey,
+                rfile_name=rfile_name,
+                stt_sntc_lin_no=stt_sntc_lin_no,
+                dtc_cd=dtc_cd,
+                dtc_kwd=dtc_kwd,
+                stt_sntc_spkr_dcd=stt_sntc_spkr_dcd,
+                stt_sntc_cont=stt_sntc_cont,
+                stt_sntc_sttm=stt_sntc_sttm,
+                stt_sntc_endtm=stt_sntc_endtm
+            )
+        except Exception:
+            biz_cd = info_dict['BIZ_CD']
+            exc_info = traceback.format_exc()
+            logger.error(exc_info)
+            logger.error("----------    INSERT STT_KEYWORD_DTC_RST ERROR   ----------")
+            error_process(logger, mysql, recordkey, rfile_name, '02', biz_cd)
 
 
 def insert_stt_rst_full(logger, mysql):
@@ -648,7 +655,7 @@ def insert_stt_rst_full(logger, mysql):
         except Exception:
             exc_info = traceback.format_exc()
             logger.error(exc_info)
-            logger.error("----------    INSERT STT RST FULL ERROR   ----------")
+            logger.error("----------    INSERT STT_RST_FULL ERROR   ----------")
             error_process(logger, mysql, recordkey, rfile_name, '02', biz_cd)
 
 
