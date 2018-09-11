@@ -636,13 +636,20 @@ def insert_stt_rst_full(logger, mysql):
     for key, sent in MLF_INFO_DICT.items():
         recordkey = key.split("&")[0]
         rfile_name = key.split("&")[1]
+        biz_cd = RCDG_INFO_DICT[key]['BIZ_CD']
         logger.debug("  RECORDKEY = {0}, RFILE_NAME = {1}".format(recordkey, rfile_name))
-        mysql.delete_data_to_stt_rst_full(recordkey, rfile_name)
-        mysql.insert_data_to_stt_rst_full(
-            recordkey=recordkey,
-            rfile_name=rfile_name,
-            stt_mlf=sent
-        )
+        try:
+            mysql.delete_data_to_stt_rst_full(recordkey, rfile_name)
+            mysql.insert_data_to_stt_rst_full(
+                recordkey=recordkey,
+                rfile_name=rfile_name,
+                stt_mlf=sent
+            )
+        except Exception:
+            exc_info = traceback.format_exc()
+            logger.error(exc_info)
+            logger.error("----------    INSERT STT RST FULL ERROR   ----------")
+            error_process(logger, mysql, recordkey, rfile_name, '02', biz_cd)
 
 
 def time_to_seconds(input_time):
