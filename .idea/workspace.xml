@@ -2,506 +2,136 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8eede091-ed82-4d10-9ff3-1a88a8730296" name="Default" comment="First source code commit">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/dlrtn.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ldcc/TO do" beforeDir="false" afterPath="$PROJECT_DIR$/Ldcc/TO do" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_agent_batch/processed_file/2018/05/09/LUSM0.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_agent_batch/processed_file/2018/05/09/TB_USER.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_agent_batch/processed_file/2018/05/09/TELECS_TB_USER.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_agent_batch/processed_file/2018/05/30/LUSM0.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_agent_batch/processed_file/2018/05/30/TB_USER.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_agent_batch/processed_file/2018/05/30/TELECS_TB_USER.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_org_batch/org_batch.py" beforeDir="false" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_org_batch/org_batch.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_org_batch/processed_file/2018/05/30/PASU0008.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_poli_batch/processed_file/2018/05/30/20180515poliinfo.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_poli_batch/processed_file/2018/05/30/20180517poliinfo.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_task_batch/processed_file/2018/05/07/20180502taskinfo.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_task_batch/processed_file/2018/05/07/20180507taskinfo.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_task_batch/processed_file/2018/05/30/20180502taskinfo.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_task_batch/processed_file/2018/05/30/20180508taskinfo.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_task_batch/processed_file/2018/05/30/20180510taskinfo.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lotteins/BATCH/ORG_BATCH/org_batch.py" beforeDir="false" afterPath="$PROJECT_DIR$/Lotteins/BATCH/ORG_BATCH/org_batch.py" afterDir="false" />
     </list>
-    <list id="7a72bb3a-c0d7-4a46-8f46-7cbc8ce3fa2c" name="First source code commit" comment="First source code commit">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/Project_git.iml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Ldcc/.idea/Ldcc.iml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Ldcc/.idea/misc.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Ldcc/.idea/modules.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Ldcc/.idea/workspace.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Ldcc/TO do" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Ldcc/source/CS/STT/Ldcc/CS_daemon.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Ldcc/source/CS/STT/Ldcc/STT.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Ldcc/source/CS/STT/Ldcc/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Ldcc/source/CS/UPLOAD_JSON/upload_json.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Ldcc/source/CS/UPLOAD_JSON/upload_json_daemon.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Ldcc/source/CS/service/codec.cfg" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Ldcc/source/CS/service/config.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Ldcc/source/CS/service/process_monitoring.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Ldcc/source/PAST_CS/STT/Ldcc/PAST_CS_daemon.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Ldcc/source/PAST_CS/STT/Ldcc/STT.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Ldcc/source/PAST_CS/service/codec.cfg" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Ldcc/source/PAST_CS/service/config.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Ldcc/롯데정보통신 작업참고자료/LDCC-STTTA시스템구축_인터페이스정의서 VER 0.1_Minds_20180720.xlsx" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Ldcc/롯데정보통신 작업참고자료/STT파트_분석 설계서_V0.1_180730.pptx" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Ldcc/롯데정보통신 작업참고자료/[0. 코드정의서]_20180720_1600.xlsx" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Ldcc/롯데정보통신 작업참고자료/[STT][Mysql] DB_ERD_20180726_1100.erwin" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Ldcc/롯데정보통신 작업참고자료/[STT][Mysql] DB_ERD_20180726_1100_논리.pdf" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Ldcc/롯데정보통신 작업참고자료/[STT][Mysql] DB_ERD_20180726_1100_물리.pdf" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Ldcc/롯데정보통신 작업참고자료/로직 설명서.pptx" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Ldcc/롯데정보통신 작업참고자료/롯데정보통신 STT,TA_시스템설계_VER 0.5.pptx" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Ldcc/롯데정보통신 작업참고자료/롯데정보통신_STTTA_SB_v0.6_Mindslab_STT화면_20180730.pptx" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/biz/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/biz/client/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/biz/client/dnn_client.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/biz/client/hmd_client.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/biz/client/nlp_client.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/biz/client/stt_client.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/biz/common/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/biz/common/biz_worker.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/biz/common/db_connection.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/biz/common/logger.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/biz/common/util.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/biz/common/worker.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/biz/common/worker_queue.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/biz/process/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/biz/process/dnn/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/biz/process/dnn/dnn_proc.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/biz/process/hmd/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/biz/process/hmd/hmd_proc.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/biz/process/nlp/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/biz/process/nlp/nlp_proc.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/biz/process/stt/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/biz/process/stt/stt_proc.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/call_driver_classify_script/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/call_driver_classify_script/call_driver_classify.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/call_driver_classify_script/cfg/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/call_driver_classify_script/cfg/config.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/call_driver_quality_script/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/call_driver_quality_script/call_driver_quality.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/call_driver_quality_script/cfg/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/call_driver_quality_script/cfg/config.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/call_transfer_script/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/call_transfer_script/call_transfer.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/call_transfer_script/cfg/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/call_transfer_script/cfg/config.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/cs_db_collector_process.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/error_call_script/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/error_call_script/cfg/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/error_call_script/cfg/config.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/error_call_script/error_call.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/hmd_process.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/interest_keyword_script/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/interest_keyword_script/cfg/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/interest_keyword_script/cfg/config.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/interest_keyword_script/interest_keyword.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/interest_section_script/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/interest_section_script/cfg/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/interest_section_script/cfg/config.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/interest_section_script/interest_section.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/negative_keyword_script/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/negative_keyword_script/cfg/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/negative_keyword_script/cfg/config.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/negative_keyword_script/negative_keyword.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/nlp_process.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/require_sentence_script/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/require_sentence_script/cfg/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/require_sentence_script/cfg/config.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/require_sentence_script/require_sentence.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/router_process.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/tm_db_collector_process.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_agent_batch/agent_batch.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_agent_batch/cfg/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_agent_batch/cfg/config.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_agent_batch/processed_file/2018/05/09/LUSM0.dat" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_agent_batch/processed_file/2018/05/09/TB_USER.dat" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_agent_batch/processed_file/2018/05/09/TELECS_TB_USER.dat" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_agent_batch/processed_file/2018/05/30/LUSM0.dat" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_agent_batch/processed_file/2018/05/30/TB_USER.dat" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_agent_batch/processed_file/2018/05/30/TELECS_TB_USER.dat" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_call_driver_classify/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_call_driver_classify/cfg/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_call_driver_classify/cfg/config.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_call_driver_classify/old_upload_cs_call_driver_classify.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_call_driver_classify/old_upload_tm_call_driver_classify .py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_call_driver_classify/upload_call_driver_classify.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_call_driver_classify/upload_cs_call_driver_classify.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_call_driver_classify/upload_tm_call_driver_classify.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_frequent_keyword/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_frequent_keyword/cfg/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_frequent_keyword/cfg/config.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_frequent_keyword/test.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_frequent_keyword/upload_frequent_keyword.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_frequent_keyword/upload_ru_frequent_keyword.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_json/cfg/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_json/cfg/codec.cfg" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_json/cfg/config.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_json/upload_json.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_json/upload_json_daemon.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_manage_dir/cfg/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_manage_dir/cfg/config.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_manage_dir/delete_file.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_org_batch/cfg/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_org_batch/cfg/config.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_org_batch/org_batch.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_org_batch/org_batch_dump.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_org_batch/processed_file/2018/05/30/PASU0008.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_perfect_sales/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_perfect_sales/cfg/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_perfect_sales/cfg/config.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_perfect_sales/old_upload_perfect_sales.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_perfect_sales/upload_perfect_sales.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_poli_batch/cfg/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_poli_batch/cfg/config.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_poli_batch/poli_batch.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_poli_batch/processed_file/2018/05/30/20180515poliinfo.dat" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_poli_batch/processed_file/2018/05/30/20180517poliinfo.dat" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_repeated_call_analysis/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_repeated_call_analysis/cfg/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_repeated_call_analysis/cfg/config.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_repeated_call_analysis/old_upload_repeated_call_analysis.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_repeated_call_analysis/upload_repeated_call_analysis.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_task_batch/cfg/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_task_batch/cfg/config.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_task_batch/processed_file/2018/05/07/20180502taskinfo.dat" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_task_batch/processed_file/2018/05/07/20180507taskinfo.dat" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_task_batch/processed_file/2018/05/30/20180502taskinfo.dat" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_task_batch/processed_file/2018/05/30/20180508taskinfo.dat" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_task_batch/processed_file/2018/05/30/20180510taskinfo.dat" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/20180608_biz/upload_task_batch/task_batch.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/BATCH/AGENT_BATCH/agent_batch.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/BATCH/AGENT_BATCH/cfg/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/BATCH/AGENT_BATCH/cfg/config.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/BATCH/MANAGE_DIR/cfg/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/BATCH/MANAGE_DIR/cfg/config.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/BATCH/MANAGE_DIR/delete_file.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/BATCH/ORG_BATCH/cfg/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/BATCH/ORG_BATCH/cfg/config.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/BATCH/ORG_BATCH/org_batch.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/BATCH/ORG_BATCH/org_batch_dump.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/BATCH/TASK_BATCH/cfg/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/BATCH/TASK_BATCH/cfg/config.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/BATCH/TASK_BATCH/task_batch.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/CS/MANAGE_DIR/cfg/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/CS/MANAGE_DIR/cfg/config.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/CS/MANAGE_DIR/delete_file.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/CS/STT/Lotteins/CS_daemon.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/CS/STT/Lotteins/STT.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/CS/STT/Lotteins/STT.py_20180501" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/CS/STT/Lotteins/cfg/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/CS/STT/Lotteins/cfg/codec.cfg" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/CS/STT/Lotteins/cfg/config.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/CS/TA/Lotteins/IE_TA.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/CS/TA/Lotteins/cfg/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/CS/TA/Lotteins/cfg/codec.cfg" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/CS/TA/Lotteins/cfg/config.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/CS/UPLOAD_JSON/cfg/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/CS/UPLOAD_JSON/cfg/codec.cfg" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/CS/UPLOAD_JSON/cfg/config.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/CS/UPLOAD_JSON/cfg/config_biz.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/CS/UPLOAD_JSON/upload_json.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/CS/UPLOAD_JSON/upload_json_biz.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/CS/UPLOAD_JSON/upload_json_daemon.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/CS/maum/upload_json/cfg/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/CS/maum/upload_json/cfg/codec.cfg" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/CS/maum/upload_json/cfg/config.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/CS/maum/upload_json/upload_json.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/CS/maum/upload_json/upload_json_daemon.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/CNTR_REMAPPING/cfg/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/CNTR_REMAPPING/cfg/config.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/CNTR_REMAPPING/cntr_remapping.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/DEL_CNTR_RCDG/cfg/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/DEL_CNTR_RCDG/cfg/config.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/DEL_CNTR_RCDG/del_cntr_rcdg.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/GET_CNTR_INFO/cfg/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/GET_CNTR_INFO/cfg/config.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/GET_CNTR_INFO/get_cntr_info.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/INSERT_QA_RCDG_INFO/cfg/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/INSERT_QA_RCDG_INFO/cfg/codec.cfg" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/INSERT_QA_RCDG_INFO/cfg/config.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/INSERT_QA_RCDG_INFO/insert_qa_rcdg_info.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/INSERT_QA_RCDG_INFO/insert_qa_rcdg_info_daemon.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/INSERT_QA_RCDG_INFO/old/insert_qa_rcdg_info.py_20180306" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/MANAGE_DIR/cfg/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/MANAGE_DIR/cfg/config.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/MANAGE_DIR/delete_file.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/MASKING_CU_NAME/cfg/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/MASKING_CU_NAME/cfg/config.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/MASKING_CU_NAME/masking_cu_name.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/Marketing_STT/STT.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/Marketing_STT/cfg/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/Marketing_STT/cfg/config.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/Marketing_STT/marketing_start.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/Marketing_STT/processed_dat/2018/05/24/20180524_info_2.dat.enc" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/Marketing_STT/processed_dat/2018/05/25/20180525marketinginfo.dat.enc" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/Marketing_STT/upload_dat.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/STT/Lotteins/STT.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/STT/Lotteins/STT.py_20180501" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/STT/Lotteins/TM_daemon.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/STT/Lotteins/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/STT/Lotteins/bin/TM_daemon.pid" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/STT/Lotteins/cfg/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/STT/Lotteins/cfg/codec.cfg" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/STT/Lotteins/cfg/config.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/STT/Lotteins/old/STT.py_20180521" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/STT/Lotteins/old/STT.py_20180523" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/STT/Lotteins/old/STT.py_20180606" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/STT/STT.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/STT/TM_daemon.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/STT/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/TA/LA/bin/DataInterface.cfg" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/TA/LA/bin/LMI.cfg" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/TA/LA/bin/count_idx.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/TA/LA/bin/new_basic_tm.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/TA/LA/rsc/Normalization/WikiTitle_Normalization.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/TA/LA/rsc/ne_tag.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/TA/Lotteins/IE_TA.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/TA/Lotteins/OO_TA.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/TA/Lotteins/QA_OO_Daemon.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/TA/Lotteins/QA_TA.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/TA/Lotteins/QA_TA.py_20180501" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/TA/Lotteins/QA_TA_o.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/TA/Lotteins/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/TA/Lotteins/cfg/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/TA/Lotteins/cfg/codec.cfg" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/TA/Lotteins/cfg/config.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/TA/Lotteins/old/QA_TA.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/TA/Lotteins/old/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/TA/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/TA/makeCSV/idxprn_make_csv.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/TA/makeCSV/idxvp_make_csv.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/UPDATE_QA_STTA_PRGST_CD/cfg/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/UPDATE_QA_STTA_PRGST_CD/cfg/config.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/UPDATE_QA_STTA_PRGST_CD/update_qa_stta_prgst_cd.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/UPDATE_QA_STTA_PRGST_CD/update_qa_stta_prgst_cd_daemon.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/UPLOAD_JSON/cfg/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/UPLOAD_JSON/cfg/codec.cfg" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/UPLOAD_JSON/cfg/config.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/UPLOAD_JSON/upload_json.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/UPLOAD_JSON/upload_json_biz.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/UPLOAD_JSON/upload_json_daemon.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM2/STT/Lotteins/STT.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM2/STT/Lotteins/STT_o.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM2/STT/Lotteins/TM_daemon.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM2/STT/Lotteins/cfg/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM2/STT/Lotteins/cfg/codec.cfg" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/TM2/STT/Lotteins/cfg/config.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/bin/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/bin/biz/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/bin/biz/client/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/bin/biz/client/dnn_client.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/bin/biz/client/hmd_client.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/bin/biz/client/nlp_client.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/bin/biz/client/stt_client.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/bin/biz/common/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/bin/biz/common/biz_worker.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/bin/biz/common/db_connection.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/bin/biz/common/logger.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/bin/biz/common/util.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/bin/biz/common/worker.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/bin/biz/common/worker_queue.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/bin/biz/process/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/bin/biz/process/dnn/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/bin/biz/process/dnn/dnn_proc.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/bin/biz/process/hmd/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/bin/biz/process/hmd/hmd_proc.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/bin/biz/process/nlp/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/bin/biz/process/nlp/nlp_proc.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/bin/biz/process/stt/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/bin/biz/process/stt/stt_proc.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/bin/cs_db_collector_process.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/bin/dnn_process.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/bin/hmd_process.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/bin/make_proto.sh" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/bin/nlp_process.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/bin/router_process.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/bin/stt_process.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/bin/tm_db_collector_process.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/bin/upload_agent_batch/agent_batch.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/bin/upload_agent_batch/cfg/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/bin/upload_agent_batch/cfg/config.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/bin/upload_call_driver_classify/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/bin/upload_call_driver_classify/cfg/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/bin/upload_call_driver_classify/cfg/config.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/bin/upload_call_driver_classify/upload_call_driver_classify.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/bin/upload_frequent_keyword/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/bin/upload_frequent_keyword/cfg/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/bin/upload_frequent_keyword/cfg/config.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/bin/upload_frequent_keyword/old_upload_frequent_keyword.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/bin/upload_frequent_keyword/upload_frequent_keyword.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/bin/upload_manage_dir/cfg/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/bin/upload_manage_dir/cfg/config.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/bin/upload_manage_dir/delete_file.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/bin/upload_org_batch/cfg/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/bin/upload_org_batch/cfg/config.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/bin/upload_org_batch/org_batch.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/bin/upload_org_batch/org_batch_dump.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/bin/upload_perfect_sales/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/bin/upload_perfect_sales/cfg/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/bin/upload_perfect_sales/cfg/config.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/bin/upload_perfect_sales/upload_perfect_sales.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/bin/upload_repeated_call_analysis/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/bin/upload_repeated_call_analysis/cfg/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/bin/upload_repeated_call_analysis/cfg/config.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/bin/upload_repeated_call_analysis/nohup.out" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/bin/upload_repeated_call_analysis/upload_repeated_call_analysis.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/bin/upload_task_batch/cfg/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/bin/upload_task_batch/cfg/config.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/bin/upload_task_batch/task_batch.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/monitoring_script/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/monitoring_script/cntr_monitoring.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/monitoring_script/db_connect_test.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/monitoring_script/process_monitoring.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lotteins/monitoring_script/upload_json_monitoring.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Meritz/.idea/Meritz.iml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Meritz/.idea/misc.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Meritz/.idea/modules.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Meritz/.idea/workspace.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Meritz/LOG_monitoring/log_monitoring.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Meritz/Meritz.zip" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Meritz/Meritz/STT/bin/STT.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Meritz/Meritz/STT/bin/STT_sched_daemon.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Meritz/Meritz/STT/bin/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Meritz/Meritz/STT/bin/meritz_stt_daemon.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Meritz/Meritz/STT/cfg/STT.cfg" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Meritz/Meritz/TA/bin/StatCdMng.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Meritz/Meritz/TA/bin/TA.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Meritz/Meritz/TA/bin/TA_sched_daemon.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Meritz/Meritz/TA/bin/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Meritz/Meritz/TA/cfg/TA.cfg" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Meritz/STT/Meritz/bin/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Meritz/STT/Meritz/cfg/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Meritz/STT/Meritz/cfg/config.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Meritz/STT/Meritz/find_cs_that_do_not_read.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Meritz/STT/Meritz/find_daemon.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Meritz/TA/Meritz/.idea/Meritz.iml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Meritz/TA/Meritz/.idea/dictionaries/.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Meritz/TA/Meritz/.idea/inspectionProfiles/Project_Default.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Meritz/TA/Meritz/.idea/misc.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Meritz/TA/Meritz/.idea/modules.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Meritz/TA/Meritz/.idea/workspace.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Meritz/TA/Meritz/TA.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Meritz/TA/Meritz/bin/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Meritz/TA/Meritz/cfg/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Meritz/TA/Meritz/cfg/config.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Meritz/TA/Meritz/cfg/stt_result_codec.cfg" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Meritz/TA/Meritz/find_ta.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Meritz/TA/Meritz/find_ta_daemon.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Meritz/TA/Meritz/meritz_ta_daemon.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/.idea/Miraeasset.iml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/.idea/codeStyles/codeStyleConfig.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/.idea/dictionaries/shinjuhwan1.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/.idea/inspectionProfiles/Project_Default.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/.idea/misc.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/.idea/modules.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/.idea/vcs.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/.idea/workspace.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/CS/CS_monitoring/CS_Monitoring.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/CS/CS_monitoring/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/CS/CS_monitoring/cfg/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/CS/CS_monitoring/cfg/config.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/CS/CS_monitoring/cfg/old/config_20180111.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/CS/CS_monitoring/change_prgst_cd.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/CS/CS_monitoring/delete_CS_file.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/CS/CS_monitoring/log_analysis.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/CS/Miraeasset/.idea/Miraeasset.iml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/CS/Miraeasset/.idea/dictionaries/.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/CS/Miraeasset/.idea/inspectionProfiles/Project_Default.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/CS/Miraeasset/.idea/misc.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/CS/Miraeasset/.idea/modules.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/CS/Miraeasset/.idea/workspace.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/CS/Miraeasset/CS_daemon.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/CS/Miraeasset/STT.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/CS/Miraeasset/Sftp_transport_daemon.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/CS/Miraeasset/cfg/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/CS/Miraeasset/cfg/codec.cfg" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/CS/Miraeasset/cfg/config.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/CS/Miraeasset/cfg/old/config_20180111.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/CS/Miraeasset/sftp_transport.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/CS/Upload_rec_info/cfg/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/CS/Upload_rec_info/cfg/config.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/CS/Upload_rec_info/upload_rec_info.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/CS/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/MANAGE_REC/.idea/Miraeasset_MANAGE_REC.iml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/MANAGE_REC/.idea/inspectionProfiles/Project_Default.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/MANAGE_REC/.idea/misc.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/MANAGE_REC/.idea/modules.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/MANAGE_REC/.idea/workspace.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/MANAGE_REC/MANAGE_REC_daemon.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/MANAGE_REC/cfg/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/MANAGE_REC/cfg/codec.cfg" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/MANAGE_REC/cfg/config.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/MANAGE_REC/cfg/old/config_20180111.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/MANAGE_REC/compression_and_delete_rec_file.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/MANAGE_REC/encrypt_rec_file.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/MANAGE_REC/new_compression_and_delete_rec_file.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/MANAGE_REC/old/encrypt_rec_file_20180111.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/MANAGE_REC/old/old_20180111_compression_and_delete_rec_file.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/MANAGE_REC/rollback_compression_rec_file.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/MASKING/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/MASKING/cfg/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/MASKING/cfg/config.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/MASKING/masking.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/MASKING/test/test.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/MASKING/test/test.txt_masking_output" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/Sftp_script/Sftp_transport_daemon.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/Sftp_script/config.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/Sftp_script/sftp_transport.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/TM/.idea/TM.iml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/TM/.idea/misc.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/TM/.idea/modules.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/TM/.idea/workspace.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/TM/STT/STT.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/TM/STT/TM_daemon.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/TM/STT/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/TM/STT/cfg/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/TM/STT/cfg/codec.cfg" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/TM/STT/cfg/config.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/TM/STT/cfg/old/config_20180111.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/TM/TA/TA.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/TM/TA/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/TM/TA/cfg/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/TM/TA/cfg/config.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/TM/TA/cfg/old/config_20180111.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/TM/TM_monitoring/TM_monitoring.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/TM/TM_monitoring/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/TM/TM_monitoring/cfg/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/TM/TM_monitoring/cfg/config.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/TM/TM_monitoring/log_analysis.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/TM/TM_monitoring/update_tm_status.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/TM_2/STT/STT.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/TM_2/STT/TM_daemon.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/TM_2/STT/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/TM_2/STT/cfg/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/TM_2/STT/cfg/config.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/TM_2/TA/TA.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/TM_2/TA/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/To do.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/update_20180111" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/update_history" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Miraeasset/운영 메뉴얼.docx" />
-    </list>
+    <list id="7a72bb3a-c0d7-4a46-8f46-7cbc8ce3fa2c" name="First source code commit" comment="First source code commit" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="-1928183226">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="4" />
+          <entry key="project.open.time.12" value="1" />
+          <entry key="project.open.time.16" value="1" />
+          <entry key="project.open.time.7" value="1" />
+          <entry key="project.open.time.8" value="1" />
+          <entry key="project.open.time.9" value="2" />
+          <entry key="project.opened" value="6" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="Python Console" value="2386" />
+          <entry key="TO do" value="1314" />
+          <entry key="py" value="11839" />
+          <entry key="txt" value="1827" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="PLAIN_TEXT" value="3141" />
+          <entry key="Python" value="14225" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="py" value="48" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="Python" value="48" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="TO do" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Ldcc/TO do">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Lotteins/20180608_biz/biz/process/nlp/nlp_proc.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="339">
+              <caret line="18" selection-start-line="18" selection-end-line="18" selection-end-column="33" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="STT.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Ldcc/source/CS/STT/Ldcc/STT.py">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Lotteins/20180608_biz/hmd_process.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="193">
-              <caret line="18" column="17" lean-forward="false" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
-              <folding />
+            <state relative-caret-position="-991" />
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Lotteins/20180608_biz/cs_db_collector_process.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1957">
+              <caret line="110" column="19" selection-start-line="110" selection-start-column="19" selection-end-line="110" selection-end-column="19" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="packaging_tool.py" pinned="false" current-in-tab="true">
-        <entry file="file://$APPLICATION_HOME_DIR$/helpers/packaging_tool.py">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Lotteins/20180608_biz/nlp_process.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="427">
-              <caret line="91" column="61" lean-forward="false" selection-start-line="91" selection-start-column="61" selection-end-line="91" selection-end-column="61" />
-              <folding />
+            <state relative-caret-position="377">
+              <caret line="52" column="7" lean-forward="true" selection-start-line="52" selection-start-column="7" selection-end-line="52" selection-end-column="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/LGuplus-CV_TA/daemon_process.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-459" />
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/LGuplus-CV_TA/delete_file.py">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/LGuplus-CV_TA/ta.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="19">
+              <caret line="13" column="13" lean-forward="true" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/LGuplus-CV_TA/lib/db_connection.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="18" column="85" lean-forward="true" selection-start-line="18" selection-start-column="85" selection-end-line="18" selection-end-column="85" />
             </state>
           </provider>
         </entry>
@@ -517,10 +147,42 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>STT_CONFIG</find>
-      <find>__name</find>
-      <find>main</find>
+      <find>check_stt_rcdg_info</find>
+      <find>이슈어</find>
+      <find>process_execute</find>
+      <find>make_job_list</find>
+      <find>upload_data_to_db</find>
+      <find>CONFIG</find>
+      <find>masking_next_line_cnt</find>
+      <find>check_rec_file</find>
+      <find>json</find>
+      <find>check_json_data</find>
+      <find>error_process</find>
+      <find>update_stt_spch_sped</find>
+      <find>set_stt_keyword_dtc_rst</find>
+      <find>insert_data_to_stt_rst_full</find>
+      <find>insert_stt_rst_full</find>
+      <find>MLF_INFO_DICT</find>
+      <find>select_target</find>
+      <find>TA_LOTTE</find>
+      <find>select_tb_qa_except</find>
+      <find>insert_data_to_stt_keyword_dtc_rst</find>
+      <find>STT_KEYWORD_DTC_RST</find>
+      <find>sleep_exact_time</find>
+      <find>disconnect</find>
+      <find>del_garbage</find>
+      <find>encrypt_file</find>
+      <find>DbCollector</find>
+      <find>do_cs_job</find>
+      <find>execute_nlp_analyze</find>
+      <find>nlp</find>
+      <find>nlp_client</find>
     </findStrings>
+    <dirStrings>
+      <dir>C:\Users\dlrtn\OneDrive\MindsLAB\Project_git\Ldcc\source</dir>
+      <dir>C:\Users\dlrtn\OneDrive\MindsLAB\Project_git\Ldcc\source\PAST_CS</dir>
+      <dir>C:\Users\dlrtn\OneDrive\MindsLAB\Project_git\LGuplus-CV_TA</dir>
+    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -528,35 +190,53 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Ldcc/TO do" />
-        <option value="$PROJECT_DIR$/Ldcc/source/CS/STT/Ldcc/STT.py" />
         <option value="$APPLICATION_HOME_DIR$/helpers/packaging_tool.py" />
         <option value="$PROJECT_DIR$/Lotteins/bin/upload_task_batch/task_batch.py" />
         <option value="$PROJECT_DIR$/Lotteins/bin/upload_task_batch/cfg/config.py" />
+        <option value="$PROJECT_DIR$/Lotteins/TM/STT/STT.py" />
+        <option value="$PROJECT_DIR$/Ldcc/source/CS/TA/Ldcc/TA.py" />
+        <option value="$PROJECT_DIR$/Ldcc/source/CS/UPLOAD_JSON/upload_json.py" />
+        <option value="$PROJECT_DIR$/Ldcc/source/CS/MANAGE_DIR/cfg/config.py" />
+        <option value="$PROJECT_DIR$/Ldcc/source/CS/MANAGE_DIR/delete_file.py" />
+        <option value="$PROJECT_DIR$/Ldcc/source/CS/service/config.py" />
+        <option value="$PROJECT_DIR$/Lotteins/BATCH/ORG_BATCH/org_batch.py" />
+        <option value="$PROJECT_DIR$/Lotteins/20180608_biz/upload_org_batch/org_batch.py" />
+        <option value="$PROJECT_DIR$/Ldcc/source/PAST_CS/STT/Ldcc/PAST_CS_daemon.py" />
+        <option value="$PROJECT_DIR$/Ldcc/source/CS/STT/Ldcc/STT.py" />
+        <option value="$PROJECT_DIR$/Ldcc/source/CS/STT/Ldcc/CS_daemon.py" />
+        <option value="$PROJECT_DIR$/Ldcc/source/PAST_CS/STT/Ldcc/STT.py" />
+        <option value="$PROJECT_DIR$/Ldcc/TO do" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-12" />
-    <option name="y" value="-1080" />
-    <option name="width" value="1600" />
+    <option name="x" value="517" />
+    <option name="y" value="-1102" />
+    <option name="width" value="1612" />
     <option name="height" value="877" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State />
+          <State>
+            <id>Python</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>PyArgumentEqualDefaultInspection</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
-      <flattenPackages />
-      <showMembers />
-      <showModules />
-      <showLibraryContents />
-      <hideEmptyPackages />
-      <abbreviatePackageNames />
-      <autoscrollToSource />
-      <autoscrollFromSource />
-      <sortByType />
-      <manualOrder />
+    <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
@@ -571,13 +251,17 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\dlrtn\OneDrive\MindsLAB\Project_git\Ldcc\source\CS" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -590,9 +274,6 @@
         </RuleState>
       </list>
     </option>
-  </component>
-  <component name="ShelveChangesManager" show_recycled="false">
-    <option name="remove_strategy" value="false" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -613,49 +294,270 @@
       <option name="project" value="LOCAL" />
       <updated>1534229676855</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="First source code commit">
+      <created>1534229945924</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1534229945924</updated>
+    </task>
+    <task id="LOCAL-00003" summary="STT RCDG INFO 테이블에 CREATED_DATE 컬럼 추가">
+      <created>1534724327877</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1534724327881</updated>
+    </task>
+    <task id="LOCAL-00004" summary="[롯데정보통신] 말겹침 구간 함수 로직 변경">
+      <created>1534818100107</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1534818100107</updated>
+    </task>
+    <task id="LOCAL-00005" summary="[롯데정보통신] Insert 쿼리 오타 수정">
+      <created>1534818135265</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1534818135265</updated>
+    </task>
+    <task id="LOCAL-00006" summary="[롯데정보통신] 말겹침 로직 변경">
+      <created>1534923244475</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1534923244475</updated>
+    </task>
+    <task id="LOCAL-00007" summary="[롯데정보통신] 말겹침 구간 함수 변수명 변경">
+      <created>1534986499345</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1534986499345</updated>
+    </task>
+    <task id="LOCAL-00008" summary="[롯데정보통신] 마스킹 탐지 발화 문장 종료시간 이후 문장부터 마스킹룰 적용, 마스킹 탐지 발화 문장 제외, 다음(+1), 다다음(+2) 문장에 룰적용, 마스킹 탐지 발화 문장내(지역명) 발화가 하나 이상 존재하는 경우 주소룰 적용 제외">
+      <created>1534987760895</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1534987760895</updated>
+    </task>
+    <task id="LOCAL-00009" summary="[롯데정보통신] 마스킹 적용 첫문장, 끝문장 관련 에러 발생 방어코드 추가">
+      <created>1534989158122</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1534989158122</updated>
+    </task>
+    <task id="LOCAL-00010" summary="[롯데정보통신] 말겹침 구간 함수 로직 수정">
+      <created>1535002944512</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1535002944512</updated>
+    </task>
+    <task id="LOCAL-00011" summary="[롯데정보통신] 말겹침 구간 탐지 앞문장도 3글자 이상 체크 로직 추가, 현업 요청 마스킹 규칙 추가">
+      <created>1535072349681</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1535072349681</updated>
+    </task>
+    <task id="LOCAL-00012" summary="[롯데정보통신] 말겹침 구간 탐지 앞문장 3글자 이상 체크 로직 -&gt; 비교대상 화자 3글자 이상으로 변경">
+      <created>1535087810855</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1535087810855</updated>
+    </task>
+    <task id="LOCAL-00013" summary="[롯데정보통신] 마스킹 적용 탐지 대상 관련 로직 변경, 마스킹 대상 시간 비교 -1 초 적용">
+      <created>1535090208394</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1535090208394</updated>
+    </task>
+    <task id="LOCAL-00014" summary="[롯데정보통신] 마스킹 최소길이 5 -&gt; 3 변경, 마스킹 적용 로직 변경">
+      <created>1535097444889</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1535097444889</updated>
+    </task>
+    <task id="LOCAL-00015" summary="[롯데정보통신] 녹취 메타정보 2개 추가">
+      <created>1535420010830</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1535420010830</updated>
+    </task>
+    <task id="LOCAL-00016" summary="[롯데정보통신] (과거녹취처리) 녹취 메타정보 2개 추가">
+      <created>1535420693584</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1535420693584</updated>
+    </task>
+    <task id="LOCAL-00017" summary="[롯데정보통신] 이슈어 금칙어 관련 로직 추가 // 마스킹 아이디 규칙 분할">
+      <created>1535529011152</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1535529011152</updated>
+    </task>
+    <task id="LOCAL-00018" summary="[롯데정보통신] 이슈어 조회 쿼리 오류 수정">
+      <created>1535935192654</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1535935192654</updated>
+    </task>
+    <task id="LOCAL-00019" summary="[롯데정보통신] 마스킹 탐지 발화 문장 종료시간 이후(종료시간 포함) 문장부터 마스킹룰 적용 제거 -&gt; 사유 : 상담원 발화 중간 고객측 개인정보 마스킹 불가">
+      <created>1535935426565</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1535935426565</updated>
+    </task>
+    <task id="LOCAL-00020" summary="[롯데정보통신] 마스킹 과탐 방지 (본인 확인 여부 이후 개인정보 발화 없음) : 고객측 '네' 답변 시 검출 종료 적용">
+      <created>1535936939780</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1535936939780</updated>
+    </task>
+    <task id="LOCAL-00021" summary="[롯데정보통신] 마스킹 본인 확인 여부 관련 로직 변경">
+      <created>1535937128850</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1535937128850</updated>
+    </task>
+    <task id="LOCAL-00022" summary="[롯데정보통신] 마스킹 미탐 방지&#10;단순 대답/간투사의 경우 정규식 적용 범위 카운트 패스 (질문의 답변이 아닌 문장 pass 후 다음, 다다음 검출 필요)">
+      <created>1535937502501</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1535937502501</updated>
+    </task>
+    <task id="LOCAL-00023" summary="[롯데정보통신] Non-마스킹 단어 로직 추가">
+      <created>1535937920979</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1535937920979</updated>
+    </task>
+    <task id="LOCAL-00024" summary="[롯데정보통신] non_masking 단어 제거 '네', '아' -&gt; 공일공네, 고아런 과같이 마스킹 해야되지만 안되는 경우 생김&#10;아이디 규칙에 '말씀' 추가 및 아이디 규칙도 확인 여부 이후 개인정보 발화 없음 적용">
+      <created>1535963739809</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1535963739809</updated>
+    </task>
+    <task id="LOCAL-00025" summary="[롯데정보통신] DB PK 변경 CON_ID -&gt; RECORDKEY">
+      <created>1536048640730</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1536048640730</updated>
+    </task>
+    <task id="LOCAL-00026" summary="[롯데정보통신] 이슈어 금지어 탐지 결과 여부 컬럼 추가">
+      <created>1536537720999</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1536537720999</updated>
+    </task>
+    <task id="LOCAL-00027" summary="[롯데정보통신] 1. MANAGE DIR 프로그램 생성 -&gt; STT 결과 파일, 로그 파일, 메타 파일 삭제 기능">
+      <created>1536543184230</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1536543184233</updated>
+    </task>
+    <task id="LOCAL-00028" summary="[롯데정보통신] 마스킹 관련 config 정리, 금지어&amp;이슈어 로직 수정">
+      <created>1536563064981</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1536563064981</updated>
+    </task>
+    <task id="LOCAL-00029" summary="[롯데정보통신] 금지어, 이슈어 탐지 로직 내 한글 포맷 변경, 로직 변경, 탐지 여부 조회 변경">
+      <created>1536624267283</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1536624267285</updated>
+    </task>
+    <task id="LOCAL-00030" summary="[롯데정보통신] STT_RST_FULL Insert 오류 발생시 5건 전체 -&gt; 1건만 오류처리하도록 변경">
+      <created>1536640818050</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1536640818050</updated>
+    </task>
+    <task id="LOCAL-00031" summary="[롯데정보통신] 과거녹취 2018년도 파일만 수행하도록 설정">
+      <created>1536650480718</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1536650480719</updated>
+    </task>
+    <task id="LOCAL-00032" summary="[롯데정보통신] 부하테스트를 위한 TA_LOTTE 접근 제거">
+      <created>1536653304720</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1536653304720</updated>
+    </task>
+    <task id="LOCAL-00033" summary="[롯데정보통신] STT_KEYWORD_DTC_RST Insert 오류 발생시 5건 전체 -&gt; 1건 오류 처리하도록 로직 변경">
+      <created>1536654477207</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1536654477207</updated>
+    </task>
+    <task id="LOCAL-00034" summary="[롯데정보통신] CS daemon time.sleep(0.1) 추가, 과거녹취 STT 암호화 방식 변경">
+      <created>1536731566803</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1536731566807</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="-1088" width="1936" height="1066" extended-state="6" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24973656" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32938644" sideWeight="0.5021075" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32938644" sideWeight="0.49789253" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32938644" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32938644" sideWeight="0.49789253" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14172813" />
+      <window_info id="Structure" order="1" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32975295" />
+      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49683878" visible="true" weight="0.1944146" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49789253" weight="0.32938644" />
+      <window_info anchor="bottom" id="Python Console" order="9" weight="0.32867885" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50316125" side_tool="true" visible="true" weight="0.1944146" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
-    <layout-to-restore>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32938644" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24973656" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-    </layout-to-restore>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -687,71 +589,295 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="First source code commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="First source code commit" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager />
-    <watches-manager />
+    <MESSAGE value="[롯데정보통신] 말겹침 구간 함수 로직 수정" />
+    <MESSAGE value="[롯데정보통신] 말겹침 구간 탐지 앞문장도 3글자 이상 체크 로직 추가, 현업 요청 마스킹 규칙 추가" />
+    <MESSAGE value="[롯데정보통신] 말겹침 구간 탐지 앞문장 3글자 이상 체크 로직 -&gt; 비교대상 화자 3글자 이상으로 변경" />
+    <MESSAGE value="[롯데정보통신] 마스킹 적용 탐지 대상 관련 로직 변경, 마스킹 대상 시간 비교 -1 초 적용" />
+    <MESSAGE value="[롯데정보통신] 마스킹 최소길이 5 -&gt; 3 변경, 마스킹 적용 로직 변경" />
+    <MESSAGE value="[롯데정보통신] 녹취 메타정보 2개 추가" />
+    <MESSAGE value="[롯데정보통신] (과거녹취처리) 녹취 메타정보 2개 추가" />
+    <MESSAGE value="[롯데정보통신] 이슈어 금칙어 관련 로직 추가 // 마스킹 아이디 규칙 분할" />
+    <MESSAGE value="[롯데정보통신] 이슈어 조회 쿼리 오류 수정" />
+    <MESSAGE value="[롯데정보통신] 마스킹 탐지 발화 문장 종료시간 이후(종료시간 포함) 문장부터 마스킹룰 적용 제거 -&gt; 사유 : 상담원 발화 중간 고객측 개인정보 마스킹 불가" />
+    <MESSAGE value="[롯데정보통신] 마스킹 과탐 방지 (본인 확인 여부 이후 개인정보 발화 없음) : 고객측 '네' 답변 시 검출 종료 적용" />
+    <MESSAGE value="[롯데정보통신] 마스킹 본인 확인 여부 관련 로직 변경" />
+    <MESSAGE value="[롯데정보통신] 마스킹 미탐 방지&#10;단순 대답/간투사의 경우 정규식 적용 범위 카운트 패스 (질문의 답변이 아닌 문장 pass 후 다음, 다다음 검출 필요)" />
+    <MESSAGE value="[롯데정보통신] Non-마스킹 단어 로직 추가" />
+    <MESSAGE value="[롯데정보통신] non_masking 단어 제거 '네', '아' -&gt; 공일공네, 고아런 과같이 마스킹 해야되지만 안되는 경우 생김&#10;아이디 규칙에 '말씀' 추가 및 아이디 규칙도 확인 여부 이후 개인정보 발화 없음 적용" />
+    <MESSAGE value="[롯데정보통신] DB PK 변경 CON_ID -&gt; RECORDKEY" />
+    <MESSAGE value="[롯데정보통신] 이슈어 금지어 탐지 결과 여부 컬럼 추가" />
+    <MESSAGE value="[롯데정보통신] 1. MANAGE DIR 프로그램 생성 -&gt; STT 결과 파일, 로그 파일, 메타 파일 삭제 기능" />
+    <MESSAGE value="[롯데정보통신] 마스킹 관련 config 정리, 금지어&amp;이슈어 로직 수정" />
+    <MESSAGE value="[롯데정보통신] 금지어, 이슈어 탐지 로직 내 한글 포맷 변경, 로직 변경, 탐지 여부 조회 변경" />
+    <MESSAGE value="[롯데정보통신] STT_RST_FULL Insert 오류 발생시 5건 전체 -&gt; 1건만 오류처리하도록 변경" />
+    <MESSAGE value="[롯데정보통신] 과거녹취 2018년도 파일만 수행하도록 설정" />
+    <MESSAGE value="[롯데정보통신] 부하테스트를 위한 TA_LOTTE 접근 제거" />
+    <MESSAGE value="[롯데정보통신] STT_KEYWORD_DTC_RST Insert 오류 발생시 5건 전체 -&gt; 1건 오류 처리하도록 로직 변경" />
+    <MESSAGE value="[롯데정보통신] CS daemon time.sleep(0.1) 추가, 과거녹취 STT 암호화 방식 변경" />
+    <option name="LAST_COMMIT_MESSAGE" value="[롯데정보통신] CS daemon time.sleep(0.1) 추가, 과거녹취 STT 암호화 방식 변경" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Ldcc/TO do">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Ldcc/source/PAST_CS/STT/Ldcc/PAST_CS_daemon.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="8" column="11" lean-forward="true" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Ldcc/source/CS/STT/Ldcc/CS_daemon.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="23" column="33" lean-forward="false" selection-start-line="23" selection-start-column="33" selection-end-line="23" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Ldcc/source/CS/STT/Ldcc/STT.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="18" column="17" lean-forward="false" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Lotteins/bin/upload_task_batch/task_batch.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="535">
-          <caret line="392" column="0" lean-forward="false" selection-start-line="392" selection-start-column="0" selection-end-line="392" selection-end-column="0" />
-          <folding>
-            <element signature="e#179#188#0" expanded="false" />
-          </folding>
+          <caret line="392" selection-start-line="392" selection-end-line="392" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Lotteins/bin/upload_task_batch/cfg/config.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
-          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding />
+          <caret line="18" selection-start-line="18" selection-end-line="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$APPLICATION_HOME_DIR$/helpers/packaging_tool.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="427">
-          <caret line="91" column="61" lean-forward="false" selection-start-line="91" selection-start-column="61" selection-end-line="91" selection-end-column="61" />
-          <folding />
+          <caret line="91" column="61" selection-start-line="91" selection-start-column="61" selection-end-line="91" selection-end-column="61" />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Lotteins/TM/STT/STT.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-85">
+          <caret line="430" column="37" lean-forward="true" selection-start-line="430" selection-start-column="37" selection-end-line="430" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lotteins/CS/TA/Lotteins/cfg/config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-57" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lotteins/TM/TA/Lotteins/QA_TA.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="1391" column="40" selection-start-line="1391" selection-start-column="12" selection-end-line="1391" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Ldcc/source/CS/TA/Ldcc/TA.py" />
+    <entry file="file://$PROJECT_DIR$/Ldcc/source/CS/MANAGE_DIR/cfg/config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="17" column="10" lean-forward="true" selection-start-line="17" selection-start-column="10" selection-end-line="17" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lotteins/TM/MANAGE_DIR/cfg/config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="11" column="58" lean-forward="true" selection-start-line="11" selection-start-column="58" selection-end-line="11" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Ldcc/source/CS/MANAGE_DIR/delete_file.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="10" column="9" lean-forward="true" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Ldcc/source/CS/UPLOAD_JSON/upload_json.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="585" column="35" selection-start-line="585" selection-start-column="21" selection-end-line="585" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lotteins/TM2/STT/Lotteins/STT.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="127" column="84" lean-forward="true" selection-start-line="127" selection-start-column="84" selection-end-line="127" selection-end-column="84" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lotteins/TM2/STT/Lotteins/cfg/config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="13" column="51" lean-forward="true" selection-start-line="13" selection-start-column="51" selection-end-line="13" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lotteins/BATCH/ORG_BATCH/org_batch.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="37" column="9" lean-forward="true" selection-start-line="37" selection-start-column="9" selection-end-line="37" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lotteins/20180608_biz/upload_agent_batch/cfg/config.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lotteins/20180608_biz/upload_org_batch/org_batch.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="358">
+          <caret line="428" column="37" lean-forward="true" selection-start-line="428" selection-start-column="37" selection-end-line="428" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lotteins/20180608_biz/upload_org_batch/cfg/config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="11" column="20" lean-forward="true" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lotteins/TM/STT/TM_daemon.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-513" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Ldcc/source/CS/service/config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-174">
+          <caret line="61" column="24" lean-forward="true" selection-start-line="61" selection-start-column="24" selection-end-line="61" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Ldcc/source/CS/STT/Ldcc/STT.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="521">
+          <caret line="768" column="34" lean-forward="true" selection-start-line="768" selection-start-column="34" selection-end-line="768" selection-end-column="34" />
+          <folding>
+            <marker date="1536654417747" expanded="true" signature="20589:22284" ph="..." />
+            <marker date="1536654417747" expanded="true" signature="28167:28974" ph="..." />
+            <marker date="1536654417747" expanded="true" signature="43219:43365" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Ldcc/source/PAST_CS/STT/Ldcc/PAST_CS_daemon.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="412">
+          <caret line="181" column="29" selection-start-line="181" selection-start-column="29" selection-end-line="181" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Ldcc/source/PAST_CS/service/config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-782" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Ldcc/source/CS/STT/Ldcc/CS_daemon.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="61" column="20" selection-start-line="61" selection-start-column="20" selection-end-line="61" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Ldcc/source/PAST_CS/STT/Ldcc/lib/openssl.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-798" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Ldcc/source/PAST_CS/STT/Ldcc/STT.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="270" column="7" selection-start-line="270" selection-start-column="7" selection-end-line="270" selection-end-column="7" />
+          <folding>
+            <element signature="e#179#188#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Ldcc/TO do">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lotteins/20180608_biz/biz/client/nlp_client.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="52" column="38" selection-start-line="52" selection-start-column="30" selection-end-line="52" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lotteins/20180608_biz/biz/process/nlp/nlp_proc.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="339">
+          <caret line="18" selection-start-line="18" selection-end-line="18" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lotteins/20180608_biz/hmd_process.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-991" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lotteins/20180608_biz/cs_db_collector_process.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1957">
+          <caret line="110" column="19" selection-start-line="110" selection-start-column="19" selection-end-line="110" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lotteins/20180608_biz/nlp_process.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="377">
+          <caret line="52" column="7" lean-forward="true" selection-start-line="52" selection-start-column="7" selection-end-line="52" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LGuplus-CV_TA/daemon_process.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-459" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LGuplus-CV_TA/delete_file.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LGuplus-CV_TA/ta.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="13" column="13" lean-forward="true" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LGuplus-CV_TA/cfg/config.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LGuplus-CV_TA/cfg/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LGuplus-CV_TA/lib/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LGuplus-CV_TA/lib/util.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-798" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LGuplus-CV_TA/lib/nlp.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="13" column="64" selection-start-line="13" selection-start-column="58" selection-end-line="13" selection-end-column="64" />
+          <folding>
+            <element signature="e#177#186#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LGuplus-CV_TA/lib/db_connection.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="18" column="85" lean-forward="true" selection-start-line="18" selection-start-column="85" selection-end-line="18" selection-end-column="85" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>
