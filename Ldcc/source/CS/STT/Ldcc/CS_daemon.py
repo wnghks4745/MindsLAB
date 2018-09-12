@@ -74,6 +74,7 @@ class DAEMON(Daemon):
                     pid_list=pid_list,
                     process_max_limit=process_max_limit
                 )
+            time.sleep(0.1)
 
 
 class MySQL(object):

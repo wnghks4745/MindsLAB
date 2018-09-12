@@ -258,8 +258,10 @@ def move_output(logger):
                     continue
                 logger.debug('move file {0} -> {1}'.format(path, output_target_path))
                 shutil.move(path, output_target_path)
-            encrypt(output_target_path)
-            logger.info('encrypt {0}'.format(output_target_path))
+                target_name = os.path.basename(path)
+                output_target_file_path = os.path.join(output_target_path, target_name)
+                encrypt_file([output_target_file_path])
+                logger.info('encrypt {0}'.format(output_target_file_path))
 
 
 def set_output(logger):
