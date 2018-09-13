@@ -776,11 +776,8 @@ def update_stt_rst(logger, mysql):
     global MLF_INFO_DICT
     logger.info("11-2. DB update STT_RST")
     insert_set_dict = dict()
-    #Todo 부하테스트시에만 제거
-    #issue_word_list = mysql.select_tb_qa_except('I')
-    issue_word_list = list()
-    #banned_word_list = mysql.select_tb_qa_except('B')
-    banned_word_list = list()
+    issue_word_list = mysql.select_tb_qa_except('I')
+    banned_word_list = mysql.select_tb_qa_except('B')
     for key, info_dict in RCDG_INFO_DICT.items():
         recordkey = info_dict['RECORDKEY']
         rfile_name = info_dict['RFILE_NAME']
@@ -930,6 +927,7 @@ def masking(str_idx, speaker_idx, delimiter, encoding, input_line_list):
     email_rule = MASKING_CONFIG['email_rule']
     address_rule = MASKING_CONFIG['address_rule']
     name_rule = MASKING_CONFIG['name_rule']
+    alpha_rule = MASKING_CONFIG['alphabet_rule']
     line_dict = collections.OrderedDict()
     speaker_dict = collections.OrderedDict()
     first_agent_line_num = False
@@ -967,14 +965,13 @@ def masking(str_idx, speaker_idx, delimiter, encoding, input_line_list):
         re_rule_dict = dict()
         detect_line = False
         if u'성함' in line or u'이름' in line:
-            if u'확인' in line or u'어떻게' in line or u'여쭤' in line or u'맞으' in line or u'부탁' in line or u'말씀' in line:
+            if u'확인' in line or u'어떻게' in line or u'여쭤' in line or u'맞으' in line or u'부탁' in line or u'말씀' in line or u'이요' in line:
                 if 'name_rule' not in re_rule_dict:
                     re_rule_dict['name_rule'] = name_rule
         if u'아이디' in line:
-            if u'맞으' in line or u'맞습' in line or u'말씀' in line:
+            if u'맞으' in line or u'맞습' in line or u'말씀' in line or u'어떻게':
                 if 'id_rule' not in re_rule_dict:
-                    re_rule_dict['id_rule'] = name_rule
-                detect_line = True
+                    re_rule_dict['id_rule'] = alpha_rule
                 ans_yes_detect[line_num] = 1
         if (u'핸드폰' in line and u'번호' in line) or u'연락처' in line:
             if u'확인' in line or u'어떻게' in line or u'말씀' in line or u'부탁' in line or u'여쭤' in line or u'맞으' in line or u'불러' in line:
@@ -1053,7 +1050,7 @@ def masking(str_idx, speaker_idx, delimiter, encoding, input_line_list):
                 target = ['me_name_rule', 'id_rule']
                 for rule_name in target:
                     if rule_name in re_rule_dict.keys() and line_num in ans_yes_detect:
-                        if u'네' in line_dict[next_line_num] and speaker_dict[next_line_num] == 'C':
+                        if (u'네' in line_dict[next_line_num] or u'예' in line_dict[next_line_num] or u'아니요' in line_dict[next_line_num]) and speaker_dict[next_line_num] == 'C':
                             del re_rule_dict[rule_name]
                 if next_line_num not in line_re_rule_dict:
                     line_re_rule_dict[next_line_num] = dict()

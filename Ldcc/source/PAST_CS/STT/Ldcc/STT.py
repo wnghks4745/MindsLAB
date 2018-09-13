@@ -286,6 +286,20 @@ def set_output(logger):
     RESULT_CNT = len(glob.glob("{0}/*.result".format(result_dir_path)))
 
 
+def time_to_seconds(input_time):
+    """
+    Time ex) HH:MM:SS.SSSSSS to seconds
+    :param          input_time:         Input time
+    :return:                            Float seconds
+    """
+    time_list = str(input_time).split(":")
+    hours_to_second = float(time_list[0]) * 3600
+    minutes_to_second = float(time_list[1]) * 60
+    seconds = float(time_list[2])
+    total_seconds = hours_to_second + minutes_to_second + seconds
+    return total_seconds
+
+
 def masking(str_idx, speaker_idx, delimiter, encoding, input_line_list):
     """
     Masking
@@ -303,10 +317,13 @@ def masking(str_idx, speaker_idx, delimiter, encoding, input_line_list):
     email_rule = MASKING_CONFIG['email_rule']
     address_rule = MASKING_CONFIG['address_rule']
     name_rule = MASKING_CONFIG['name_rule']
-    next_line_cnt = int(MASKING_CONFIG['next_line_cnt'])
+    alpha_rule = MASKING_CONFIG['alphabet_rule']
     line_dict = collections.OrderedDict()
+    speaker_dict = collections.OrderedDict()
     first_agent_line_num = False
     last_agent_line_num = False
+    start_time_dict = dict()
+    end_time_dict = dict()
     for line in input_line_list:
         line = line.strip()
         line_list = line.split(delimiter)
@@ -316,24 +333,38 @@ def masking(str_idx, speaker_idx, delimiter, encoding, input_line_list):
 #            sent = line_list[str_idx].strip()
         sent = line_list[str_idx].strip()
         speaker = line_list[speaker_idx].strip().replace("[", "").replace("]", "")
+        start_time = time_to_seconds(line_list[1])
+        end_time = time_to_seconds(line_list[2])
         if not first_agent_line_num and speaker == 'A':
             first_agent_line_num = line_cnt
         if speaker == 'A':
             last_agent_line_num = line_cnt
+        start_time_dict[line_cnt] = start_time
+        end_time_dict[line_cnt] = end_time
         try:
             line_dict[line_cnt] = sent.decode(encoding)
+            speaker_dict[line_cnt] = speaker
         except Exception:
             if sent[-1] == '\xb1':
                 line_dict[line_cnt] = sent[:-1].decode(encoding)
+                speaker_dict[line_cnt] = speaker
         line_cnt += 1
     line_re_rule_dict = collections.OrderedDict()
+    ans_yes_detect = dict()
     for line_num, line in line_dict.items():
         re_rule_dict = dict()
+        detect_line = False
         if u'성함' in line or u'이름' in line:
-            if u'확인' in line or u'어떻게' in line or u'여쭤' in line or u'맞으' in line or u'부탁' in line:
+            if u'확인' in line or u'어떻게' in line or u'여쭤' in line or u'맞으' in line or u'부탁' in line or u'말씀' in line or u'이요' in line:
                 if 'name_rule' not in re_rule_dict:
                     re_rule_dict['name_rule'] = name_rule
-        if u'핸드폰' in line and u'번호' in line:
+        if u'아이디' in line:
+            if u'맞으' in line or u'맞습' in line or u'말씀' in line:
+                if 'id_rule' not in re_rule_dict:
+                    re_rule_dict['id_rule'] = alpha_rule
+                detect_line = True
+                ans_yes_detect[line_num] = 1
+        if (u'핸드폰' in line and u'번호' in line) or u'연락처' in line:
             if u'확인' in line or u'어떻게' in line or u'말씀' in line or u'부탁' in line or u'여쭤' in line or u'맞으' in line or u'불러' in line:
                 if 'tel_number_rule' not in re_rule_dict:
                     re_rule_dict['tel_number_rule'] = number_rule
@@ -375,29 +406,49 @@ def masking(str_idx, speaker_idx, delimiter, encoding, input_line_list):
             if u'확인' in line or u'어떻게' in line or u'말씀' in line or u'부탁' in line or u'여쭤' in line or u'맞으' in line or u'불러' in line:
                 if 'address_rule' not in re_rule_dict:
                     re_rule_dict['address_rule'] = address_rule
-        if u'서울' in line or u'경기' in line or u'부산' in line or u'광주' in line or u'대구' in line or u'울산' in line or u'대전' in line or u'충청' in line or u'충북' in line or u'충남' in line or u'경상' in line or u'경북' in line or u'경남' in line or u'제주' in line:
-            if 'address_rule' not in re_rule_dict:
-                re_rule_dict['address_rule'] = address_rule
+        # 면세점 특성상 면세점이 있는 지역명을 발화하는 경우가 많으므로 제외
+        # if u'서울' in line or u'경기' in line or u'부산' in line or u'광주' in line or u'대구' in line or u'울산' in line or u'대전' in line or u'충청' in line or u'충북' in line or u'충남' in line or u'경상' in line or u'경북' in line or u'경남' in line or u'제주' in line:
+        #     if 'address_rule' not in re_rule_dict:
+        #         re_rule_dict['address_rule'] = address_rule
         if u'생년월일' in line:
             if u'확인' in line or u'어떻게' in line or u'말씀' in line or u'부탁' in line or u'여쭤' in line or u'맞으' in line or u'불러' in line or u'구요' in line:
                 if 'birth_rule' not in re_rule_dict:
                     re_rule_dict['birth_rule'] = birth_rule
+        if u'본인' in line:
+            if u'가요' in line or u'맞으' in line or u'세요' in line or u'니까' in line:
+                if 'me_name_rule' not in re_rule_dict:
+                    re_rule_dict['me_name_rule'] = name_rule
+                    detect_line = True
+                    ans_yes_detect[line_num] = 1
         else:
             if 'etc_rule' not in re_rule_dict:
                 re_rule_dict['etc_rule'] = etc_rule
 
-        if line_num in line_re_rule_dict:
+        # 특이케이스 마스킹 탐지 발화 문장 포함
+        if detect_line:
+            if line_num not in line_re_rule_dict:
+                line_re_rule_dict[line_num] = dict()
             line_re_rule_dict[line_num].update(re_rule_dict)
-        else:
-            line_re_rule_dict[line_num] = re_rule_dict
 
-        for cnt in range(1, next_line_cnt + 1):
-            next_line_num = line_num + cnt
+        next_line_cnt = int(MASKING_CONFIG['next_line_cnt'])
+        for next_line_num in range(line_num + 1, len(line_dict)):
             if next_line_num in line_dict:
-                if next_line_num in line_re_rule_dict:
-                    line_re_rule_dict[next_line_num].update(re_rule_dict)
-                else:
-                    line_re_rule_dict[next_line_num] = re_rule_dict
+                for word in MASKING_CONFIG['precent_undetected']:
+                    if word == line_dict[next_line_num].replace(' ', ''):
+                        next_line_cnt += 1
+                        break
+                # 본인 확인 여부 이후 개인정보 발화 없음
+                target = ['me_name_rule', 'id_rule']
+                for rule_name in target:
+                    if rule_name in re_rule_dict.keys() and line_num in ans_yes_detect:
+                        if (u'네' in line_dict[next_line_num] or u'예' in line_dict[next_line_num] or u'아니요' in line_dict[next_line_num]) and speaker_dict[next_line_num] == 'C':
+                            del re_rule_dict[rule_name]
+                if next_line_num not in line_re_rule_dict:
+                    line_re_rule_dict[next_line_num] = dict()
+                line_re_rule_dict[next_line_num].update(re_rule_dict)
+                next_line_cnt -= 1
+                if next_line_cnt <= 0:
+                    break
     # 상담사 처음, 끝 이름 룰 제외
     if first_agent_line_num:
         if first_agent_line_num in line_re_rule_dict:
@@ -440,8 +491,14 @@ def masking(str_idx, speaker_idx, delimiter, encoding, input_line_list):
             elif rule_name == 'email_rule':
                 masking_code = "100"
                 masking_cnt = 3
-            else:
+            elif rule_name == 'id_rule':
                 masking_code = "110"
+                masking_cnt = 2
+            elif rule_name == 'me_name_rule':
+                masking_code = '120'
+                masking_cnt = 2
+            else:
+                masking_code = "130"
                 masking_cnt = 3
             p = re.compile(re_rule.decode('euc-kr'))
             re_result = p.finditer(line_dict[re_line_num].decode('utf-8'))
@@ -453,8 +510,14 @@ def masking(str_idx, speaker_idx, delimiter, encoding, input_line_list):
                 start = idx_tuple[0]
                 end = idx_tuple[1]
                 masking_part = ""
+                non_masking = False
                 index_info.append({"start_idx": start, "end_idx": end, "masking_code": masking_code, "rule_name": rule_name})
                 cnt = 0
+                for word in MASKING_CONFIG['non_masking_word']:
+                    temp_start = start-3 if start-3 > 0 else 0
+                    if word in output_str[temp_start:end+3] or output_str in word:
+                        non_masking = True
+                        break
                 for idx in output_str[start:end]:
                     if idx == " ":
                         masking_part += " "
@@ -464,7 +527,8 @@ def masking(str_idx, speaker_idx, delimiter, encoding, input_line_list):
                         masking_part += idx
                     else:
                         masking_part += "*"
-                output_str = output_str.replace(output_str[start:end], masking_part)
+                if not non_masking:
+                    output_str = output_str.replace(output_str[start:end], masking_part)
             if re_line_num not in index_output_dict:
                 index_output_dict[re_line_num] = index_info
             else:
