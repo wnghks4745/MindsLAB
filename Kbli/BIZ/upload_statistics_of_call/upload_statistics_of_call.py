@@ -62,109 +62,191 @@ class Oracle(object):
     def select_agent_quality_result(self, call_date):
         query = """
             SELECT
-                TT1.CALL_ID,
-                TT1.RUSER_ID,
-                TT1.RUSER_NAME,
-                TT1.RATE,
-                TT1.CNTC_USER_DEPART_C,
-                TT1.CNTC_USER_DEPART_NM,
-                TT1.CNTC_USER_PART_C,
-                TT1.CNTC_USER_PART_NM,
-                TT2.SPEED,
-                TT2.SILENCE_CNT
+                SSA.CALL_ID,
+                SSA.RUSER_ID,
+                SSA.RUSER_NAME,
+                SSB.RATE,
+                SSA.CNTC_USER_DEPART_C,
+                SSA.CNTC_USER_DEPART_NM,
+                SSA.CNTC_USER_PART_C,
+                SSA.CNTC_USER_PART_NM,
+                SSB.SPEED,
+                SSB.SILENCE_CNT
             FROM
+                CM_CALL_META_TB SSA,
                 (
                     SELECT
-                        T1.CALL_ID,
-                        T1.RUSER_ID,
-                        T1.RUSER_NAME,
-                        SUM(T1.CNT_Y)/SUM(T1.CNT_ALL) * 100 AS RATE,
-                        T1.CNTC_USER_DEPART_C,
-                        T1.CNTC_USER_DEPART_NM,
-                        T1.CNTC_USER_PART_C,
-                        T1.CNTC_USER_PART_NM
+                        SA.CALL_ID,
+                        SA.SPEED,
+                        SA.SILENCE_CNT,
+                        SB.RATE
                     FROM
-                        ( 
+                        (
                             SELECT
-                                CALL_ID,
-                                RUSER_ID,
-                                RUSER_NAME,
-                                CNTC_USER_DEPART_C,
-                                CNTC_USER_DEPART_NM,
-                                CNTC_USER_PART_C,
-                                CNTC_USER_PART_NM,
+                                MA.CALL_ID,
+                                MA.SPEED,
+                                MB.SILENCE_CNT
+                            FROM
                                 (
                                     SELECT
-                                        COUNT(*)
+                                        A1.CALL_ID,
+                                        AVG(B1.SPEED) AS SPEED
                                     FROM
-                                        DUAL
+                                        CM_CALL_META_TB A1,
+                                        STT_RESULT_TB B1
                                     WHERE 1=1
-                                        AND SNTC_DTC_YN = 'Y'
-                                ) AS CNT_Y,
+                                        AND B1.SPEAKER_CODE = 'ST0002'
+                                        AND A1.CALL_DATE = TO_DATE(:1, 'YYYY-MM-DD')
+                                        AND A1.CALL_ID = B1.CALL_ID(+)
+                                    GROUP BY
+                                        A1.CALL_ID
+                                ) MA,
                                 (
                                     SELECT
-                                        COUNT(*)
-                                    FROM 
-                                        DUAL
+                                        A2.CALL_ID
+                                        C1.SILENCE_CNT
+                                    FROM
+                                        CM_CALL_META_TB A2,
+                                        (
+                                            SELECT
+                                                SA.CALL_ID,
+                                                COUNT(*) AS SILENCE_CNT
+                                            FROM
+                                                (
+                                                    SELECT
+                                                        RECORD_KEY,
+                                                        MAX(CALL_ID) AS CALL_ID,
+                                                        MAX(CALL_TYPE_CODE) AS CALL_TYPE_CODE,
+                                                        MAX(DETAIL_NAME) AS DETAIL_NAME,
+                                                        MAX(START_TIME) AS START_TIME,
+                                                        MAX(RUSER_ID) AS RUSER_ID,
+                                                        MAX(RUSER_NAME) AS RUSER_NAME,
+                                                        SUM(SILENCE_TIME) AS SILENCE_TIME,
+                                                        MAX(POLY_NO) AS POLY_NO,
+                                                        MAX(CU_ID) AS CU_ID,
+                                                        MAX(CU_NAME) AS CU_NAME,
+                                                        MAX(CONT_DATE) AS CONT_DATE,
+                                                        MAX(CNTC_USER_DEPART_C) AS CNTC_USER_DEPART_C,
+                                                        MAX(CNTC_USER_DEPART_NM) AS CNTC_USER_DEPART_NM,
+                                                        MAX(CNTC_USER_PART_C) AS CNTC_USER_PART_C,
+                                                        MAX(CNTC_USER_PART_NM) AS CNTC_USER_PART_NM
+                                                    FROM
+                                                        ( 
+                                                            SELECT
+                                                                A.RECORD_KEY,
+                                                                A.CALL_ID,
+                                                                CALL_TYPE_CODE,
+                                                                B.DETAIL_NAME,
+                                                                A.START_TIME,
+                                                                RUSER_ID,
+                                                                RUSER_NAME,
+                                                                C.SILENCE_TIME,
+                                                                POLY_NO,
+                                                                CU_ID,
+                                                                CU_NAME,
+                                                                CONT_DATE,
+                                                                CNTC_USER_DEPART_C,
+                                                                CNTC_USER_DEPART_NM,
+                                                                CNTC_USER_PART_C,
+                                                                CNTC_USER_PART_NM,
+                                                            FROM
+                                                                CM_CALL_META_TB A,
+                                                                CM_CD_DETAIL_TB B,
+                                                                STT_RESULT_DETAIL_TB C
+                                                            WHERE 1=1
+                                                                AND A.CALL_TYPE_CODE = B.FULL_CODE
+                                                                AND A.CALL_ID = C.CALL_ID
+                                                                AND SILENCE_YN = 'Y'
+                                                                AND A.START_TIME BETWEEN TO_TIMESTAMP(:1, 'YY/MM/DD')
+                                                                                    AND TO_TIMESTAMP(:1 || '23:59:59', 'YY/MM/DD HH24:MI:SSFF')
+                                                        ) ZA
+                                                    GROUP BY
+                                                        ZA.RECORD_KEY
+                                                ) SA,
+                                                ZCS.TCL_CS_CNTC_HIST SB
+                                            WHERE 1=1
+                                                AND SA.RECORD_KEY = SB.REC_NO
+                                                AND SUBSTR(SA.RECORD_KEY, 9, 8) = SB.CNTC_STRT_DATE
+                                            GROUP BY
+                                                SA.CALL_ID
+                                        ) C1
                                     WHERE 1=1
-                                ) AS CNT_ALL
-                            FROM
-                                CS_AGENT_QUALITY_RESULT_TB
+                                        AND A2.CALL_ID = C1.CALL_ID
+                                ) MB
                             WHERE 1=1
-                                AND CALL_DATE = TO_DATE(:1, 'YYYY-MM-DD')
-                        ) T1
-                    GROUP BY
-                        T1.CALL_ID,
-                        T1.RUSER_ID,
-                        T1.RUSER_NAME,
-                        T1.CNTC_USER_DEPART_C,
-                        T1.CNTC_USER_DEPART_NM,
-                        T1.CNTC_USER_PART_C,
-                        T1.CNTC_USER_PART_NM
-                ) TT1,
-                (
-                    SELECT
-                        A.CALL_ID,
-                        AVG(A.SPEED) AS SPEED,
-                        SUM(
-                            (
-                                SELECT
-                                    COUNT(*)
-                                FROM 
-                                    DUAL
-                                WHERE 
-                                    SILENCE_YN = 'Y'
-                            )
-                        ) AS SILENCE_CNT
-                    FROM
+                                AND MA.CALL_ID = MB.CALL_ID(+)
+                        ) SA,
                         (
                             SELECT
-                                CALL_ID,
-                                SPEED,
-                                STT_RESULT_ID
+                                A3.CALL_ID,
+                                D1.RATE
                             FROM
-                                STT_RESULT_TB
+                                CM_CALL_META_TB A3,
+                                (
+                                    SELECT 
+                                        CALL_ID,
+                                        SUM(SS.RATE)/COUNT(*) AS RATE
+                                    FROM
+                                        (
+                                            SELECT
+                                                T1.CALL_ID,
+                                                T1.RUSER_ID,
+                                                T1.RUSER_NAME,
+                                                SUM(T1.CNT_Y)/SUM(T1.CNT_ALL) * 100 RATE,
+                                                T1.CNTC_USER_DEPART_C,
+                                                T1.CNTC_USER_DEPART_NM,
+                                                T1.CNTC_USER_PART_C,
+                                                T1.CNTC_USER_PART_NM,
+                                            FROM
+                                                (
+                                                    SELECT
+                                                        CALL_ID,
+                                                        RUSER_ID,
+                                                        RUSER_NAME,
+                                                        CNTC_USER_DEPART_C,
+                                                        CNTC_USER_PART_C,
+                                                        CNTC_USER_PART_NM,
+                                                        (
+                                                            SELECT
+                                                                COUNT(*)
+                                                            FROM
+                                                                DUAL
+                                                            WHERE 1=1
+                                                                AND SNTC_DTC_YN = 'Y'
+                                                        ) AS CNT_Y,
+                                                        (
+                                                            SELECT
+                                                                COUNT(*)
+                                                            FROM
+                                                                DUAL
+                                                            WHERE 1=1
+                                                        ) AS CNT_ALL
+                                                    FROM
+                                                        CS_AGENT_QUALITY_RESULT_TB
+                                                    WHERE 1=1
+                                                        AND CALL_DATE = TO_DATE(:1, 'YYYY-MM-DD')
+                                                ) T1
+                                            GROUP BY
+                                                T1.CALL_ID,
+                                                T1.RUSER_ID,
+                                                T1.RUSER_NAME,
+                                                T1.CNTC_USER_DEPART_C,
+                                                T1.CNTC_USER_DEPART_NM,
+                                                T1.CNTC_USER_PART_C,
+                                                T1.CNTC_USER_PART_NM
+                                        ) SS
+                                    WHERE 1=1
+                                        AND SS.RATE > 0
+                                    GROUP BY CALL_ID
+                                ) D1
                             WHERE 1=1
-                                AND SPEAKER_CODE = 'ST0002'
-                                AND CALL_DATE = TO_DATE(:1, 'YYYY-MM-DD')
-                        ) A,
-                        (
-                            SELECT
-                                STT_RESULT_ID,
-                                SILENCE_YN
-                            FROM
-                                STT_RESULT_DETAIL_TB
-                            WHERE 1=1
-                                AND SPEAKER_CODE = 'ST0002'
-                                AND CALL_DATE = TO_DATE(:1, 'YYYY-MM-DD')
-                        ) B
+                                AND A3.CALL_ID = D1.CALL_ID
+                        ) SB
                     WHERE 1=1
-                        AND A.STT_RESULT_ID = B.STT_RESULT_ID
-                    GROUP BY 
-                        A.CALL_ID
-                ) TT2
+                        AND SA.CALL_ID = SB.CALL_ID(+)
+                ) SSB
             WHERE 1=1
-                AND TT1.CALL_ID = TT2.CALL_ID
+                AND SSA.CALL_ID = SSB.CALL_ID
         """
         bind = (
             call_date,
@@ -172,9 +254,9 @@ class Oracle(object):
         self.cursor.execute(query, bind)
         result = self.cursor.fetchall()
         if result is bool:
-            return False
+            return list()
         if not result:
-            return False
+            return list()
         return result
 
     def select_happy_call_hmd_result(self, call_date):
@@ -476,20 +558,62 @@ def processing(target_call_date):
         oracle.delete_statistics_data(call_date)
         # 고객상담지원
         agent_quality_result = oracle.select_agent_quality_result(call_date)
-        if agent_quality_result:
-            logger.info("1. Start CS_AGENT_QUALITY_RESULT_TB [Target count = {0}]".format(len(agent_quality_result)))
+        ruser_dict = dict()
+        for item in agent_quality_result:
+            ruser_id = item[1]
+            ruser_name = item[2]
+            rate = item[3]
+            speed = item[8]
+            silence_cnt = item[9]
+            key = '{0}_{1}'.format(ruser_id, ruser_name)
+            if key not in ruser_dict:
+                ruser_dict[key] = {
+                    'TOTAL_SPEED': 0,
+                    'SPEED_CNT': 0,
+                    'TOTAL_SILENCE': 0,
+                    'TOTAL_RATE': 0,
+                    'RATE_CONT': 0,
+                    'RESULT': item
+                }
+            if speed:
+                ruser_dict[key]['TOTAL_SPEED'] += float(speed)
+                ruser_dict[key]['SPEED_CNT'] += 1
+            if silence_cnt:
+                ruser_dict[key]['TOTAL_SILENCE'] += int(silence_cnt)
+            if rate:
+                ruser_dict[key]['TOTAL_RATE'] += float(rate)
+                ruser_dict[key]['RATE_CNT'] += 1
+        modify_agent_quality_result = list()
+        for ruser_dict in ruser_dict.values():
+            call_id = ruser_dict['RESULT'][0]
+            ruser_id = ruser_dict['RESULT'][1]
+            ruser_name = ruser_dict['RESULT'][2]
+            ruser_dict['RATE_CNT'] = 1 if ruser_dict['RATE_CNT'] == 0 else ruser_dict['RATE_CNT']
+            rate = ruser_dict['TOTAL_RATE'] / ruser_dict['RATE_CNT']
+            cntc_user_depart_c = ruser_dict['RESULT'][4]
+            cntc_user_depart_nm = ruser_dict['RESULT'][5]
+            cntc_user_part_c = ruser_dict['RESULT'][6]
+            cntc_user_part_nm = ruser_dict['RESULT'][7]
+            ruser_dict['SPEED_CNT'] = 1 if ruser_dict['SPEED_CNT'] == 0 else ruser_dict['SPEED_CNT']
+            speed = ruser_dict['TOTAL_SPEED'] / ruser_dict['SPEED_CNT']
+            silence_cnt = ruser_dict['TOTAL_SILENCE']
+            modify_agent_quality_result.append((call_id, ruser_id, ruser_name, rate, cntc_user_depart_c,
+                                                cntc_user_depart_nm, cntc_user_part_c, cntc_user_part_nm, speed,
+                                                silence_cnt))
+        if modify_agent_quality_result:
+            logger.info("1. Start CS_AGENT_QUALITY_RESULT_TB [Target count = {0}]".format(len(modify_agent_quality_result)))
             logger.info("1-1. Insert CS_STATISTICS_OF_CALL_TB")
-            oracle.insert_statistics_of_call_data(call_date, 'C', agent_quality_result)
+            oracle.insert_statistics_of_call_data(call_date, 'C', modify_agent_quality_result)
         else:
             logger.info("1. Start CS_AGENT_QUALITY_RESULT_TB [Target count = 0]")
-        # 해피콜모니터링
-        happy_call_result = oracle.select_happy_call_hmd_result(call_date)
-        if happy_call_result:
-            logger.info("2. Start CS_HAPPY_CALL_MT_DETAIL_TB [Target count = {0}]".format(len(agent_quality_result)))
-            logger.info("2-1. Insert CS_STATISTICS_OF_CALL_TB")
-            oracle.insert_statistics_of_call_data(call_date, 'H', happy_call_result)
-        else:
-            logger.info("2. Start CS_HAPPY_CALL_MT_DETAIL_TB [Target count = 0]")
+        # # 해피콜모니터링
+        # happy_call_result = oracle.select_happy_call_hmd_result(call_date)
+        # if happy_call_result:
+        #     logger.info("2. Start CS_HAPPY_CALL_MT_DETAIL_TB [Target count = {0}]".format(len(agent_quality_result)))
+        #     logger.info("2-1. Insert CS_STATISTICS_OF_CALL_TB")
+        #     oracle.insert_statistics_of_call_data(call_date, 'H', happy_call_result)
+        # else:
+        #     logger.info("2. Start CS_HAPPY_CALL_MT_DETAIL_TB [Target count = 0]")
     except Exception:
         exc_info = traceback.format_exc()
         print exc_info
