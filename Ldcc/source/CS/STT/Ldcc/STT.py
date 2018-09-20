@@ -963,13 +963,14 @@ def masking(str_idx, speaker_idx, delimiter, encoding, input_line_list):
     ans_yes_detect = dict()
     for line_num, line in line_dict.items():
         re_rule_dict = dict()
+        self_re_rule_dict = dict()
         detect_line = False
         if u'성함' in line or u'이름' in line:
             if u'확인' in line or u'어떻게' in line or u'여쭤' in line or u'맞으' in line or u'부탁' in line or u'말씀' in line or u'이요' in line:
                 if 'name_rule' not in re_rule_dict:
                     re_rule_dict['name_rule'] = name_rule
         if u'아이디' in line:
-            if u'맞으' in line or u'맞습' in line or u'말씀' in line or u'어떻게':
+            if u'맞으' in line or u'맞습' in line or u'말씀' in line or u'어떻게' in line:
                 if 'id_rule' not in re_rule_dict:
                     re_rule_dict['id_rule'] = alpha_rule
                 ans_yes_detect[line_num] = 1
@@ -1025,10 +1026,11 @@ def masking(str_idx, speaker_idx, delimiter, encoding, input_line_list):
                     re_rule_dict['birth_rule'] = birth_rule
         if u'본인' in line:
             if u'가요' in line or u'맞으' in line or u'세요' in line or u'니까' in line:
-                if 'me_name_rule' not in re_rule_dict:
-                    re_rule_dict['me_name_rule'] = name_rule
+                if 'me_name_rule' not in self_re_rule_dict:
+                    # re_rule_dict['me_name_rule'] = name_rule
+                    self_re_rule_dict['me_name_rule'] = name_rule
                     detect_line = True
-                    ans_yes_detect[line_num] = 1
+                    # ans_yes_detect[line_num] = 1
         else:
             if 'etc_rule' not in re_rule_dict:
                 re_rule_dict['etc_rule'] = etc_rule
@@ -1037,13 +1039,14 @@ def masking(str_idx, speaker_idx, delimiter, encoding, input_line_list):
         if detect_line:
             if line_num not in line_re_rule_dict:
                 line_re_rule_dict[line_num] = dict()
-            line_re_rule_dict[line_num].update(re_rule_dict)
+            # line_re_rule_dict[line_num].update(re_rule_dict)
+            line_re_rule_dict[line_num].update(self_re_rule_dict)
 
         next_line_cnt = int(MASKING_CONFIG['next_line_cnt'])
         for next_line_num in range(line_num + 1, len(line_dict)):
             if next_line_num in line_dict:
                 for word in MASKING_CONFIG['precent_undetected']:
-                    if word == line_dict[next_line_num].replace(' ', ''):
+                    if word == line_dict[next_line_num].replace(' ', '') and speaker_dict[next_line_num] == 'C':
                         next_line_cnt += 1
                         break
                 # 본인 확인 여부 이후 개인정보 발화 없음
@@ -1122,6 +1125,9 @@ def masking(str_idx, speaker_idx, delimiter, encoding, input_line_list):
                 non_masking = False
                 index_info.append({"start_idx": start, "end_idx": end, "masking_code": masking_code, "rule_name": rule_name})
                 cnt = 0
+                # 이름 규칙 룰에 적용되면서 띄어쓰기(공백)가 존재할시 생략
+                if rule_name == 'name_rule' and " " in output_str[start:end]:
+                    continue
                 for word in MASKING_CONFIG['non_masking_word']:
                     temp_start = start-3 if start-3 > 0 else 0
                     if word in output_str[temp_start:end+3] or output_str in word:
