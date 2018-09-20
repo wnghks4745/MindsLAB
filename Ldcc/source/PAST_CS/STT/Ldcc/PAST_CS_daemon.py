@@ -179,8 +179,7 @@ def make_job_list(run_count, job_max_limit):
     rec_path_list = PAST_CS_DAEMON_CONFIG['rec_path']
     rec_file_path_list = list()
     for rec_dir_path in rec_path_list:
-        #TODO 과거녹취 2018년건만 실행
-        rec_file_path_list += glob.glob('{0}/2018*.json'.format(rec_dir_path))
+        rec_file_path_list += glob.glob('{0}/*.json'.format(rec_dir_path))
     if not rec_file_path_list:
         return list()
     pk_list = list()
