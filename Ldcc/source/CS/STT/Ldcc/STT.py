@@ -1049,12 +1049,6 @@ def masking(str_idx, speaker_idx, delimiter, encoding, input_line_list):
                     if word == line_dict[next_line_num].replace(' ', '') and speaker_dict[next_line_num] == 'C':
                         next_line_cnt += 1
                         break
-                # 본인 확인 여부 이후 개인정보 발화 없음
-                target = ['me_name_rule', 'id_rule']
-                for rule_name in target:
-                    if rule_name in re_rule_dict.keys() and line_num in ans_yes_detect:
-                        if (u'네' in line_dict[next_line_num] or u'예' in line_dict[next_line_num] or u'아니요' in line_dict[next_line_num]) and speaker_dict[next_line_num] == 'C':
-                            del re_rule_dict[rule_name]
                 if next_line_num not in line_re_rule_dict:
                     line_re_rule_dict[next_line_num] = dict()
                 line_re_rule_dict[next_line_num].update(re_rule_dict)
