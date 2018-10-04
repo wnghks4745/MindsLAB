@@ -519,11 +519,13 @@ def masking(str_idx, speaker_idx, delimiter, encoding, input_line_list):
                 # 이름 규칙 룰에 적용되면서 띄어쓰기(공백)가 존재할시 생략
                 if rule_name == 'name_rule' and " " in output_str[start:end]:
                     continue
+                word_idx_list = list()
                 for word in MASKING_CONFIG['non_masking_word']:
                     temp_start = start-3 if start-3 > 0 else 0
                     if word in output_str[temp_start:end+3] or output_str in word:
-                        non_masking = True
-                        break
+                        word_start_idx = temp_start + output_str[temp_start:end+3].find(word) - start
+                        word_end_idx = word_start_idx + len(word)
+                        word_idx_list.append(range(word_start_idx, word_end_idx))
                 for idx in output_str[start:end]:
                     if idx == " ":
                         masking_part += " "
@@ -532,9 +534,15 @@ def masking(str_idx, speaker_idx, delimiter, encoding, input_line_list):
                     if cnt % masking_cnt == 0:
                         masking_part += idx
                     else:
-                        masking_part += "*"
-                if not non_masking:
-                    output_str = output_str.replace(output_str[start:end], masking_part)
+                        flag = False
+                        for idx_range in word_idx_list:
+                            if cnt - 1 in idx_range:
+                                flag = True
+                                masking_part += idx
+                                break
+                        if not flag:
+                            masking_part += "*"
+                output_str = output_str.replace(output_str[start:end], masking_part)
             if re_line_num not in index_output_dict:
                 index_output_dict[re_line_num] = index_info
             else:
