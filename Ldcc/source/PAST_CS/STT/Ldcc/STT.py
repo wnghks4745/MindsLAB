@@ -517,7 +517,7 @@ def masking(str_idx, speaker_idx, delimiter, encoding, input_line_list):
                 index_info.append({"start_idx": start, "end_idx": end, "masking_code": masking_code, "rule_name": rule_name})
                 cnt = 0
                 # 이름 규칙 룰에 적용되면서 띄어쓰기(공백)가 존재할시 생략
-                if rule_name == 'name_rule' and " " in output_str[start:end]:
+                if (rule_name == 'name_rule' or rule_name == 'me_name_rule') and " " in output_str[start:end]:
                     continue
                 word_idx_list = list()
                 for word in MASKING_CONFIG['non_masking_word']:
