@@ -975,11 +975,11 @@ def masking(str_idx, speaker_idx, delimiter, encoding, input_line_list):
                     re_rule_dict['id_rule'] = alpha_rule
                 ans_yes_detect[line_num] = 1
         if (u'핸드폰' in line and u'번호' in line) or u'연락처' in line:
-            if u'확인' in line or u'어떻게' in line or u'말씀' in line or u'부탁' in line or u'여쭤' in line or u'맞으' in line or u'불러' in line:
+            if u'확인' in line or u'어떻게' in line or u'말씀' in line or u'부탁' in line or u'여쭤' in line or u'맞으' in line or u'불러' in line or u'남겨' in line:
                 if 'tel_number_rule' not in re_rule_dict:
                     re_rule_dict['tel_number_rule'] = number_rule
         if u'휴대폰' in line and u'번호' in line:
-            if u'확인' in line or u'어떻게' in line or u'말씀' in line or u'부탁' in line or u'여쭤' in line or u'맞으' in line or u'불러' in line:
+            if u'확인' in line or u'어떻게' in line or u'말씀' in line or u'부탁' in line or u'여쭤' in line or u'맞으' in line or u'불러' in line or u'남겨' in line:
                 if 'tel_number_rule' not in re_rule_dict:
                     re_rule_dict['tel_number_rule'] = number_rule
         if u'전화' in line and u'번호' in line:
