@@ -1046,7 +1046,7 @@ def masking(str_idx, speaker_idx, delimiter, encoding, input_line_list):
         for next_line_num in range(line_num + 1, len(line_dict)):
             if next_line_num in line_dict:
                 for word in MASKING_CONFIG['precent_undetected']:
-                    if word == line_dict[next_line_num].replace(' ', '') and speaker_dict[next_line_num] == 'C':
+                    if word == line_dict[next_line_num].replace(' ', ''):
                         next_line_cnt += 1
                         break
                 if next_line_num not in line_re_rule_dict:
