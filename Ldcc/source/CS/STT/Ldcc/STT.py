@@ -970,7 +970,7 @@ def masking(str_idx, speaker_idx, delimiter, encoding, input_line_list):
                 if 'name_rule' not in re_rule_dict:
                     re_rule_dict['name_rule'] = name_rule
         if u'아이디' in line:
-            if u'맞으' in line or u'맞습' in line or u'말씀' in line or u'어떻게' in line:
+            if u'맞으' in line or u'맞습' in line or u'말씀' in line or u'어떻게' in line or u'불러' in line or u'확인' in line:
                 if 'id_rule' not in re_rule_dict:
                     re_rule_dict['id_rule'] = alpha_rule
                 ans_yes_detect[line_num] = 1
