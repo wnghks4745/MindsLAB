@@ -867,10 +867,10 @@ def update_stt_rst(logger, mysql):
             if keyword not in insert_set_dict:
                 insert_set_dict[keyword] = insert_dict
             if speaker == 'C':
-                if set_stt_keyword_dtc_rst(issue_word_list, insert_dict, 'ISS'):
+                if set_stt_keyword_dtc_rst(issue_word_list, insert_dict, 'I'):
                     issue_dtc_yn = 'Y'
             if speaker == 'A':
-                if set_stt_keyword_dtc_rst(banned_word_list, insert_dict, 'PRO'):
+                if set_stt_keyword_dtc_rst(banned_word_list, insert_dict, 'B'):
                     prohibit_dtc_yn = 'Y'
             line_num += 1
         stt_spch_sped = str(round((rx_sntc_len + tx_sntc_len)/(rx_during_time + tx_during_time), 1)) if rx_during_time + tx_during_time != 0 else '0'
