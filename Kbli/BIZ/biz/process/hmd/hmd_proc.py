@@ -572,6 +572,55 @@ def select_dtc_cont(oracle, scrt_sntc_info_id):
     return result
 
 
+def select_scrt_sntc_cont(oracle, type_code='', fir_depth_id='', sec_depth_id='', thi_depth_id='', sntc_sort_no=''):
+    """
+    Select SCRT_SNTC_INFO_ID from CM_SCRT_SNTC_INFO_TB
+    :param          oracle:                     DB
+    :param          type_code:                  QUALITY_TYPE_CODE
+    :param          fir_depth_id:               CATEGORY_1DEPTH_ID
+    :param          sec_depth_id:               CATEGORY_2DEPTH_ID
+    :param          thi_depth_id:               CATEGORY_3DEPTH_ID
+    :param          sntc_sort_no:               SNTC_SORT_NO
+    :return:                                    SCRT_SNTC_CONT
+    """
+    query = """
+        SELECT
+            SCRT_SNTC_CONT
+        FROM
+            CM_SCRT_SNTC_INFO_TB
+        WHERE 1=1
+    """
+    bind = ()
+    cnt = 1
+    if len(type_code):
+        query += "AND QUALITY_TYPE_CODE = :{0}\n".format(cnt)
+        bind += (type_code,)
+        cnt += 1
+    if len(fir_depth_id):
+        query += "AND CATEGORY_1DEPTH_ID = :{0}\n".format(cnt)
+        bind += (fir_depth_id,)
+        cnt += 1
+    if len(sec_depth_id):
+        query += "AND CATEGORY_2DEPTH_ID = :{0}\n".format(cnt)
+        bind += (sec_depth_id,)
+        cnt += 1
+    if len(thi_depth_id):
+        query += "AND CATEGORY_3DEPTH_ID = :{0}\n".format(cnt)
+        bind += (thi_depth_id,)
+        cnt += 1
+    if len(sntc_sort_no):
+        query += "AND SNTC_SORT_NO = :{0}\n".format(cnt)
+        bind += (sntc_sort_no,)
+        cnt += 1
+    oracle.cursor.execute(query, bind)
+    result = oracle.cursor.fetchall()
+    if result is bool:
+        return list()
+    if not result:
+        return list()
+    return result
+
+
 def select_scrt_sntc_info_id(oracle, type_code='', fir_depth_id='', sec_depth_id='', thi_depth_id=''):
     """
     Select SCRT_SNTC_INFO_ID from CM_SCRT_SNTC_INFO_TB
@@ -851,7 +900,12 @@ def insert_happy_call_hmd_result(**kwargs):
     cntc_user_part_c = '' if hdr.call_metadata.cntc_user_part_c == 'None' else hdr.call_metadata.cntc_user_part_c
     cntc_user_part_nm = '' if hdr.call_metadata.cntc_user_part_nm == 'None' else hdr.call_metadata.cntc_user_part_nm
     for cls in happy_call_result.keys():
+        category_1depth_id = cls.split("_")[0]
+        sntc_sort_no = cls.split("_")[2]
         cust_ans_yn = cls.split("_")[3]
+        scrt_sntc_cont = select_scrt_sntc_cont(
+            oracle, type_code='QT0002', fir_depth_id=category_1depth_id, sntc_sort_no=sntc_sort_no)
+        scrt_sntc_cont = scrt_sntc_cont[0]
         if cust_ans_yn.upper() == 'Y':
             cust_sentence = ''
             cust_result = select_cust_sentences(oracle, hdr.call_id, document.end_time)
@@ -897,7 +951,8 @@ def insert_happy_call_hmd_result(**kwargs):
                 CREATED_DTM,
                 UPDATED_DTM,
                 CREATOR_ID,
-                UPDATOR_ID
+                UPDATOR_ID,
+                SCRT_SNTC_CONT
             )
             VALUES
             (
@@ -905,7 +960,7 @@ def insert_happy_call_hmd_result(**kwargs):
                 :5, :6, :7, :8, :9, :10, :11, :12, :13,
                 TO_DATE(:14, 'YYYY/MM/DD HH24:MI:SS'), 
                 :15, :16, :17, :18, :19, :20, :21, :22,
-                SYSDATE, SYSDATE, :23, :24
+                SYSDATE, SYSDATE, :23, :24, :25
             )
         """
         prt_no = cls.split("_")[1]
@@ -936,6 +991,7 @@ def insert_happy_call_hmd_result(**kwargs):
             cntc_user_part_nm,
             hdr.creator_id,
             hdr.creator_id,
+            scrt_sntc_cont,
         )
         oracle.cursor.execute(query, bind)
         if cls in target_category_list:
@@ -1577,6 +1633,13 @@ def insert_agent_quality_result(oracle, hmd_result, quality_type_code, document,
     cntc_user_part_c = '' if hdr.call_metadata.cntc_user_part_c == 'None' else hdr.call_metadata.cntc_user_part_c
     cntc_user_part_nm = '' if hdr.call_metadata.cntc_user_part_nm == 'None' else hdr.call_metadata.cntc_user_part_nm
     for cls in hmd_result.keys():
+        category_1depth_id = cls.split("_")[0]
+        category_2depth_id = cls.split("_")[1]
+        sntc_sort_no = cls.split("_")[2]
+        scrt_sntc_cont = select_scrt_sntc_cont(
+            oracle, type_code='QT0001', fir_depth_id=category_1depth_id, sec_depth_id=category_2depth_id,
+            sntc_sort_no=sntc_sort_no)
+        scrt_sntc_cont = scrt_sntc_cont[0]
         if end_yn == 'N' and cls == end_category:
             continue
         if start_yn == 'N' and cls == start_category:
@@ -1611,7 +1674,8 @@ def insert_agent_quality_result(oracle, hmd_result, quality_type_code, document,
                 CREATED_DTM,
                 UPDATED_DTM,
                 CREATOR_ID,
-                UPDATOR_ID
+                UPDATOR_ID,
+                SCRT_SNTC_CONT
             )
             VALUES
             (
@@ -1619,7 +1683,7 @@ def insert_agent_quality_result(oracle, hmd_result, quality_type_code, document,
                 :5, :6, :7, :8, :9, :10, :11, :12,
                 TO_DATE(:13, 'YYYY/MM/DD HH24:MI:SS'),
                 :14, :15, :16, :17, :18, :19, :20, :21,
-                SYSDATE, SYSDATE, :22, :23
+                SYSDATE, SYSDATE, :22, :23, :24
             )
         """
         bind = (
@@ -1646,6 +1710,7 @@ def insert_agent_quality_result(oracle, hmd_result, quality_type_code, document,
             cntc_user_part_nm,
             hdr.creator_id,
             hdr.creator_id,
+            scrt_sntc_cont,
         )
         oracle.cursor.execute(query, bind)
         dtc_category_list.append(cls)

@@ -424,7 +424,8 @@ class Oracle(object):
             SELECT
                 SNTC_DCD,
                 DTC_SNTC_CD,
-                DTC_SNTC_NM
+                DTC_SNTC_NM,
+                SCRT_SNTC_CONT
             FROM
                 TB_SCRT_SNTC_MST_INFO
             WHERE 1=1
@@ -506,6 +507,7 @@ class Oracle(object):
                         CNTR_COUNT,
                         REC_ID,
                         RFILE_NAME,
+                        SCRT_SNTC_CONT,
                         REGP_CD,
                         RGST_PGM_ID,
                         RGST_DTM,
@@ -519,7 +521,7 @@ class Oracle(object):
                     :11, :12, :13, :14, :15,
                     :16, :17, :18, :19, :20,
                     :21, :22, :23, :24, :25,
-                    :26, :27, 
+                    :26, :27, :28,
                     'TM_QA_TA', 'TM_QA_TA', SYSDATE, 'TM_QA_TA', 'TM_QA_TA', SYSDATE
                 )
             """
@@ -556,11 +558,12 @@ class Oracle(object):
                 cntr_count = insert_dict['CNTR_COUNT']
                 rec_id = insert_dict['REC_ID']
                 rfile_name = insert_dict['RFILE_NAME']
+                scrt_sntc_cont = insert_dict['SCRT_SNTC_CONT']
                 values_tuple = (org_fof_c, epl_id, prps_date, qa_scrt_lccd, qa_scrt_mccd, sec_no, sntc_no, sntc_seq,
                                 sntc_cd, cont_no, stt_sntc_lin_no, sntc_dtc_yn, sntc_cont, sntc_sttm, sntc_endtm,
                                 cust_anyn, cust_agrm_sntc_cont, dtc_kywd_lit,
                                 nudtc_kywd_lit, kywd_ctgry_nm, kywd_dtc_rate, vrfc_kywd_qtty, vrfc_kywd_dtc_qtty,
-                                dtc_info_crt_dtm, cntr_count, rec_id, rfile_name)
+                                dtc_info_crt_dtm, cntr_count, rec_id, rfile_name, scrt_sntc_cont)
                 values_list.append(values_tuple)
             self.cursor.executemany(query, values_list)
             if self.cursor.rowcount > 0:
@@ -1223,10 +1226,12 @@ def set_data_for_tb_tm_qa_ta_dtc_rst(logger, oracle, dir_path, file_name, rec_in
             sntc_dcd = ''
             dtc_sntc_cd = ''
             dtc_sntc_nm = ''
+            scrt_sntc_cont = ''
         else:
             sntc_dcd = sntc_dtc_lst_result[0]
             dtc_sntc_cd = sntc_dtc_lst_result[1]
             dtc_sntc_nm = sntc_dtc_lst_result[2]
+            scrt_sntc_cont = sntc_dtc_lst_result[3]
         if sntc_no in fbwd_list:
             sntc_seq = 0
             while True:
@@ -1281,6 +1286,7 @@ def set_data_for_tb_tm_qa_ta_dtc_rst(logger, oracle, dir_path, file_name, rec_in
         tb_tm_qa_ta_dtc_rst_dict['DTC_INFO_CRT_DTM'] = str(datetime.now())[:10]
         tb_tm_qa_ta_dtc_rst_dict['REC_ID'] = rec_id
         tb_tm_qa_ta_dtc_rst_dict['RFILE_NAME'] = rfile_name
+        tb_tm_qa_ta_dtc_rst_dict['SCRT_SNTC_CONT'] = scrt_sntc_cont
         key = "{0}|{1}|{2}|{3}|{4}|{5}|{6}|{7}|{8}|{9}".format(
             org_fof_c, epl_id, prps_date, cntr_count, qa_scrt_lccd, qa_scrt_mccd, sec_no, sntc_no, sntc_seq, sntc_cd)
         if key not in temp_tb_tm_qa_ta_dtc_rst_dict:
