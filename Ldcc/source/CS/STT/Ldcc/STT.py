@@ -701,7 +701,7 @@ def extract_silence(start_time_idx, end_time_idx, sentence_idx, total_duration, 
         front_start_time_seconds = time_to_seconds(front_start_time)
         front_speaker = front_line_list[0].replace('[', '').replace(']', '').strip()
         front_sent = front_line_list[sentence_idx]
-        speaker_last_sent_len_dict[front_speaker] = len(front_sent.decode('euc-kr'))
+        speaker_last_sent_len_dict[front_speaker] = len(front_sent.decode('euc-kr').replace(' ', ''))
         speaker_last_end_time_dict[front_speaker] = front_end_time_seconds
         speaker_last_start_time_dict[front_speaker] = front_start_time_seconds
         compared_duration = 0
@@ -732,7 +732,7 @@ def extract_silence(start_time_idx, end_time_idx, sentence_idx, total_duration, 
         key = "{0}_{1}".format(idx, idx) if idx + 1 == len(input_line_list) else "{0}_{1}".format(idx, idx + 1)
         speaker_last_key_dict[front_speaker] = key
         silence_output_dict[key] = round(duration, 1) if duration < compared_duration else round(compared_duration, 1)
-        if len(back_sent.decode('euc-kr')) > STT_CONFIG['crosstalk_ign_len'] and speaker_last_sent_len_dict[compared_speaker] > STT_CONFIG['crosstalk_ign_len']:
+        if len(back_sent.decode('euc-kr').replace(' ', '')) > STT_CONFIG['crosstalk_ign_len'] and speaker_last_sent_len_dict[compared_speaker] > STT_CONFIG['crosstalk_ign_len']:
             temp = round(duration, 1) if duration > compared_duration else round(compared_duration, 1)
             temp = round(crosstalk_duration, 1) if crosstalk_duration else temp
             if temp > 0:
