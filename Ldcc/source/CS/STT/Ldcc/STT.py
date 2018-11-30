@@ -862,6 +862,7 @@ def update_stt_rst(logger, mysql):
             insert_dict['SILENCE_TIME'] = str(silence_time) if insert_dict['SILENCE_YN'] == 'Y' else '0'
             insert_dict['CROSSTALK_YN'] = 'Y' if crosstalk_time > 0 else 'N'
             insert_dict['CROSSTALK_TIME'] = str(crosstalk_time) if insert_dict['CROSSTALK_YN'] == 'Y' else '0'
+            insert_dict['BIZ_CD'] = info_dict['BIZ_CD']
             MLF_INFO_DICT[key] += '{0}\n'.format(unicode(sent, 'euc-kr'))
             keyword = '{0}_{1}_{2}'.format(recordkey, rfile_name, line_num)
             if keyword not in insert_set_dict:
