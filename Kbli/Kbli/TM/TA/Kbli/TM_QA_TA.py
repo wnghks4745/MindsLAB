@@ -1947,6 +1947,8 @@ def make_matrix_file(logger, oracle, org_fof_c, epl_id, prps_date, cntr_count, i
                         else:
                             is_ad_check = False
                     if scrt_condition['SEX_TC_YN'] == 'Y':
+                        if type(sex_tc) is not int:
+                            sex_tc = 1
                         if scrt_condition['SEX_TC'] == int(sex_tc) % 2:
                             is_ad_check = True
                         else:
