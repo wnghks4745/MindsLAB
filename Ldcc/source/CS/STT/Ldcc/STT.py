@@ -46,6 +46,7 @@ STT_TEMP_DIR_NAME = ""
 MASKING_INFO_LIT = dict()
 MLF_INFO_DICT = dict()
 STT_KEYWORD_DTC_RST = dict()
+CROSS_TALK_DICT = dict()
 
 
 #########
@@ -313,28 +314,33 @@ class MySQL(object):
             raise Exception(traceback.format_exc())
 
     def select_tb_qa_except(self, stt_dict_cd):
-        query = """
-            SELECT DISTINCT
-                B.KEYWORD
-            FROM
-                TA_LOTTE.TB_QA_EXCEPT_DICT A,
-                TA_LOTTE.TB_QA_EXCEPT_DT_INFO B
-            WHERE 1=1
-                AND A.DICT_ID = B.DICT_ID
-                AND A.STT_DICT_CD = %s
-                AND B.USE_YN = 'Y'
-                AND B.DEL_F = 'N'
-        """
-        bind = (
-            stt_dict_cd,
-        )
-        self.cursor.execute(query, bind)
-        results = self.cursor.fetchall()
-        if results is bool:
-            return list()
-        if not results:
-            return list()
-        return results
+        try:
+            query = """
+                SELECT DISTINCT
+                    B.KEYWORD,
+                    A.DICT_ID
+                FROM
+                    TA_LOTTE.TB_QA_EXCEPT_DICT A,
+                    TA_LOTTE.TB_QA_EXCEPT_DT_INFO B
+                WHERE 1=1
+                    AND A.DICT_ID = B.DICT_ID
+                    AND A.STT_DICT_CD = %s
+                    AND B.USE_YN = 'Y'
+                    AND B.DEL_F = 'N'
+            """
+            bind = (
+                stt_dict_cd,
+            )
+            self.cursor.execute(query, bind)
+            results = self.cursor.fetchall()
+            if results is bool:
+                return list()
+            if not results:
+                return list()
+            return results
+        except Exception:
+            self.conn.rollback()
+            raise Exception(traceback.format_exc())
 
     def delete_data_to_stt_keyword_dtc_rst(self, recordkey, rfile_name):
         try:
@@ -370,6 +376,7 @@ class MySQL(object):
                     STT_SNTC_LIN_NO,
                     DTC_CD,
                     DTC_KWD,
+                    DTC_ID,
                     STT_SNTC_SPKR_DCD,
                     STT_SNTC_CONT,
                     STT_SNTC_STTM,
@@ -381,7 +388,7 @@ class MySQL(object):
                 )
                 VALUES (
                     %s, %s, %s, %s, %s,
-                    %s, %s, %s, %s,
+                    %s, %s, %s, %s, %s,
                     'STT', NOW(),
                     'STT', NOW()
                 )
@@ -392,6 +399,7 @@ class MySQL(object):
                 kwargs.get('stt_sntc_lin_no'),
                 kwargs.get('dtc_cd'),
                 kwargs.get('dtc_kwd'),
+                kwargs.get('dtc_id'),
                 kwargs.get('stt_sntc_spkr_dcd'),
                 kwargs.get('stt_sntc_cont'),
                 kwargs.get('stt_sntc_sttm'),
@@ -605,6 +613,7 @@ def update_stt_keyword_dtc_rst(logger, mysql):
         stt_sntc_lin_no = info_dict['STT_SNTC_LIN_NO']
         dtc_cd = info_dict['DTC_CD']
         dtc_kwd = info_dict['DTC_KWD']
+        dtc_id = info_dict['DTC_ID']
         stt_sntc_spkr_dcd = info_dict['STT_SNTC_SPKR_DCD']
         stt_sntc_cont = info_dict['STT_SNTC_CONT']
         stt_sntc_sttm = info_dict['STT_SNTC_STTM']
@@ -620,6 +629,7 @@ def update_stt_keyword_dtc_rst(logger, mysql):
                 stt_sntc_lin_no=stt_sntc_lin_no,
                 dtc_cd=dtc_cd,
                 dtc_kwd=dtc_kwd,
+                dtc_id=dtc_id,
                 stt_sntc_spkr_dcd=stt_sntc_spkr_dcd,
                 stt_sntc_cont=stt_sntc_cont,
                 stt_sntc_sttm=stt_sntc_sttm,
@@ -673,7 +683,7 @@ def time_to_seconds(input_time):
     return total_seconds
 
 
-def extract_silence(start_time_idx, end_time_idx, sentence_idx, total_duration, delimiter, input_line_list):
+def extract_silence(start_time_idx, end_time_idx, sentence_idx, total_duration, delimiter, input_line_list, cross_key):
     """
     Extract silence section
     :param          start_time_idx:         Index start time of line split by delimiter
@@ -682,8 +692,10 @@ def extract_silence(start_time_idx, end_time_idx, sentence_idx, total_duration, 
     :param          total_duration:         Total record duration
     :param          delimiter:              Line delimiter
     :param          input_line_list:        Input line list
+    :param          cross_key:              Save Key
     :return:                                Output dictionary
     """
+    global CROSS_TALK_DICT
     silence_output_dict = collections.OrderedDict()
     crosstalk_output_dict = collections.OrderedDict()
     speaker_last_end_time_dict = {'A': False, 'C': False}
@@ -728,19 +740,38 @@ def extract_silence(start_time_idx, end_time_idx, sentence_idx, total_duration, 
             compared_duration = back_start_time_seconds - speaker_last_end_time_dict[compared_speaker]
             if speaker_last_start_time_dict[compared_speaker] < back_start_time_seconds and back_end_time_seconds < speaker_last_end_time_dict[compared_speaker]:
                 crosstalk_duration = back_start_time_seconds - back_end_time_seconds
+            if back_start_time_seconds - speaker_last_end_time_dict[back_line_speaker] < 1:
+                continue
         duration = back_start_time_seconds - front_end_time_seconds
         key = "{0}_{1}".format(idx, idx) if idx + 1 == len(input_line_list) else "{0}_{1}".format(idx, idx + 1)
         speaker_last_key_dict[front_speaker] = key
         silence_output_dict[key] = round(duration, 1) if duration < compared_duration else round(compared_duration, 1)
-        if len(back_sent.decode('euc-kr').replace(' ', '')) > STT_CONFIG['crosstalk_ign_len'] and speaker_last_sent_len_dict[compared_speaker] > STT_CONFIG['crosstalk_ign_len']:
-            temp = round(duration, 1) if duration > compared_duration else round(compared_duration, 1)
-            temp = round(crosstalk_duration, 1) if crosstalk_duration else temp
-            if temp > 0:
-                temp = 0
-            if speaker_last_key_dict[compared_speaker] not in crosstalk_output_dict:
-                crosstalk_output_dict[speaker_last_key_dict[compared_speaker]] = temp
+        cross_talk_list = CROSS_TALK_DICT[cross_key][front_speaker]
+        while True:
+            if len(cross_talk_list) < 1:
+                break
+            comp_st_time, comp_ed_time, cross_talk_time = cross_talk_list[0]
+            if comp_ed_time < front_end_time_seconds:   # 기준 시작 시간이 앞문장에 포함될 경우
+                if comp_ed_time < front_start_time_seconds:
+                    cross_talk_list = cross_talk_list[1:]
+                    continue
+                if key not in crosstalk_output_dict:
+                    crosstalk_output_dict[key] = -cross_talk_time
+                else:
+                    crosstalk_output_dict[key] += -cross_talk_time
+                cross_talk_list = cross_talk_list[1:]
             else:
-                crosstalk_output_dict[speaker_last_key_dict[compared_speaker]] += temp
+                break
+        CROSS_TALK_DICT[cross_key][front_speaker] = cross_talk_list
+        # if len(back_sent.decode('euc-kr').replace(' ', '')) > STT_CONFIG['crosstalk_ign_len'] and speaker_last_sent_len_dict[compared_speaker] > STT_CONFIG['crosstalk_ign_len']:
+        #     temp = round(duration, 1) if duration > compared_duration else round(compared_duration, 1)
+        #     temp = round(crosstalk_duration, 1) if crosstalk_duration else temp
+        #     if temp > 0:
+        #         temp = 0
+        #     if speaker_last_key_dict[compared_speaker] not in crosstalk_output_dict:
+        #         crosstalk_output_dict[speaker_last_key_dict[compared_speaker]] = temp
+        #     else:
+        #         crosstalk_output_dict[speaker_last_key_dict[compared_speaker]] += temp
     return silence_output_dict, crosstalk_output_dict
 
 
@@ -755,10 +786,12 @@ def set_stt_keyword_dtc_rst(word_list, info_dict, dtc_cd):
     key = False
     for item in word_list:
         keyword = item['KEYWORD']
+        dict_id = item['DICT_ID']
         if keyword in info_dict['STT_SNTC_CONT']:
             stt_keyword_temp_dtc_rst = info_dict
             stt_keyword_temp_dtc_rst['DTC_CD'] = dtc_cd
             stt_keyword_temp_dtc_rst['DTC_KWD'] = keyword
+            stt_keyword_temp_dtc_rst['DTC_ID'] = dict_id
             key = '{0}_{1}_{2}_{3}_{4}'.format(info_dict['RECORDKEY'], info_dict['RFILE_NAME'], info_dict['STT_SNTC_LIN_NO'], dtc_cd, keyword)
             if key not in STT_KEYWORD_DTC_RST:
                 STT_KEYWORD_DTC_RST[key] = stt_keyword_temp_dtc_rst
@@ -797,7 +830,7 @@ def update_stt_rst(logger, mysql):
         detail_file_list = detail_file.readlines()
         detail_file.close()
         # 무음 처리 구간 조회
-        silence_result, crosstalk_result = extract_silence(1, 2, 3, call_duration, "\t", detail_file_list)
+        silence_result, crosstalk_result = extract_silence(1, 2, 3, call_duration, "\t", detail_file_list, key)
         # DB insert 전 delete
         mysql.delete_stt_rst(recordkey, rfile_name)
         line_num = 0
@@ -1266,6 +1299,79 @@ def split_sent_use_time(**kwargs):
             break
 
 
+def cross_talk_check(key, rx_mlf_info_dict, tx_mlf_info_dict):
+    """
+    Cross Talk Check
+    :param      key:                    Save Key
+    :param      rx_mlf_info_dict:       RX mlf Information Dictionary
+    :param      tx_mlf_info_dict:       TX mlf Information Dictionary
+    """
+    global CROSS_TALK_DICT
+    rx_idx = 0
+    tx_idx = 0
+    CROSS_TALK_DICT[key] = {
+        'A': list(),
+        'C': list()
+    }
+    while True:
+        # End Check
+        if rx_idx + 1 >= len(rx_mlf_info_dict) or tx_idx + 1 >= len(tx_mlf_info_dict):
+            break
+        # setting
+        rx_st_time, rx_ed_time, rx_sent = rx_mlf_info_dict[rx_idx]
+        tx_st_time, tx_ed_time, tx_sent = tx_mlf_info_dict[tx_idx]
+        if tx_sent in ('네', '예'):
+            tx_idx += 1 if tx_idx + 1 < len(tx_mlf_info_dict) else 0
+            rx_idx += 0 if tx_idx + 1 < len(tx_mlf_info_dict) else 1
+            continue
+        if rx_sent in ('네', '예'):
+            rx_idx += 1 if rx_idx + 1 < len(rx_mlf_info_dict) else 0
+            tx_idx += 0 if rx_idx + 1 < len(rx_mlf_info_dict) else 1
+            continue
+        if rx_sent == tx_sent:
+            tx_idx += 1 if tx_idx + 1 < len(tx_mlf_info_dict) else 0
+            rx_idx += 1 if rx_idx + 1 < len(rx_mlf_info_dict) else 0
+        rx_st_time = float(rx_st_time) / 100
+        rx_ed_time = float(rx_ed_time) / 100
+        tx_st_time = float(tx_st_time) / 100
+        tx_ed_time = float(tx_ed_time) / 100
+        base_st_time = rx_st_time if rx_st_time <= tx_st_time else tx_st_time
+        comp_st_time = tx_st_time if rx_st_time <= tx_st_time else rx_st_time
+        base_ed_time = rx_ed_time if rx_st_time <= tx_st_time else tx_ed_time
+        comp_ed_time = tx_ed_time if rx_st_time <= tx_st_time else rx_ed_time
+        base_speaker = 'C' if rx_st_time <= tx_st_time else 'A'
+        comp_speaker = 'A' if rx_st_time <= tx_st_time else 'C'
+        # 비교 시작
+        if comp_st_time < base_ed_time: # 말겹침 발생
+            if comp_ed_time < base_ed_time: # 완전 말겹침
+                cross_talk_time = (comp_ed_time - comp_st_time)
+                CROSS_TALK_DICT[key][base_speaker].append((base_st_time, base_ed_time, cross_talk_time))
+                if comp_speaker == 'A':
+                    tx_idx += 1 if tx_idx + 1 < len(tx_mlf_info_dict) else 0
+                    rx_idx += 0 if tx_idx + 1 < len(tx_mlf_info_dict) else 1
+                else:
+                    rx_idx += 1 if rx_idx + 1 < len(rx_mlf_info_dict) else 0
+                    tx_idx += 0 if rx_idx + 1 < len(rx_mlf_info_dict) else 1
+            else:   # 일부 말겹침
+                cross_talk_time = (base_ed_time - comp_st_time)
+                CROSS_TALK_DICT[key][base_speaker].append((base_st_time, base_ed_time, cross_talk_time))
+                if base_speaker == 'A':
+                    tx_idx += 1 if tx_idx + 1 < len(tx_mlf_info_dict) else 0
+                    rx_idx += 0 if tx_idx + 1 < len(tx_mlf_info_dict) else 1
+                else:
+                    rx_idx += 1 if rx_idx + 1 < len(rx_mlf_info_dict) else 0
+                    tx_idx += 0 if rx_idx + 1 < len(rx_mlf_info_dict) else 1
+        else:   # 말겹침 미발생
+            # cross_talk_time = 0
+            # CROSS_TALK_DICT[key][base_speaker].append((base_st_time, cross_talk_time))
+            if base_speaker == 'A':
+                tx_idx += 1 if tx_idx + 1 < len(tx_mlf_info_dict) else 0
+                rx_idx += 0 if tx_idx + 1 < len(tx_mlf_info_dict) else 1
+            else:
+                rx_idx += 1 if rx_idx + 1 < len(rx_mlf_info_dict) else 0
+                tx_idx += 0 if rx_idx + 1 < len(rx_mlf_info_dict) else 1
+
+
 def make_mlf_info(mlf_file_path):
     """
     Make mlf info
@@ -1408,6 +1514,7 @@ def make_output(logger, mysql, target_dir_path):
                 continue
             rx_mlf_info_dict = make_mlf_info(rx_mlf_file_path)
             tx_mlf_info_dict = make_mlf_info(tx_mlf_file_path)
+            cross_talk_check(key, rx_mlf_info_dict, tx_mlf_info_dict)
             # Merge .stt file and make detail file
             pre_speaker = ""
             pre_st_time = ""
