@@ -85,12 +85,16 @@ class Oracle(object):
         query = """
             INSERT INTO TB_TADC_BRAND_DIC
             (
-                BRANDNAME,
+                DIC_SEQ,
+                VERSION,
+                BRAND_NM,
                 CREATE_DT,
                 MODIFY_DT
             )
             VALUES
             (
+                '2',
+                '0',
                 :1,
                 SYSDATE,
                 SYSDATE
@@ -123,6 +127,8 @@ class Oracle(object):
         query = """
             INSERT INTO TB_TADC_SENTI_KEYWORD
             (
+                DIC_SEQ,
+                VERSION,
                 SENTI_KEYWORD,
                 SENTI_LEVEL,
                 CREATE_DT,
@@ -130,6 +136,8 @@ class Oracle(object):
             )
             VALUES
             (
+                '3',
+                '0',
                 :1,
                 :2,
                 SYSDATE,
@@ -163,12 +171,16 @@ class Oracle(object):
         query = """
             INSERT INTO TB_TADC_DEL_KEYWORD
             (
+                DIC_SEQ,
+                VERSION,
                 DEL_KEYWORD,
                 CREATE_DT,
                 MODIFY_DT
             )
             VALUES
             (
+                '4',
+                '0',
                 :1,
                 SYSDATE,
                 SYSDATE

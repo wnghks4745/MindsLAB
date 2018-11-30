@@ -3,7 +3,7 @@
 
 """program"""
 __author__ = "MINDsLAB"
-__date__ = "creation: 2018-08-29, modification: 2018-09-03"
+__date__ = "creation: 2018-08-29, modification: 2018-09-21"
 
 ###########
 # imports #
@@ -65,23 +65,23 @@ def delete_file(log, ts, target_info_dict):
     :param      ts:                     System time
     :param      target_info_dict:       Target information dictionary
     """
-    # Delete record file
+    # Delete subdirectory YYYYMMDD
     target_dir_path = target_info_dict.get('dir_path')
     if target_dir_path[-1] == '/':
         target_dir_path = target_dir_path[:-1]
     mtn_period = int(target_info_dict.get('mtn_period'))
     mtn_period_datetime = datetime.fromtimestamp(ts) - timedelta(days=mtn_period)
     mtn_period_date = mtn_period_datetime.date()
-    w_ob = os.walk(target_dir_path)
-    target_dir_list = list()
-    for dir_path, sub_dirs, files in w_ob:
-        for sub_dir in sub_dirs:
-            try:
-                datetime.strptime(sub_dir, '%Y%m%d')
-            except Exception:
-                continue
-            target_dir_list.append(sub_dir)
     log.info("Delete directory the {0} before".format(mtn_period_date))
+    target_dir_list = list()
+    sub_dirs = [dir_name for dir_name in os.listdir(target_dir_path)
+                if os.path.isdir(os.path.join(target_dir_path, dir_name))]
+    for sub_dir in sub_dirs:
+        try:
+            datetime.strptime(sub_dir, '%Y%m%d')
+        except Exception:
+            continue
+        target_dir_list.append(sub_dir)
     for target_dir in target_dir_list:
         target_dir_date = datetime.strptime(target_dir, '%Y%m%d').date()
         if target_dir_date < mtn_period_date:
@@ -111,7 +111,6 @@ def processing(conf, target_dir_list):
     )
     log.info("-" * 100)
     log.info("Start delete log and output file")
-    ts = time.time()
     try:
         for target_info_dict in target_dir_list:
             log.info('Directory path : {0}, Maintenance period : {1}'.format(

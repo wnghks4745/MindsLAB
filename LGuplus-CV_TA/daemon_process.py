@@ -3,7 +3,7 @@
 
 """program"""
 __author__ = "MINDsLAB"
-__date__ = "creation: 2018-08-24, modification: 0000-00-00"
+__date__ = "creation: 2018-08-24, modification: 2018-11-14"
 
 ###########
 # imports #
@@ -13,8 +13,9 @@ import time
 import socket
 import traceback
 import multiprocessing
+from flashtext.keyword import KeywordProcessor
 from cfg import config
-from lib import logger, util
+from lib import logger, util, db_connection
 
 ###########
 # options #
@@ -37,19 +38,31 @@ class Daemon(object):
             log_level=self.conf.log_level
         )
 
-    def make_job_list(self):
-        result = util.select_ta_target(self.logger, socket.gethostname())
-        if not result:
+    def make_job_list(self, oracle):
+        job_list = util.select_ta_target(oracle, socket.gethostname())
+        if not job_list:
             return list()
-        return result[:self.conf.process_max_limit]
+        return job_list[:self.conf.process_max_limit]
 
     def run(self):
+        oracle = db_connection.Oracle(config.OracleConfig, failover=True, service_name=True)
         try:
-            self.logger.info('[START] Daemon process started')
+            self.logger.info('[START] TA daemon process started')
             pid_list = list()
+            # 브랜드명 keyword
+            brand_keyword_dict = util.select_brand_keyword(self.logger, oracle)
+            brand_keyword_processor = KeywordProcessor()
+            for brand_keyword in brand_keyword_dict.keys():
+                brand_keyword_processor.add_keyword(brand_keyword)
+            # 불용어 keyword
+            del_keyword_dict = util.select_del_keyword(self.logger, oracle)
+            # 감성 keyword
+            senti_keyword_dict = util.select_senti_keyword(self.logger, oracle)
+            # HMD category overlap check rank
+            category_rank_dict = util.select_hmd_category_rank(self.logger, oracle)
             while True:
                 try:
-                    job_list = self.make_job_list()
+                    job_list = self.make_job_list(oracle)
                 except Exception:
                     self.logger.error(traceback.format_exc())
                     time.sleep(10)
@@ -60,41 +73,71 @@ class Daemon(object):
                 for job in job_list:
                     if len(pid_list) >= self.conf.process_max_limit:
                         self.logger.info('Processing Count is MAX....')
-                        break
-                    p = multiprocessing.Process(target=do_task, args=(job,))
+                        for pid in pid_list[:]:
+                            if not pid.is_alive():
+                                pid_list.remove(pid)
+                        continue
+                    # Job -> (rest_send_key, start_date, start_time, file_name, svc_type, team_id)
+                    rest_send_key, start_date, start_time, file_name, svc_type, team_id = job
+                    p = multiprocessing.Process(
+                        target=do_task,
+                        args=(
+                            job,
+                            brand_keyword_processor,
+                            del_keyword_dict,
+                            senti_keyword_dict,
+                            category_rank_dict
+                        )
+                    )
                     p.daemon = None
                     pid_list.append(p)
                     p.start()
-                    # Job -> (rest_send_key, start_date, start_time, file_name, svc_type)
-                    rest_send_key, start_date, start_time, file_name, svc_type = job
                     # Update status
-                    util.update_status(self.logger, '1', rest_send_key)
+                    util.update_status(self.logger, oracle, '1', rest_send_key)
                     log_str = 'Execute rest_send_key = {0},'.format(rest_send_key)
                     log_str += ' start_date = {0},'.format(start_date)
                     log_str += ' start_time = {0},'.format(start_time)
                     log_str += ' file_name = {0},'.format(file_name)
-                    log_str += ' svc_type = {0} [PID={1}]'.format(svc_type, p.pid)
+                    log_str += ' svc_type = {0},'.format(svc_type)
+                    log_str += ' team_id = {0},'.format(team_id)
+                    log_str += ' [PID={0}]'.format(p.pid)
                     self.logger.info(log_str)
                     time.sleep(self.conf.process_interval)
+                time.sleep(0.1)
         except KeyboardInterrupt:
             self.logger.info('Daemon stopped by interrupt')
         except Exception:
             self.logger.error(traceback.format_exc())
         finally:
-            self.logger.info('[E N D] Daemon process stopped')
+            try:
+                oracle.disconnect()
+            except Exception:
+                pass
+            finally:
+                self.logger.info('[E N D] Daemon process stopped')
 
 
 #######
 # def #
 #######
-def do_task(job):
+def do_task(job, brand_keyword_processor, del_keyword_dict, senti_keyword_dict, category_rank_dict):
     """
     Process execute TA
-    :param          job:        Job
+    :param      job:                         (rest_send_key, start_date, start_time, file_name, svc_type, team_id)
+    :param      brand_keyword_processor:     Brand keyword flash text object
+    :param      del_keyword_dict:            Delete keyword dictionary
+    :param      senti_keyword_dict:          Sensitivity keyword dictionary
+    :param      category_rank_dict:          Category rank dictionary
     """
     import ta
     reload(ta)
-    ta.main(job)
+    ta.main(
+        job,
+        brand_keyword_processor,
+        del_keyword_dict,
+        senti_keyword_dict,
+        category_rank_dict
+    )
 
 
 #######

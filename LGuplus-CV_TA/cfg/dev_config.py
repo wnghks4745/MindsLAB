@@ -9,7 +9,7 @@ class CollectorConfig(object):
     backup_count = 8
     log_level = 'debug'
     collector_work_dir_list = [
-        '/data/maum/prd/source',
+        '/data/maum/dev/source',
     ]
     processed_dir_path = '/data/maum/dev/processed'
     error_dir_path = '/data/maum/dev/error'
@@ -59,8 +59,8 @@ class TAConfig(object):
         'MAG': '일반부사'
     }
     hmd_cate_delimiter = '!@#$'
-    hmd_home_model_name = 'home_hmd_20180713'
-    hmd_mobile_model_name = 'mobile_hmd_20180728'
+    hmd_home_model_name = 'HOME'
+    hmd_mobile_model_name = 'MOBILE'
     processed_dir_path = '/data/maum/dev/processed'
     nlp_output_dir_path = '/data/maum/dev/nlp_output'
     hmd_output_dir_path = '/data/maum/dev/hmd_output'

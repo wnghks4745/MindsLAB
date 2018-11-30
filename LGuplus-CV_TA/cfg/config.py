@@ -39,7 +39,6 @@ class OracleConfig(object):
 class TAConfig(object):
     logger_name = 'TA'
     log_dir_path = '/logs/maum/cvta'
-    backup_count = 8
     log_level = 'info'
     output_file = True
     nlp_engine = 'nlp3'
@@ -59,8 +58,8 @@ class TAConfig(object):
         'MAG': '일반부사'
     }
     hmd_cate_delimiter = '!@#$'
-    hmd_home_model_name = 'home_hmd'
-    hmd_mobile_model_name = 'mobile_hmd'
+    hmd_home_model_name = 'HOME'
+    hmd_mobile_model_name = 'MOBILE'
     processed_dir_path = '/data/maum/processed'
     nlp_output_dir_path = '/data/maum/nlp_output'
     hmd_output_dir_path = '/data/maum/hmd_output'
@@ -99,3 +98,11 @@ class DELConfig(object):
             'mtn_period': 62
         }
     ]
+
+
+class TAMNTConfig(object):
+    logger_name = 'TAMNT'
+    log_dir_path = '/logs/maum/cvta'
+    log_file_name = 'ta_monitoring.log'
+    backup_count = 8
+    log_level = 'info'

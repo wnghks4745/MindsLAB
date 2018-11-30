@@ -98,11 +98,6 @@ class NlpClient(object):
                 if morphs_type in ['VV', 'VA', 'VX', 'VCP', 'VCN']:
                     nlp_word_list.append('{0}다'.format(morphs_word))
                     morph_word_list.append('{0}다/{1}'.format(morphs_word, morphs_type))
-                elif ana_idx > 0 and morph_word_list[-1].split('/')[1] == 'NNG' and morphs_type == 'XSN':
-                    before_word = nlp_word_list.pop()
-                    morph_word_list.pop()
-                    nlp_word_list.append('{0}{1}'.format(before_word, morphs_word))
-                    morph_word_list.append('{0}{1}/NNG'.format(before_word, morphs_word))
                 elif ana_idx > 0 and morph_word_list[-1].split('/')[1] == 'SL' and morphs_type in ['SN', 'SW']:
                     before_word = nlp_word_list.pop()
                     morph_word_list.pop()

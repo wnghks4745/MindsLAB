@@ -3,7 +3,7 @@
 
 """program"""
 __author__ = "MINDsLAB"
-__date__ = "creation: 2018-08-24, modification: 2018-09-03"
+__date__ = "creation: 2018-08-24, modification: 2018-10-25"
 
 ###########
 # imports #
@@ -11,11 +11,12 @@ __date__ = "creation: 2018-08-24, modification: 2018-09-03"
 import os
 import sys
 import json
+import time
 import socket
 import shutil
 import traceback
 from cfg import config
-from lib import logger, util
+from lib import logger, util, db_connection
 
 ###########
 # options #
@@ -29,7 +30,9 @@ sys.setdefaultencoding('utf-8')
 #########
 class Collector(object):
     def __init__(self):
+        # Set collector config
         self.conf = config.CollectorConfig
+        # Set logger
         self.logger = logger.get_timed_rotating_logger(
             logger_name=self.conf.logger_name,
             log_dir_path=self.conf.log_dir_path,
@@ -38,7 +41,7 @@ class Collector(object):
             log_level=self.conf.log_level
         )
 
-    def do_job(self):
+    def do_job(self, oracle):
         # Watching target directory
         for target_dir_path in self.conf.collector_work_dir_list:
             if not os.path.isabs(target_dir_path):
@@ -48,19 +51,13 @@ class Collector(object):
             if not os.path.exists(target_dir_path):
                 self.logger.error("Can't find directory.({0})".format(target_dir_path))
                 continue
-            # Get json file list (Max 10000EA)
+            # Get json file list
             target_file_list = list()
             w_ob = os.walk(target_dir_path)
             for dir_path, sub_dirs, files in w_ob:
-                escape = False
                 for file_name in files:
                     if file_name.endswith('json'):
                         target_file_list.append(os.path.join(dir_path, file_name))
-                        if len(target_file_list) == 10000:
-                            escape = True
-                            break
-                if escape:
-                    break
             # Sorted file by modify time
             sorted_file_list = sorted(target_file_list, key=os.path.getmtime, reverse=False)
             for json_file_path in sorted_file_list:
@@ -89,21 +86,21 @@ class Collector(object):
                         agent_id = json_data['agent_id']
                         talk_time = json_data['talk_time']
                         station = json_data['station']
-                        direction = json_data['direction']
+                        direction = json_data['direction'].strip().upper()
                         phone_number = json_data['phone_number']
-                        group_id = json_data['group_id'] if 'group_id' in json_data else ''
-                        team_id = json_data['team_id'] if 'team_id' in json_data else ''
-                        svc_type = json_data['svc_type'] if 'svc_type' in json_data else ''
-                        cust_cd = json_data['cust_cd'] if 'cust_cd' in json_data else ''
-                        cust_no = json_data['cust_no'] if 'cust_no' in json_data else ''
-                        if cust_cd.strip().upper() == 'E':
+                        group_id = json_data['group_id']
+                        team_id = json_data['team_id']
+                        svc_type = json_data['svc_type'].strip().upper()
+                        cust_cd = json_data['cust_cd'].strip().upper()
+                        cust_no = json_data['cust_no']
+                        if cust_cd == 'E':
                             entr_no = cust_no
                             cust_no = ''
-                        elif cust_cd.strip().upper() == 'C':
+                        elif cust_cd == 'C':
                             entr_no = ''
                             cust_no = cust_no
                         else:
-                            if len(cust_cd.strip()) != 1:
+                            if len(cust_cd) != 1:
                                 cust_cd = ''
                             entr_no = ''
                             cust_no = ''
@@ -122,10 +119,12 @@ class Collector(object):
                             os.remove(os.path.join(processed_dir, trx_file_name))
                         shutil.move(json_file_path, processed_dir)
                         shutil.move(trx_file_path, processed_dir)
-                        # Insert meta information
-                        util.upsert_meta_info(
+                        # Merge into meta information
+                        util.merge_into_meta_info(
                             log=self.logger,
+                            oracle=oracle,
                             rest_send_key=rest_send_key,
+                            cnid=cnid,
                             start_date=start_date,
                             start_time=start_time,
                             end_date=end_date,
@@ -143,19 +142,16 @@ class Collector(object):
                             team_id=team_id,
                             svc_type=svc_type,
                             cust_cd=cust_cd,
-                            retry=False
+                            stt_filename=file_name
                         )
-                        # Insert status register
-                        util.upsert_status_register(
+                        # Merge into status register
+                        util.merge_into_status_register(
                             log=self.logger,
+                            oracle=oracle,
                             rest_send_key=rest_send_key,
                             ta_hostname=hostname,
                             ta_status=0,
-                            start_date=start_date,
-                            start_time=start_time,
-                            stt_filename=file_name,
-                            svc_type=svc_type,
-                            retry=False
+                            start_date=start_date
                         )
                     except Exception:
                         if not os.path.exists(error_dir):
@@ -175,21 +171,28 @@ class Collector(object):
                         self.logger.error(traceback.format_exc())
                         self.logger.error('Json file -> {0}'.format(json_file_path))
                         continue
-                    self.logger.info("[DONE] File name = {0}, rest_send_key = {1}".format(
-                        file_name, rest_send_key))
+                    self.logger.info("[DONE] Start date = {0}, file name = {1}, rest_send_key = {2}".format(
+                        start_date, file_name, rest_send_key))
 
     def run(self):
+        oracle = db_connection.Oracle(config.OracleConfig, failover=True, service_name=True)
         try:
             self.logger.info('[START] Collector process started')
             # Main loop
             while True:
-                self.do_job()
+                self.do_job(oracle)
+                time.sleep(0.1)
         except KeyboardInterrupt:
                 self.logger.info('Collector stopped by interrupt')
         except Exception:
                 self.logger.error(traceback.format_exc())
         finally:
-            self.logger.info('[E N D] Collector Process stopped')
+            try:
+                oracle.disconnect()
+            except Exception:
+                pass
+            finally:
+                self.logger.info('[E N D] Collector Process stopped')
 
 
 #######
