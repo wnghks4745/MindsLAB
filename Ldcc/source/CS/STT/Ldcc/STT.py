@@ -752,7 +752,7 @@ def extract_silence(start_time_idx, end_time_idx, sentence_idx, total_duration, 
                 break
             comp_st_time, comp_ed_time, cross_talk_time = cross_talk_list[0]
             if comp_ed_time < front_end_time_seconds:   # 기준 시작 시간이 앞문장에 포함될 경우
-                if comp_ed_time < front_start_time_seconds:
+                if comp_ed_time <= front_start_time_seconds:
                     cross_talk_list = cross_talk_list[1:]
                     continue
                 if key not in crosstalk_output_dict:
@@ -785,7 +785,7 @@ def set_stt_keyword_dtc_rst(word_list, info_dict, dtc_cd):
     global STT_KEYWORD_DTC_RST
     key = False
     for item in word_list:
-        keyword = item['KEYWORD']
+        keyword = item['KEYWORD'].replace('+', ' ')
         dict_id = item['DICT_ID']
         if keyword in info_dict['STT_SNTC_CONT']:
             stt_keyword_temp_dtc_rst = info_dict
@@ -1339,6 +1339,10 @@ def cross_talk_check(key, rx_mlf_info_dict, tx_mlf_info_dict):
         comp_st_time = tx_st_time if rx_st_time <= tx_st_time else rx_st_time
         base_ed_time = rx_ed_time if rx_st_time <= tx_st_time else tx_ed_time
         comp_ed_time = tx_ed_time if rx_st_time <= tx_st_time else rx_ed_time
+        if base_ed_time > base_st_time + STT_CONFIG['crosstalk_mlf_max_time']:
+            base_ed_time = base_st_time + STT_CONFIG['crosstalk_mlf_max_time']
+        if comp_ed_time > comp_st_time + STT_CONFIG['crosstalk_mlf_max_time']:
+            comp_ed_time = comp_st_time + STT_CONFIG['crosstalk_mlf_max_time']
         base_speaker = 'C' if rx_st_time <= tx_st_time else 'A'
         comp_speaker = 'A' if rx_st_time <= tx_st_time else 'C'
         # 비교 시작
