@@ -22,6 +22,7 @@ from datetime import datetime, timedelta
 from operator import itemgetter
 from lib.iLogger import set_logger
 from lib.openssl import encrypt, encrypt_file
+
 sys.path.append('/app/MindsVOC/CS')
 from service.config import STT_CONFIG, MYSQL_DB_CONFIG, MASKING_CONFIG
 
@@ -717,29 +718,22 @@ def extract_silence(start_time_idx, end_time_idx, sentence_idx, total_duration, 
         speaker_last_end_time_dict[front_speaker] = front_end_time_seconds
         speaker_last_start_time_dict[front_speaker] = front_start_time_seconds
         compared_duration = 0
-        crosstalk_duration = False
         if idx + 1 == len(input_line_list):
             hours_to_second = float(total_duration[:2]) * 3600
             minutes_to_second = float(total_duration[2:4]) * 60
             seconds = float(total_duration[4:6])
             back_start_time_seconds = hours_to_second + minutes_to_second + seconds
-            back_sent = ''
-            compared_speaker = front_speaker
         else:
             back_line = input_line_list[idx + 1].strip()
             back_line_list = back_line.split(delimiter)
             if len(back_line_list) != 4:
                 continue
-            back_sent = back_line_list[sentence_idx]
             back_start_time = back_line_list[int(start_time_idx)]
             back_end_time = back_line_list[int(end_time_idx)]
             back_start_time_seconds = time_to_seconds(back_start_time)
-            back_end_time_seconds = time_to_seconds(back_end_time)
             back_line_speaker = back_line_list[0].replace('[', '').replace(']', '').strip()
             compared_speaker = 'A' if back_line_speaker == 'C' else 'C'
             compared_duration = back_start_time_seconds - speaker_last_end_time_dict[compared_speaker]
-            if speaker_last_start_time_dict[compared_speaker] < back_start_time_seconds and back_end_time_seconds < speaker_last_end_time_dict[compared_speaker]:
-                crosstalk_duration = back_start_time_seconds - back_end_time_seconds
             if back_start_time_seconds - speaker_last_end_time_dict[back_line_speaker] < 1:
                 continue
         duration = back_start_time_seconds - front_end_time_seconds
@@ -751,7 +745,7 @@ def extract_silence(start_time_idx, end_time_idx, sentence_idx, total_duration, 
             if len(cross_talk_list) < 1:
                 break
             comp_st_time, comp_ed_time, cross_talk_time = cross_talk_list[0]
-            if comp_ed_time < front_end_time_seconds:   # 기준 시작 시간이 앞문장에 포함될 경우
+            if comp_ed_time < front_end_time_seconds:  # 기준 시작 시간이 앞문장에 포함될 경우
                 if comp_ed_time <= front_start_time_seconds:
                     cross_talk_list = cross_talk_list[1:]
                     continue
@@ -763,15 +757,6 @@ def extract_silence(start_time_idx, end_time_idx, sentence_idx, total_duration, 
             else:
                 break
         CROSS_TALK_DICT[cross_key][front_speaker] = cross_talk_list
-        # if len(back_sent.decode('euc-kr').replace(' ', '')) > STT_CONFIG['crosstalk_ign_len'] and speaker_last_sent_len_dict[compared_speaker] > STT_CONFIG['crosstalk_ign_len']:
-        #     temp = round(duration, 1) if duration > compared_duration else round(compared_duration, 1)
-        #     temp = round(crosstalk_duration, 1) if crosstalk_duration else temp
-        #     if temp > 0:
-        #         temp = 0
-        #     if speaker_last_key_dict[compared_speaker] not in crosstalk_output_dict:
-        #         crosstalk_output_dict[speaker_last_key_dict[compared_speaker]] = temp
-        #     else:
-        #         crosstalk_output_dict[speaker_last_key_dict[compared_speaker]] += temp
     return silence_output_dict, crosstalk_output_dict
 
 
@@ -792,7 +777,8 @@ def set_stt_keyword_dtc_rst(word_list, info_dict, dtc_cd):
             stt_keyword_temp_dtc_rst['DTC_CD'] = dtc_cd
             stt_keyword_temp_dtc_rst['DTC_KWD'] = keyword
             stt_keyword_temp_dtc_rst['DTC_ID'] = dict_id
-            key = '{0}_{1}_{2}_{3}_{4}'.format(info_dict['RECORDKEY'], info_dict['RFILE_NAME'], info_dict['STT_SNTC_LIN_NO'], dtc_cd, keyword)
+            key = '{0}_{1}_{2}_{3}_{4}'.format(
+                info_dict['RECORDKEY'], info_dict['RFILE_NAME'], info_dict['STT_SNTC_LIN_NO'], dtc_cd, keyword)
             if key not in STT_KEYWORD_DTC_RST:
                 STT_KEYWORD_DTC_RST[key] = stt_keyword_temp_dtc_rst
     key = True if key else False
@@ -867,10 +853,11 @@ def update_stt_rst(logger, mysql):
                 tx_during_time += during_time
                 rx_during_time += during_time
             if during_time > 0:
-                stt_sntc_spch_sped = str(round(float(sntc_len)/during_time, 1))
+                stt_sntc_spch_sped = str(round(float(sntc_len) / during_time, 1))
             else:
                 stt_sntc_spch_sped = '0'
-            silence_key = '{0}_{1}'.format(line_num, line_num+1) if line is not detail_file_list[-1] else '{0}_{0}'.format(line_num)
+            silence_key = '{0}_{1}'.format(line_num, line_num + 1) if line is not detail_file_list[-1] \
+                else '{0}_{0}'.format(line_num)
             silence_time = 0
             crosstalk_time = 0
             if silence_key in silence_result:
@@ -879,7 +866,8 @@ def update_stt_rst(logger, mysql):
                 crosstalk_time = -crosstalk_result[silence_key]
             msk_info_lit = ''
             if line_num in MASKING_INFO_LIT[rfile_name]:
-                msk_info_lit = ','.join(MASKING_INFO_LIT[rfile_name][line_num]) if len(MASKING_INFO_LIT[rfile_name][line_num]) > 0 else ''
+                msk_info_lit = ','.join(MASKING_INFO_LIT[rfile_name][line_num]) \
+                    if len(MASKING_INFO_LIT[rfile_name][line_num]) > 0 else ''
             insert_dict['RECORDKEY'] = recordkey
             insert_dict['RFILE_NAME'] = rfile_name
             insert_dict['STT_SNTC_LIN_NO'] = line_num
@@ -907,7 +895,8 @@ def update_stt_rst(logger, mysql):
                 if set_stt_keyword_dtc_rst(banned_word_list, insert_dict, 'B'):
                     prohibit_dtc_yn = 'Y'
             line_num += 1
-        stt_spch_sped = str(round((rx_sntc_len + tx_sntc_len)/(rx_during_time + tx_during_time), 1)) if rx_during_time + tx_during_time != 0 else '0'
+        stt_spch_sped = str(round((rx_sntc_len + tx_sntc_len) / (rx_during_time + tx_during_time), 1)) \
+            if rx_during_time + tx_during_time != 0 else '0'
         mysql.update_stt_spch_sped(recordkey, rfile_name, stt_spch_sped, issue_dtc_yn, prohibit_dtc_yn)
     mysql.insert_stt_rst(insert_set_dict)
 
@@ -971,10 +960,10 @@ def masking(str_idx, speaker_idx, delimiter, encoding, input_line_list):
     for line in input_line_list:
         line = line.strip()
         line_list = line.split(delimiter)
-#        if str_idx >= len(line_list):
-#            sent = ''
-#        else :
-#            sent = line_list[str_idx].strip()
+        #        if str_idx >= len(line_list):
+        #            sent = ''
+        #        else :
+        #            sent = line_list[str_idx].strip()
         sent = line_list[str_idx].strip()
         speaker = line_list[speaker_idx].strip().replace("[", "").replace("]", "")
         start_time = time_to_seconds(line_list[1])
@@ -1000,46 +989,59 @@ def masking(str_idx, speaker_idx, delimiter, encoding, input_line_list):
         self_re_rule_dict = dict()
         detect_line = False
         if u'성함' in line or u'이름' in line:
-            if u'확인' in line or u'어떻게' in line or u'여쭤' in line or u'맞으' in line or u'부탁' in line or u'말씀' in line or u'이요' in line:
+            if u'확인' in line or u'어떻게' in line or u'여쭤' in line or u'맞으' in line or u'부탁' in line or \
+                    u'말씀' in line or u'이요' in line:
                 if 'name_rule' not in re_rule_dict:
                     re_rule_dict['name_rule'] = name_rule
         if u'아이디' in line:
-            if u'맞으' in line or u'맞습' in line or u'말씀' in line or u'어떻게' in line or u'불러' in line or u'확인' in line:
+            if u'맞으' in line or u'맞습' in line or u'말씀' in line or u'어떻게' in line or u'불러' in line or \
+                    u'확인' in line:
                 if 'id_rule' not in re_rule_dict:
                     re_rule_dict['id_rule'] = alpha_rule
                 ans_yes_detect[line_num] = 1
         if (u'핸드폰' in line and u'번호' in line) or u'연락처' in line:
-            if u'확인' in line or u'어떻게' in line or u'말씀' in line or u'부탁' in line or u'여쭤' in line or u'맞으' in line or u'불러' in line or u'남겨' in line:
+            if u'확인' in line or u'어떻게' in line or u'말씀' in line or u'부탁' in line or u'여쭤' in line or \
+                    u'맞으' in line or u'불러' in line or u'남겨' in line:
                 if 'tel_number_rule' not in re_rule_dict:
                     re_rule_dict['tel_number_rule'] = number_rule
         if u'휴대폰' in line and u'번호' in line:
-            if u'확인' in line or u'어떻게' in line or u'말씀' in line or u'부탁' in line or u'여쭤' in line or u'맞으' in line or u'불러' in line or u'남겨' in line:
+            if u'확인' in line or u'어떻게' in line or u'말씀' in line or u'부탁' in line or u'여쭤' in line \
+                    or u'맞으' in line or u'불러' in line or u'남겨' in line:
                 if 'tel_number_rule' not in re_rule_dict:
                     re_rule_dict['tel_number_rule'] = number_rule
         if u'전화' in line and u'번호' in line:
-            if u'확인' in line or u'어떻게' in line or u'말씀' in line or u'부탁' in line or u'여쭤' in line or u'맞으' in line or u'불러' in line or u'남겨' in line:
+            if u'확인' in line or u'어떻게' in line or u'말씀' in line or u'부탁' in line or u'여쭤' in line \
+                    or u'맞으' in line or u'불러' in line or u'남겨' in line:
                 if 'tel_number_rule' not in re_rule_dict:
                     re_rule_dict['tel_number_rule'] = number_rule
         if u'팩스' in line and u'번호' in line:
-            if u'확인' in line or u'어떻게' in line or u'말씀' in line or u'부탁' in line or u'여쭤' in line or u'맞으' in line or u'불러' in line:
+            if u'확인' in line or u'어떻게' in line or u'말씀' in line or u'부탁' in line or u'여쭤' in line \
+                    or u'맞으' in line or u'불러' in line:
                 if 'tel_number_rule' not in re_rule_dict:
                     re_rule_dict['tel_number_rule'] = number_rule
         if u'카드' in line and u'번호' in line:
-            if u'확인' in line or u'어떻게' in line or u'말씀' in line or u'부탁' in line or u'여쭤' in line or u'맞으' in line or u'불러' in line:
+            if u'확인' in line or u'어떻게' in line or u'말씀' in line or u'부탁' in line or u'여쭤' in line \
+                    or u'맞으' in line or u'불러' in line:
                 if 'card_number_rule' not in re_rule_dict:
                     re_rule_dict['card_number_rule'] = number_rule
         if u'주민' in line and u'번호' in line and u'앞자리' in line:
             if 'id_number_rule' not in re_rule_dict:
                 re_rule_dict['id_number_rule'] = birth_rule
-        if (u'주민' in line and u'번호' in line) or (u'면허' in line and u'번호' in line) or (u'외국인' in line and u'등록' in line and u'번호' in line) or (u'여권' in line and u'번호' in line):
-            if u'확인' in line or u'어떻게' in line or u'말씀' in line or u'부탁' in line or u'여쭤' in line or u'맞으' in line or u'불러' in line:
+        if (u'주민' in line and u'번호' in line) or (u'면허' in line and u'번호' in line) or \
+                (u'외국인' in line and u'등록' in line and u'번호' in line) or (u'여권' in line and u'번호' in line):
+            if u'확인' in line or u'어떻게' in line or u'말씀' in line or u'부탁' in line or u'여쭤' in line or \
+                    u'맞으' in line or u'불러' in line:
                 if 'id_number_rule' not in re_rule_dict:
                     re_rule_dict['id_number_rule'] = number_rule
         if u'계좌' in line and u'번호' in line:
-            if u'확인' in line or u'어떻게' in line or u'말씀' in line or u'부탁' in line or u'여쭤' in line or u'맞으' in line or u'불러' in line:
+            if u'확인' in line or u'어떻게' in line or u'말씀' in line or u'부탁' in line or u'여쭤' in line or \
+                    u'맞으' in line or u'불러' in line:
                 if 'account_number_rule' not in re_rule_dict:
                     re_rule_dict['account_number_rule'] = number_rule
-        if u'신한' in line or u'농협' in line or u'우리' in line or u'하나' in line or u'기업' in line or u'국민' in line or u'외환' in line or u'씨티' in line or u'수협' in line or u'대구' in line or u'부산' in line or u'광주' in line or u'제주' in line or u'전북' in line or u'경남' in line or u'케이' in line or u'카카오' in line:
+        if u'신한' in line or u'농협' in line or u'우리' in line or u'하나' in line or u'기업' in line or \
+                u'국민' in line or u'외환' in line or u'씨티' in line or u'수협' in line or u'대구' in line or \
+                u'부산' in line or u'광주' in line or u'제주' in line or u'전북' in line or u'경남' in line or \
+                u'케이' in line or u'카카오' in line:
             if u'은행' in line or u'뱅크' in line:
                 if 'account_number_rule' not in re_rule_dict:
                     re_rule_dict['account_number_rule'] = number_rule
@@ -1047,15 +1049,13 @@ def masking(str_idx, speaker_idx, delimiter, encoding, input_line_list):
             if 'email_rule' not in re_rule_dict:
                 re_rule_dict['email_rule'] = email_rule
         if u'주소' in line:
-            if u'확인' in line or u'어떻게' in line or u'말씀' in line or u'부탁' in line or u'여쭤' in line or u'맞으' in line or u'불러' in line:
+            if u'확인' in line or u'어떻게' in line or u'말씀' in line or u'부탁' in line or u'여쭤' in line or \
+                    u'맞으' in line or u'불러' in line:
                 if 'address_rule' not in re_rule_dict:
                     re_rule_dict['address_rule'] = address_rule
-        # 면세점 특성상 면세점이 있는 지역명을 발화하는 경우가 많으므로 제외
-        # if u'서울' in line or u'경기' in line or u'부산' in line or u'광주' in line or u'대구' in line or u'울산' in line or u'대전' in line or u'충청' in line or u'충북' in line or u'충남' in line or u'경상' in line or u'경북' in line or u'경남' in line or u'제주' in line:
-        #     if 'address_rule' not in re_rule_dict:
-        #         re_rule_dict['address_rule'] = address_rule
         if u'생년월일' in line:
-            if u'확인' in line or u'어떻게' in line or u'말씀' in line or u'부탁' in line or u'여쭤' in line or u'맞으' in line or u'불러' in line or u'구요' in line:
+            if u'확인' in line or u'어떻게' in line or u'말씀' in line or u'부탁' in line or u'여쭤' in line or \
+                    u'맞으' in line or u'불러' in line or u'구요' in line:
                 if 'birth_rule' not in re_rule_dict:
                     re_rule_dict['birth_rule'] = birth_rule
         if u'본인' in line:
@@ -1150,16 +1150,18 @@ def masking(str_idx, speaker_idx, delimiter, encoding, input_line_list):
                 start = idx_tuple[0]
                 end = idx_tuple[1]
                 masking_part = ""
-                index_info.append({"start_idx": start, "end_idx": end, "masking_code": masking_code, "rule_name": rule_name})
+                index_info.append(
+                    {"start_idx": start, "end_idx": end, "masking_code": masking_code, "rule_name": rule_name}
+                )
                 cnt = 0
                 # 이름 규칙 룰에 적용되면서 띄어쓰기(공백)가 존재할시 생략
                 if (rule_name == 'name_rule' or rule_name == 'me_name_rule') and " " in output_str[start:end]:
                     continue
                 word_idx_list = list()
                 for word in MASKING_CONFIG['non_masking_word']:
-                    temp_start = start-3 if start-3 > 0 else 0
-                    if word in output_str[temp_start:end+3] or output_str in word:
-                        word_start_idx = temp_start + output_str[temp_start:end+3].find(word) - start
+                    temp_start = start - 3 if start - 3 > 0 else 0
+                    if word in output_str[temp_start:end + 3] or output_str in word:
+                        word_start_idx = temp_start + output_str[temp_start:end + 3].find(word) - start
                         word_end_idx = word_start_idx + len(word)
                         word_idx_list.append(range(word_start_idx, word_end_idx))
                 for idx in output_str[start:end]:
@@ -1346,8 +1348,8 @@ def cross_talk_check(key, rx_mlf_info_dict, tx_mlf_info_dict):
         base_speaker = 'C' if rx_st_time <= tx_st_time else 'A'
         comp_speaker = 'A' if rx_st_time <= tx_st_time else 'C'
         # 비교 시작
-        if comp_st_time < base_ed_time: # 말겹침 발생
-            if comp_ed_time < base_ed_time: # 완전 말겹침
+        if comp_st_time < base_ed_time:  # 말겹침 발생
+            if comp_ed_time < base_ed_time:  # 완전 말겹침
                 cross_talk_time = (comp_ed_time - comp_st_time)
                 CROSS_TALK_DICT[key][base_speaker].append((base_st_time, base_ed_time, cross_talk_time))
                 if comp_speaker == 'A':
@@ -1356,7 +1358,7 @@ def cross_talk_check(key, rx_mlf_info_dict, tx_mlf_info_dict):
                 else:
                     rx_idx += 1 if rx_idx + 1 < len(rx_mlf_info_dict) else 0
                     tx_idx += 0 if rx_idx + 1 < len(rx_mlf_info_dict) else 1
-            else:   # 일부 말겹침
+            else:  # 일부 말겹침
                 cross_talk_time = (base_ed_time - comp_st_time)
                 CROSS_TALK_DICT[key][base_speaker].append((base_st_time, base_ed_time, cross_talk_time))
                 if base_speaker == 'A':
@@ -1365,7 +1367,7 @@ def cross_talk_check(key, rx_mlf_info_dict, tx_mlf_info_dict):
                 else:
                     rx_idx += 1 if rx_idx + 1 < len(rx_mlf_info_dict) else 0
                     tx_idx += 0 if rx_idx + 1 < len(rx_mlf_info_dict) else 1
-        else:   # 말겹침 미발생
+        else:  # 말겹침 미발생
             # cross_talk_time = 0
             # CROSS_TALK_DICT[key][base_speaker].append((base_st_time, cross_talk_time))
             if base_speaker == 'A':
@@ -1427,7 +1429,8 @@ def make_stt_info(logger, speaker, file_name, output_dict):
             end_time = str(timedelta(seconds=float(et.replace("te=", "")) / 100))
             while True:
                 if key not in output_dict:
-                    output_dict[key] = "{0}\t{1}\t{2}\t{3}\t{4}\t{5}".format(speaker, modified_st, modified_et, sent, start_time, end_time)
+                    output_dict[key] = "{0}\t{1}\t{2}\t{3}\t{4}\t{5}".format(speaker, modified_st, modified_et, sent,
+                                                                             start_time, end_time)
                     break
                 else:
                     key += 0.1
