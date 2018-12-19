@@ -125,7 +125,7 @@ class MySQL(object):
                 silence_yn = insert_dict['SILENCE_YN']
                 silence_time = insert_dict['SILENCE_TIME']
                 crosstalk_yn = insert_dict['CROSSTALK_YN']
-                crosstalk_time = insert_dict['CROSSTALK_TIME']
+                crosstalk_time = str(insert_dict['CROSSTALK_TIME'])[:10]
                 values_tuple = (
                     recordkey, rfile_name, stt_sntc_lin_no, stt_sntc_cont, stt_sntc_sttm, stt_sntc_endtm,
                     stt_sntc_spkr_dcd, stt_sntc_spch_tm, stt_sntc_spch_sped, msk_dtc_yn, msk_info_lit, silence_yn,
@@ -729,7 +729,6 @@ def extract_silence(start_time_idx, end_time_idx, sentence_idx, total_duration, 
             if len(back_line_list) != 4:
                 continue
             back_start_time = back_line_list[int(start_time_idx)]
-            back_end_time = back_line_list[int(end_time_idx)]
             back_start_time_seconds = time_to_seconds(back_start_time)
             back_line_speaker = back_line_list[0].replace('[', '').replace(']', '').strip()
             compared_speaker = 'A' if back_line_speaker == 'C' else 'C'
@@ -2069,7 +2068,7 @@ def processing(job_list):
             ]
         for target_file in target_file_list:
             logger.debug('delete {0}'.format(target_file))
-            # del_garbage(logger, target_file)
+            del_garbage(logger, target_file)
     mysql.disconnect()
     logger.info("TOTAL END.. Start time = {0}, The time required = {1}".format(ST, elapsed_time(DT)))
     for handler in logger.handlers:
