@@ -63,7 +63,7 @@ class Daemon(object):
                         day_flag = True
                         # call_info 상태 변경
                         util.update_stt_status_ready_to_start(self.logger, oracle, cfg)
-                        # offer_info 상태 변경
+                        # offer_info 상태 변경02
                         util.update_ta_status_cd_ready_to_start(self.logger, oracle, cfg)
                     oracle, job_list = self.make_job_list(oracle, cfg)
                 except Exception:

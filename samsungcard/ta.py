@@ -3,7 +3,7 @@
 
 """program"""
 __author__ = "MINDsLAB"
-__date__ = "creation: 2018-12-12, modification: 2019-01-08"
+__date__ = "creation: 2018-12-12, modification: 2019-01-29"
 
 ###########
 # imports #
@@ -28,6 +28,8 @@ sys.setdefaultencoding("utf-8")
 # constants #
 #############
 START_DATE = ''
+END_LINE_DTC_CD_LIST = list()
+START_LINE_DTC_CD_LIST = list()
 
 
 #######
@@ -280,6 +282,7 @@ def insert_tb_result_evlu_criteria(log, cfg, call_info_dict, job, script_meta_di
     offer_output = dict()
     insrco_nm = ''
     tm_insr_pd_nm = ''
+    ta_score = 0
     goods_match_list = util.select_goods_match(log, job, oracle, cfg)
     for goods_match_dict in goods_match_list:
         goods_list = util.select_goods(log, goods_match_dict, oracle, cfg)
@@ -365,8 +368,7 @@ def insert_tb_result_evlu_criteria(log, cfg, call_info_dict, job, script_meta_di
                     reply_yn = 'N'
                     detect_reply_y_list = list()
                     for info_dict in evlu_script_dict.values():
-                        if info_dict['INSRPS_CMP_ID'] == insrps_cmp_id and \
-                            info_dict['EVLU_CRITERIA_CD'] == evlu_criteria_cd and info_dict['REPLY_YN'] == 'Y':
+                        if info_dict['INSRPS_CMP_ID'] == insrps_cmp_id and info_dict['EVLU_CRITERIA_CD'] == evlu_criteria_cd and info_dict['REPLY_YN'] == 'Y':
                             detect_reply_y_list.append(info_dict['SCRIPT_CD'])
                     if set(target_reply_y_list) == set(detect_reply_y_list) & set(target_reply_y_list):
                         reply_yn = 'Y'
@@ -415,6 +417,11 @@ def insert_tb_result_evlu_criteria(log, cfg, call_info_dict, job, script_meta_di
             offer_output['TARGET_EVLU_YN'] = 'Y'
         if setting_dict['01']['OPTION2_VALUE'] == 'Y' and job['INSR_QA_YN'] == 'Y':
             offer_output['TARGET_EVLU_YN'] = 'N'
+    if '02' in setting_dict:
+        if setting_dict['02']['OPTION1_VALUE'] == 'Y' and job['INSR_QA_YN'] == 'Y':
+            offer_output['LAST_RESULT_CD'] = '03'
+        if setting_dict['02']['OPTION2_VALUE'] == 'Y' and int(setting_dict['02']['OPTION3_VALUE']) <= offer_output['TA_SCORE']:
+            offer_output['LAST_RESULT_CD'] = '03'
     util.delete_data_to_tb_result_evlu_criteria(log, job, oracle, ora_cfg)
     util.insert_data_to_tb_result_evlu_criteria(log, tb_result_evlu_criteria_dict, oracle, ora_cfg)
     util.delete_data_to_tb_ta_result_evlu_script(log, job, oracle, ora_cfg)
@@ -452,10 +459,10 @@ def detect_sect_hmd_output(log, conf, call_info_dict, job, script_meta_dict):
             mother_check = False
             if len(category_list) > 5:
                 goods_cd, evlu_chart_cd, evlu_criteria_cd, script_cd = category_list[:4]
-                if evlu_criteria_cd.endswith('17') and len(info_dict['STT_INFO_DICT_LIST']) - 30 > line_num:
+                if evlu_criteria_cd in END_LINE_DTC_CD_LIST and len(info_dict['STT_INFO_DICT_LIST']) - 30 > line_num:
                     category = 'New_None'
                     dtc_keyword = 'New_None'
-                if (evlu_criteria_cd.endswith('19') or evlu_criteria_cd('30')) and line_num > 30:
+                if evlu_criteria_cd in START_LINE_DTC_CD_LIST and line_num > 30:
                     category = 'New_None'
                     dtc_keyword = 'New_None'
                 if script_meta_dict[goods_cd]['DICT'][evlu_chart_cd]['DICT'][evlu_criteria_cd]['DICT'][script_cd]['META']['STRT_SCRIPT_YN'] == 'Y':
@@ -617,6 +624,8 @@ def execute_hmd_analyze(log, conf, call_info_dict, job, oracle, cfg):
     :return:                            Call Information Dictionary with HMD Result
                                             Mother Script List
     """
+    global START_LINE_DTC_CD_LIST
+    global END_LINE_DTC_CD_LIST
     base_dir_name = job['INSRPS_CMP_ID']
     log.info('4. Start HMD')
     # Make HMD model
@@ -703,6 +712,12 @@ def execute_hmd_analyze(log, conf, call_info_dict, job, oracle, cfg):
                         if key in make_hmd_dict:
                             continue
                         make_hmd_dict[key] = script_dict
+                        criteria_dict_list = util.select_evlu_criteria(log, evlu_match_dict)
+                        for criteria_dict in criteria_dict_list:
+                            if criteria_dict['CATEGORY_3'] in ('금지대상고객정보', '통화목적안내'):
+                                START_LINE_DTC_CD_LIST.append(evlu_criteria_cd)
+                            elif criteria_dict['CATEGORY_3'] in ('끝인사'):
+                                END_LINE_DTC_CD_LIST.append(evlu_criteria_cd)
     # sync HMD add
     hmd_target_list = list()
     syn_keyword_list = util.select_syn_keyword(log, oracle, cfg)
