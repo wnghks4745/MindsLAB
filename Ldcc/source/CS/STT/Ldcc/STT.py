@@ -1006,33 +1006,33 @@ def masking(str_idx, speaker_idx, delimiter, encoding, input_line_list):
                     re_rule_dict['name_rule'] = name_rule
         if u'아이디' in line:
             if u'맞으' in line or u'맞습' in line or u'말씀' in line or u'어떻게' in line or u'불러' in line or \
-                    u'확인' in line:
+                    u'확인' in line or u'가요' in line:
                 if 'id_rule' not in re_rule_dict:
                     re_rule_dict['id_rule'] = alpha_rule
                 ans_yes_detect[line_num] = 1
         if (u'핸드폰' in line and u'번호' in line) or u'연락처' in line or u'번호' in line:
             if u'확인' in line or u'어떻게' in line or u'말씀' in line or u'부탁' in line or u'여쭤' in line or \
-                    u'맞으' in line or u'불러' in line or u'남겨' in line or u'있으' in line or u'알려' in line:
+                    u'맞으' in line or u'불러' in line or u'남겨' in line or u'있으' in line or u'알려' in line or u'가요' in line:
                 if 'tel_number_rule' not in re_rule_dict:
                     re_rule_dict['tel_number_rule'] = number_rule
         if u'휴대폰' in line and u'번호' in line:
             if u'확인' in line or u'어떻게' in line or u'말씀' in line or u'부탁' in line or u'여쭤' in line \
-                    or u'맞으' in line or u'불러' in line or u'남겨' in line or u'있으' in line or u'알려' in line:
+                    or u'맞으' in line or u'불러' in line or u'남겨' in line or u'있으' in line or u'알려' in line or u'가요' in line:
                 if 'tel_number_rule' not in re_rule_dict:
                     re_rule_dict['tel_number_rule'] = number_rule
         if u'전화' in line and u'번호' in line:
             if u'확인' in line or u'어떻게' in line or u'말씀' in line or u'부탁' in line or u'여쭤' in line \
-                    or u'맞으' in line or u'불러' in line or u'남겨' in line or u'있으' in line or u'알려' in line:
+                    or u'맞으' in line or u'불러' in line or u'남겨' in line or u'있으' in line or u'알려' in line or u'가요' in line:
                 if 'tel_number_rule' not in re_rule_dict:
                     re_rule_dict['tel_number_rule'] = number_rule
         if u'팩스' in line and u'번호' in line:
             if u'확인' in line or u'어떻게' in line or u'말씀' in line or u'부탁' in line or u'여쭤' in line \
-                    or u'맞으' in line or u'불러' in line or u'있으' in line or u'알려' in line:
+                    or u'맞으' in line or u'불러' in line or u'있으' in line or u'알려' in line or u'가요' in line:
                 if 'tel_number_rule' not in re_rule_dict:
                     re_rule_dict['tel_number_rule'] = number_rule
         if u'카드' in line and u'번호' in line:
             if u'확인' in line or u'어떻게' in line or u'말씀' in line or u'부탁' in line or u'여쭤' in line \
-                    or u'맞으' in line or u'불러' in line or u'있으' in line or u'알려' in line:
+                    or u'맞으' in line or u'불러' in line or u'있으' in line or u'알려' in line or u'가요' in line:
                 if 'card_number_rule' not in re_rule_dict:
                     re_rule_dict['card_number_rule'] = number_rule
         if u'주민' in line and u'번호' in line and u'앞자리' in line:
@@ -1041,12 +1041,12 @@ def masking(str_idx, speaker_idx, delimiter, encoding, input_line_list):
         if (u'주민' in line and u'번호' in line) or (u'면허' in line and u'번호' in line) or \
                 (u'외국인' in line and u'등록' in line and u'번호' in line) or (u'여권' in line and u'번호' in line):
             if u'확인' in line or u'어떻게' in line or u'말씀' in line or u'부탁' in line or u'여쭤' in line or \
-                    u'맞으' in line or u'불러' in line or u'알려' in line or u'있으' in line:
+                    u'맞으' in line or u'불러' in line or u'알려' in line or u'있으' in line or u'가요' in line:
                 if 'id_number_rule' not in re_rule_dict:
                     re_rule_dict['id_number_rule'] = number_rule
         if u'계좌' in line and u'번호' in line:
             if u'확인' in line or u'어떻게' in line or u'말씀' in line or u'부탁' in line or u'여쭤' in line or \
-                    u'맞으' in line or u'불러' in line or u'있으' in line or u'알려' in line:
+                    u'맞으' in line or u'불러' in line or u'있으' in line or u'알려' in line or u'가요' in line:
                 if 'account_number_rule' not in re_rule_dict:
                     re_rule_dict['account_number_rule'] = number_rule
         if u'신한' in line or u'농협' in line or u'우리' in line or u'하나' in line or u'기업' in line or \
@@ -1061,7 +1061,7 @@ def masking(str_idx, speaker_idx, delimiter, encoding, input_line_list):
                 re_rule_dict['email_rule'] = email_rule
         if u'주소' in line:
             if u'확인' in line or u'어떻게' in line or u'말씀' in line or u'부탁' in line or u'여쭤' in line or \
-                    u'맞으' in line or u'불러' in line or u'있으' in line or u'알려' in line:
+                    u'맞으' in line or u'불러' in line or u'있으' in line or u'알려' in line or u'가요' in line:
                 if 'address_rule' not in re_rule_dict:
                     re_rule_dict['address_rule'] = address_rule
         if u'생년월일' in line:
